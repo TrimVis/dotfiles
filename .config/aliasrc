@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+#
+# ~/.config/aliasrc
+#
+
+alias ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	fgrep="fgrep --color=auto" \
+	egrep="egrep --color=auto" \
+	diff="diff --color=auto" \
+    pacman="pacman --color=auto" \
+    df="df -h" \
+	calcurse="calcurse -D ~/.config/calcurse" \
+	p="sudo pacman" \
+    update="sudo pacman -Syyu" \
+    fc="sudo fc-cache -fv" \
+	SS="sudo systemctl" \
+	e="$EDITOR" \
+	v="$EDITOR" \
+	ccat="highlight --out-format=ansi" \
+    microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
+    update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
+    cleanup="sudo pacman -Rns $(pacman -Qtdq)"\
+    S="sudo"
