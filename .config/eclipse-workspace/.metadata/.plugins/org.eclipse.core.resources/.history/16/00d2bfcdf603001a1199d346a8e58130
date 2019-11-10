@@ -1,0 +1,14 @@
+package tutorial;
+
+public class Kreis {
+	public int x = 8;
+	public int y;
+	public int radius;
+	public String name = "leererString";
+	
+	public double calcArea() {
+		return 3.1418 * (double)radius * (double)radius;
+	}
+	
+
+}

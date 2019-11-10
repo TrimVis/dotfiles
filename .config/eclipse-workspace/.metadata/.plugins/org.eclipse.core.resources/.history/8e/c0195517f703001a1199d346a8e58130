@@ -1,0 +1,24 @@
+package tutorial;
+
+public class Tutorial {
+	
+	private static Kreis kreis;
+
+	public static void main(String[] args) {
+		//System.out.println("Hello World!");
+		
+		// Deklaration
+		Kreis b;
+		
+		kreis.x = 10;
+		
+		Kreis a = new Kreis();
+		a.x = 20;
+		a.y = 10;
+		a.radius = 2.0;
+		
+		System.out.println(a.name + ": " + a.calcArea());
+		
+	}
+
+}
