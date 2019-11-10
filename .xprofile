@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+
+
+#Autostart
+/usr/lib/xfce4/notifyd/xfce4-notifyd & #notification daemon
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & 
+nvidia-settings --load-config-only & #make nvidia driver load
+compton --config $HOME/.config/compton.conf & #compositor
+unclutter & #removes mouse pointer after certain time
+nm-applet & #network manager applet
+wal -i $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
+xrdb $HOME/.Xresources #load Xresources
+xset s 120 #set screentimeout to 120 seconds
+syncthing & #file syncronization
