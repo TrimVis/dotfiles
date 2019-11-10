@@ -1,0 +1,29 @@
+#!/bin/bash
+
+PLAYING=$(playerctl status)
+TITLE=$(playerctl metadata title)
+ARTIST=$(playerctl metadata artist)
+
+case $BLOCK_BUTTON in
+	1)
+	playerctl play-pause
+	PLAYING=$(playerctl status)
+    pkill -SIGRTMIN+11 -x i3blocks;;
+	3)
+	rm /home/trim/.scripts/.coverimg/coverImage
+	curl -L -C - $(playerctl --player=spotify metadata mpris:artUrl) -o "/home/trim/.scripts/.coverimg/coverImage"
+	notify-send -i /home/trim/.scripts/.coverimg/coverImage "🎶 $TITLE" "by $ARTIST
+'$(playerctl metadata album)' "
+esac
+
+if [ "$PLAYING" = "Playing" ]
+then
+	echo "($ARTIST)▶$TITLE"
+	echo " "
+	echo "#00FF00"
+elif [ "$PLAYING" = "Paused" ]
+then
+	echo "($ARTIST)⏸$TITLE"
+	echo " "
+	echo "#FFFF00"
+fi

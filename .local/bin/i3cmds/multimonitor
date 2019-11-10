@@ -1,0 +1,48 @@
+#!/usr/bin/bash
+
+TEST="xrandr --auto
+        xrandr --output eDP --off
+	xrandr --output HDMI-A-0 --off
+        xrandr --output HDMI-A-0 --auto --right-of eDP
+        xrandr --output HDMI-A-0 --auto --left-of eDP
+	xrandr --output HDMI-A-0 --auto --same-as eDP "
+
+RET=$(echo "auto
+eDP OFF
+eDP ON
+HDMI OFF
+HDMI ON
+HDMI right of eDP
+HDMI left of eDP
+HDMI mirror eDP" | rofi -p "Screen Config" -dmenu)
+
+if [ "$RET" = "eDP OFF" ]
+then
+	xrandr --output eDP --off
+elif [ "$RET" = "eDP ON" ]
+then
+	xrandr --output eDP --auto
+
+elif [ "$RET" = "HDMI OFF" ]
+then
+	xrandr --output HDMI-A-0 --off
+
+elif [ "$RET" = "HDMI ON" ]
+then
+	xrandr --output HDMI-A-0 --auto
+
+elif [ "$RET" = "HDMI right of eDP" ]
+then
+	xrandr --output HDMI-A-0 --auto --right-of eDP
+
+elif [ "$RET" = "HDMI left of eDP" ]
+then
+	xrandr --output HDMI-A-0 --auto --left-of eDP
+
+elif [ "$RET" = "HDMI mirror eDP" ]
+then
+	xrandr --output HDMI-A-0 --auto --same-as eDP
+  
+else
+	xrandr --auto
+fi

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+case $BLOCK_BUTTON in
+	3) notify-send " Memory Hogs" "$(/usr/bin/ps axch -o cmd:15,%mem --sort=-%mem | head)";;
+esac 
+
+MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
+echo $MEM
+
+INUSE=$(echo $MEM | awk -F ',' '{print $1}')
+if [ $INUSE -ge 6 ]
+then
+	echo " "
+	echo "#FF0000"
+elif [ $INUSE -ge 3 ]
+then
+	echo " "
+	echo "#FFFF00"
+fi

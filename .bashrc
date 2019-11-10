@@ -23,4 +23,3 @@ shopt -s dotglob
 
 source /opt/oh-my-git/prompt.sh
 ufetch-arco
-alias config='/usr/bin/git --git-dir=/home/trim/.cfg/ --work-tree=/home/trim'

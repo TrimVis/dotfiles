@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+#
+# A simple script, that regulates the screenlight using light
+#
+
+INC=
+DEC=
+NOT=
+BLO=
+
+while getopts i:d:nb:h option
+do
+    case "${option}"
+        in
+        i) INC=${OPTARG};;
+        d) DEC=${OPTARG};;
+        n) NOT="TRUE";;
+        b) BLO=${OPTARG};;
+        h) echo "A simple script, that regulates the screenlight using light.
+
+USAGE:
+-i <val>   Increase screenlight by val (in percent)
+-d <val>   Decrease screenlight by val (in percent)
+-n         Send out a notification using my notify script
+-b <val>   For i3blocks support: Force update of i3block entry with this val
+-h         Displays this help script"
+    esac
+done
+[ -z "$INC" ] || (light -A $INC; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
+[ -z "$DEC" ] || (light -U $DEC; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
+
+[ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x i3blocks)
+

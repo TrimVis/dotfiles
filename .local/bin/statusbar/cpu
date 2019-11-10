@@ -1,0 +1,20 @@
+#!/bin/bash
+
+CPU=$(iostat -c | awk '/..,../{ print $1}')
+
+case $BLOCK_BUTTON in
+	1) notify-send "💻 CPU temp:" "$(sensors | awk '/Tdie:/ {print $2}')";;
+    3) notify-send "💻 CPU hogs:" "$(ps axch -o %cpu,cmd --sort=-%cpu | head -n 8)" ;;
+esac
+
+echo $CPU"%"
+
+if [ $CPU -ge 90 ]
+then
+	echo " "
+	echo "#FF0000"
+elif [ $CPU -ge 50 ]
+then
+	echo " "
+	echo "#FFFF00"
+fi

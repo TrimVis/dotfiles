@@ -1,0 +1,24 @@
+#!/bin/bash
+
+SSID=$(iwconfig wlp36s0f3u1 | awk -F: '/ESSID:/ { print $2 }' | awk '{ print $1 }')
+STRE=$(iwconfig wlp36s0f3u1 | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1) 
+PERC=$(bc <<< "scale=0;100*$STRE")
+
+IP=$(ifconfig wlp36s0f3u1 | awk '/inet / {print $2}')
+
+case $BLOCK_BUTTON in
+	1) notify-send "🌍 Wifi" "Local IP: $IP
+Global IP: $(curl ifconfig.me)";;
+	3) nm-connection-editor;;
+esac
+
+if [ $SSID = "off/any" ]
+then
+	echo "disconnected"
+	echo " "
+	echo "#FF0000"
+else
+	echo $SSID $PERC"%" 
+	echo " "
+	echo "#00FF00"
+fi
