@@ -4,5 +4,5 @@ OUTPUT=$(cat $1.currwal; echo "⬆ current Wallpaper"; echo; ls $1)
 
 WALLPAPER=$(echo "$OUTPUT"  | rofi -dmenu)
 
-wal -i $1$WALLPAPER
+feh --bg-fill $1$WALLPAPER
 echo $WALLPAPER > $1.currwal
