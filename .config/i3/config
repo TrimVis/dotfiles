@@ -1,0 +1,330 @@
+#______ ______ ______ ______ ______ ______ ______
+#|______|______|______|______|______|______|______|
+#| |  (_)___ \                   / _(_)         | |
+#| |   _  __) |   ___ ___  _ __ | |_ _  __ _    | |
+#| |  | ||__ <   / __/ _ \| '_ \|  _| |/ _` |   | |
+#| |  | |___) | | (_| (_) | | | | | | | (_| |   | |
+#| |  |_|____/   \___\___/|_| |_|_| |_|\__, |   | |
+#| |                                    __/ |   | |
+#|_|   _             _______   _       |___/    |_|
+#| |  | |           |__   __| (_)               | |
+#| |  | |__  _   _     | |_ __ _ _ __ ___       | |
+#| |  | '_ \| | | |    | | '__| | '_ ` _ \      | |
+#| |  | |_) | |_| |    | | |  | | | | | | |     | |
+#| |  |_.__/ \__, |    |_|_|  |_|_| |_| |_|     | |
+#| |          __/ |                             | |
+#|_|____ ____|___/____ ______ ______ ______ ____|_|
+#|______|______|______|______|______|______|______|
+
+
+################### BASIC VARIABLES ###################
+
+# Mod4 = Windows or Super key on keyboard
+# Mod1 = Alt key on keyboard
+set $mod Mod4
+set $up k
+set $down j
+set $left h
+set $right l
+
+set $font "IBM Plex Mono 13"
+set $home /home/trim
+set $wallpaper /home/trim/Pictures/Wallpapers
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+font pango:IBM Plex Mono 13
+
+################### FOCUS ###################
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# change focus
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+bindsym $mod+d focus child
+# switch to workspace with urgent window automatically
+for_window [urgent=latest] focus
+
+################### POSITIONING ###################
+
+# move focused window
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# orientation for new workspaces
+default_orientation horizontal
+# toggle split orientation
+# h = horizontal; v = vertical are valid orientations too
+bindsym $mod+v split toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+################### RESIZE ###################
+
+bindsym $mod+Left resize shrink width 10 px or 10 ppt
+bindsym $mod+Up resize grow height 10 px or 10 ppt
+bindsym $mod+Down resize shrink height 10 px or 10 ppt
+bindsym $mod+Right resize grow width 10 px or 10 ppt
+
+################### WORKSPACES ###################
+
+set $w1 1:🌍
+set $w2 2:💻
+set $w3 3:💻
+set $w4 4:🗄️
+set $w5 5:🏷️
+set $w6 6:🃏
+set $w7 7:📻
+set $w8 8:📟
+set $w9 9:🖇️
+set $w0 0
+
+# next/previous workspace
+bindsym Mod1+Tab workspace next
+bindsym Mod1+Shift+Tab workspace prev
+bindsym $mod+Tab workspace back_and_forth
+# switch to workspace
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w0
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $w1; workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2; workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3; workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4; workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5; workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6; workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7; workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8; workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9; workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w0; workspace $w0
+
+################### BAR ###################
+
+# bar toggle, hide or show
+bindsym $mod+b bar mode toggle
+bar {
+    height 31
+    workspace_buttons yes
+    font pango:IBM Plex Mono 13
+
+    position top
+
+    status_command i3blocks -c $home/.config/i3/i3blocks.conf
+
+    colors {
+        background #2F2F2F
+        statusline #eeeeee
+        separator  #666666
+        #                     border  backgr. text
+        focused_workspace     #a9a9a9 #5f676a #eeeeee
+        active_workspace      #a9a9a9 #5f676a #a9a9a9
+        inactive_workspace    #a9a9a9 #222222 #a9a9a9
+        urgent_workspace      #a9a9a9 #d42121 #FFFFFF
+        }
+    }
+
+# class                 border  backgr. text    indicator
+client.placeholder      #242424 #242424 #242424
+client.background       #242424 #242424 #242424
+client.focused          #FFFF01 #FFBF21 #e5e5e5 #FFFF01
+client.unfocused        #222222 #222222 #aaaaaa #222222
+client.focused_inactive #FFFF01 #222222 #a9a9a9 #222222
+client.urgent           #d42121 #d42121 #f7f7f7 #d42121
+
+################### I3 SHORTCUTS ###################
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# kill focused window
+bindsym $mod+q kill
+# move the currently focused window to the scratchpad
+bindsym $mod+Shift+a move scratchpad
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+Shift+s scratchpad show
+
+################### MENU/DMENU SHORTCUTS ###################
+
+bindsym $mod+Shift+e exec --no-startup-id rofi -show emoji -font $font
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun -font $font
+bindsym $mod+Shift+x mode "$mode_system"
+set $mode_system System (l) lock, (L) logout, (s) suspend, (h) hibernate, (R) reboot, (S) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id screenlock, mode "default"
+    bindsym Shift+l exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s  exec --no-startup-id screenlock, exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id screenlock, exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym Shift+r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+m exec --no-startup-id dmenumountdisk
+bindsym $mod+Shift+u exec --no-startup-id dmenuunmountdisk
+#Wallpaper changer, wallpapers will be safed and auto applied at next boot
+bindsym $mod+Shift+w exec --no-startup-id change_bg $wallpaper/
+#bindsym $mod+Shift
+
+#################                          assign applications to workspaces                       #################
+
+# you can find the class with the program xprop
+assign [class="firefox"] $w1
+assign [class="Zathura"] $w5
+assign [class="discord"] $w8
+assign [class="Keepass"] $w9
+
+#################                          applications keyboard shortcuts                          #################
+
+# terminal
+bindsym $mod+Return exec --no-startup-id $TERMINAL;focus
+bindsym $mod+Shift+Return exec $TERMINAL -e st-cd $(xcwd);focus
+# glances
+bindsym Ctrl+$mod+g exec --no-startup-id glances;focus
+# pavucontrol
+bindsym control+$mod+u exec --no-startup-id pavucontrol;focus
+# xkill
+bindsym --release $mod+Escape exec xkill
+# firefox
+bindsym Ctrl+$mod+b exec --no-startup-id firefox;focus
+# thunar
+bindsym Ctrl+$mod+Return exec --no-startup-id thunar;focus
+# keepass
+bindsym Ctrl+$mod+k exec --no-startup-id keepass;focus
+# calcurse
+bindsym Ctrl+$mod+c exec --no-startup-id $TERMINAL -n "floating" -e calcurse -D $home/.config/calcurse
+
+bindsym Print exec --no-startup-id scrot 'screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'mv $f $(xdg-user-dir PICTURES)'
+
+#################                          floating or tiled                                        #################
+
+# floating enabled from some programs - find with xprop
+for_window [class="Pavucontrol"] floating enable
+for_window [class="^Vlc$"] floating disable
+for_window [class="Wine"] floating disable
+for_window [class="St" instance="floating"] floating enable
+
+for_window [title="^Network Connections$"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="^Preferences$"] floating enable
+for_window [window_role="setup"] floating enable
+
+#################                          FN buttons                                           #################
+
+bindsym $Mod+p exec --no-startup-id multimonitor
+bindsym XF86AudioRaiseVolume exec --no-startup-id volumectrl -i 5 -n -b 11 
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id volumectrl -i 1 -n -b 11 
+bindsym XF86AudioLowerVolume exec --no-startup-id volumectrl -d 5 -n -b 11 
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id volumectrl -d 1 -n -b 11 
+bindsym XF86AudioMute exec --no-startup-id volumectrl -m -n -b 11
+bindsym XF86MonBrightnessUp exec --no-startup-id screenlight -i 5 -n -b 10
+bindsym $mod+XF86MonBrightnessUp exec --no-startup-id screenlight -i 1 -n -b 10
+bindsym XF86MonBrightnessDown exec --no-startup-id screenlight -d 5 -n -b 10
+bindsym $mod+XF86MonBrightnessDown exec --no-startup-id screenlight -d 1 -n -b 10
+bindsym $mod+XF86Tools exec --no-startup-id restart_tpad; exec --no-startup-id notify -c "tpad" -s 880 -t "🖱️ Mouse" -b "Restarted Touchpad input"
+
+#################                          border control                                           #################
+
+# Border control
+hide_edge_borders both
+bindsym $mod+shift+b exec --no-startup-id i3-msg border toggle
+#changing border style
+bindsym $mod+y border toggle
+#borders
+new_window pixel 1
+new_float pixel 4
+
+#################                          Popups  control                                          #################
+
+#Popups during fullscreen mode
+popup_during_fullscreen smart
+
+#################                          i3 gaps next                                             #################
+
+for_window [class="^.*"] border pixel 2
+gaps inner 5
+gaps outer 5
+#smart_gaps on
+#smart_borders on
+
+#################                          i3 gaps change                                           #################
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# KEY DEFINITIONS TO REMEMBER
+
+# $Mod = WINDOWS key or Super key or Mod4
+# Mod1 = ALT key
+# Control = CTRL key
+# Shift = SHIFT key
+# Escape = ESCAPE key
+# Return = ENTER or RETURN key
+# KP_Enter = Keypad Enter
+# Pause = PAUSE key
+# Print = PRINT key
+# Tab = TAB key
+
+# vim:filetype=i3
