@@ -20,6 +20,7 @@ shopt -s cmdhist # save multi-line commands in history as single line
 shopt -s dotglob
 
 [[ -f $HOME/.config/aliasrc ]] && . ~/.config/aliasrc
+eval $(opam env)
 
 source /opt/oh-my-git/prompt.sh
 ufetch-arco
