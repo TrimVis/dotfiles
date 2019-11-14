@@ -27,8 +27,8 @@ USAGE:
 -h         Displays this help script"
     esac
 done
-[ -z "$INC" ] || (light -A $INC; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
-[ -z "$DEC" ] || (light -U $DEC; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
+[ -z "$INC" ] || (light -A "$INC"; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
+[ -z "$DEC" ] || (light -U "$DEC"; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
 
 [ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x i3blocks)
 

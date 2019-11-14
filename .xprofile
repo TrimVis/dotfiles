@@ -11,4 +11,5 @@ nm-applet & #network manager applet
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
 xrdb $HOME/.Xresources #load Xresources
 xset s 120 360 #set screentimeout to 120 seconds
+xss-lock -n dimscreen -- screenlock &
 syncthing & #file syncronization

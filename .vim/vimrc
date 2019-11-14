@@ -27,10 +27,14 @@ set go=a
 set mouse=a
 "set nohlsearch
 set clipboard+=unnamedplus
-set autoindent
-"autocmd Filetype ocaml setlocal tabstop=2
 
 " Some basics:
+"
+  set shiftwidth=2
+  set softtabstop=2
+  set tabstop=2
+  set autoindent
+	autocmd Filetype javascript setlocal ts=4 sw=4 sts=0 expandtab
 	nnoremap c "_c
 	set nocompatible
 	filetype plugin on

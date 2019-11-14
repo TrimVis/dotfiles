@@ -6,8 +6,10 @@ case $BLOCK_BUTTON in
     1) if [ "$TOUT" = "0" ]
     then
         xset s on
+				TOUT="1"
     else
         xset s off
+				TOUT="0"
     fi
 esac
 

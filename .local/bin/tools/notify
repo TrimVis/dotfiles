@@ -37,21 +37,21 @@ done
 FILE=$HOME/.config/notify/${CAT}_id
 
 # create file if not already there
-[ -f $FILE ] || (echo "0" > $FILE)
+[ -f "$FILE" ] || (echo "0" > "$FILE")
 
 #read notification id
-ID=$(cat $FILE)
+ID=$(cat "$FILE")
 
-if [ -z $ICO ]
+if [ -z "$ICO" ]
 then
 	ID=$(dunstify -t $SEC -p -r $ID "$TITLE" "$BODY")
 else
 	ID=$(dunstify -t $1 -i $4 -p -r $ID "$TITLE" "$BODY")
 fi
 
-if [ -z $ID ]
+if [ -z "$ID" ]
 then
-	echo "0" > $FILE
+	echo "0" > "$FILE"
 else
-	echo $ID > $FILE
+	echo "$ID" > "$FILE"
 fi
