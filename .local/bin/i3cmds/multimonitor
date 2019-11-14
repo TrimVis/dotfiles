@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
-TEST="xrandr --auto
-        xrandr --output eDP --off
-	xrandr --output HDMI-A-0 --off
-        xrandr --output HDMI-A-0 --auto --right-of eDP
-        xrandr --output HDMI-A-0 --auto --left-of eDP
-	xrandr --output HDMI-A-0 --auto --same-as eDP "
+#TEST="xrandr --auto
+#        xrandr --output eDP --off
+#	xrandr --output HDMI-A-0 --off
+#        xrandr --output HDMI-A-0 --auto --right-of eDP
+#        xrandr --output HDMI-A-0 --auto --left-of eDP
+#	xrandr --output HDMI-A-0 --auto --same-as eDP "
 
 RET=$(echo "auto
 eDP OFF
@@ -42,7 +42,7 @@ then
 elif [ "$RET" = "HDMI mirror eDP" ]
 then
 	xrandr --output HDMI-A-0 --auto --same-as eDP
-  
+
 else
 	xrandr --auto
 fi

@@ -1,8 +1,8 @@
 #!/bin/bash
 
-OUTPUT=$(cat $1.currwal; echo "⬆ current Wallpaper"; echo; ls $1)
+OUTPUT=$(cat "$1.currwal"; echo "⬆ current Wallpaper"; echo; ls "$1")
 
 WALLPAPER=$(echo "$OUTPUT"  | rofi -dmenu)
 
-feh --bg-fill $1$WALLPAPER
-echo $WALLPAPER > $1.currwal
+feh --bg-fill "$1$WALLPAPER"
+echo "$WALLPAPER" > "$1.currwal"
