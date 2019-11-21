@@ -18,15 +18,20 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'vimwiki/vimwiki'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-commentary'
+"theme
+Plug 'wdhg/dragon-energy'
+Plug 'plainfingers/black_is_the_color'
+Plug 'fielding/vice'
 "Plug 'vifm/vifm.vim'
 "Plug 'kovetskiy/sxhkd-vim'
 call plug#end()
 
-set bg=light
-set go=a
-set mouse=a
+"set bg=light
+"set go=a
+"set mouse=a
 "set nohlsearch
 set clipboard+=unnamedplus
+colorscheme black_is_the_color
 
 " Some basics:
 "
