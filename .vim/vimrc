@@ -31,7 +31,7 @@ call plug#end()
 "set mouse=a
 "set nohlsearch
 set clipboard+=unnamedplus
-colorscheme black_is_the_color
+colorscheme dragon-energy
 
 " Some basics:
 "
