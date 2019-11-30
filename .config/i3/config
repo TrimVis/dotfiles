@@ -54,6 +54,8 @@ bindsym $mod+a focus parent
 bindsym $mod+d focus child
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
+# dont follow mouse cursor for focus
+focus_follows_mouse no
 
 ################### POSITIONING ###################
 
