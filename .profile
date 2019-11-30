@@ -9,7 +9,7 @@ export EDITOR="vim"
 export TERMINAL="st"
 export BROWSER="firefox"
 export READER="zathura"
-export FILE="thunar"
+export FILE="pcmanfm"
 #export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 
@@ -27,6 +27,3 @@ echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc
 
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
-
-# opam configuration
-test -r /home/trim/.opam/opam-init/init.sh && . /home/trim/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

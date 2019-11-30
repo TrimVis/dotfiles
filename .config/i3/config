@@ -191,6 +191,7 @@ bindsym $mod+Shift+m exec --no-startup-id dmenumountdisk
 bindsym $mod+Shift+u exec --no-startup-id dmenuunmountdisk
 #Wallpaper changer, wallpapers will be safed and auto applied at next boot
 bindsym $mod+Shift+w exec --no-startup-id change_bg $wallpaper/
+bindsym $mod+Shift+p exec --no-startup-id kpmenu
 #bindsym $mod+Shift
 
 #################                          assign applications to workspaces                       #################
@@ -240,10 +241,10 @@ for_window [window_role="setup"] floating enable
 #################                          FN buttons                                           #################
 
 bindsym $Mod+p exec --no-startup-id multimonitor
-bindsym XF86AudioRaiseVolume exec --no-startup-id volumectrl -i 5 -n -b 11 
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id volumectrl -i 1 -n -b 11 
-bindsym XF86AudioLowerVolume exec --no-startup-id volumectrl -d 5 -n -b 11 
-bindsym $mod+XF86AudioLowerVolume exec --no-startup-id volumectrl -d 1 -n -b 11 
+bindsym XF86AudioRaiseVolume exec --no-startup-id volumectrl -i 5 -n -b 11
+bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id volumectrl -i 1 -n -b 11
+bindsym XF86AudioLowerVolume exec --no-startup-id volumectrl -d 5 -n -b 11
+bindsym $mod+XF86AudioLowerVolume exec --no-startup-id volumectrl -d 1 -n -b 11
 bindsym XF86AudioMute exec --no-startup-id volumectrl -m -n -b 11
 bindsym XF86MonBrightnessUp exec --no-startup-id screenlight -i 5 -n -b 10
 bindsym $mod+XF86MonBrightnessUp exec --no-startup-id screenlight -i 1 -n -b 10
