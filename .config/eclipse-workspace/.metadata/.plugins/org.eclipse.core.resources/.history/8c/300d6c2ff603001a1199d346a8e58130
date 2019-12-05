@@ -1,9 +1,0 @@
-package tutorial;
-
-public class Instanz {
-	public int x = 8;
-	public String y = "leererString";
-	
-	
-
-}
