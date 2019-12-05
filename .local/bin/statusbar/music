@@ -1,8 +1,8 @@
 #!/bin/bash
 
 PLAYING=$(playerctl status)
-TITLE=$(playerctl metadata title)
-ARTIST=$(playerctl metadata artist)
+TITLE=$(playerctl metadata title | cut -c1-20)
+ARTIST=$(playerctl metadata artist | cut -c1-24)
 
 case $BLOCK_BUTTON in
 	1)
