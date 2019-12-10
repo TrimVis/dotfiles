@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 case $BLOCK_BUTTON in
 	1) pavucontrol;;
 esac
 
-echo $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)
+amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1
 MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
 
 

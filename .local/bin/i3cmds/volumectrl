@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #
 # A simple script, that regulates the volume using amixer
@@ -19,7 +19,7 @@ do
         m) MUT="TRUE";;
         n) NOT="TRUE";;
         b) BLO=${OPTARG};;
-        h) echo "A simple script, that regulates the volume using amixer.
+        *) echo "A simple script, that regulates the volume using amixer.
 
 USAGE:
 -i <val>   Increase volume by val (in percent)

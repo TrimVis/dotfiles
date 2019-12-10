@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 #
 # Simple notify script, which allows notification replacement
@@ -20,7 +20,7 @@ do
         s) SEC=${OPTARG};;
         t) TITLE=${OPTARG};;
         b) BODY=${OPTARG};;
-        h) echo "Simple notify script, which allows notification replacement using dunstify
+        *) echo "Simple notify script, which allows notification replacement using dunstify
 
 Usage:
 -c Category name, has to be the same for notifications which can replace each other
