@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PLAYING=$(playerctl status)
 TITLE=$(playerctl metadata title | cut -c1-20)
@@ -11,7 +11,7 @@ case $BLOCK_BUTTON in
     pkill -SIGRTMIN+11 -x i3blocks;;
 	3)
 	rm /home/trim/.scripts/.coverimg/coverImage
-	curl -L -C - $(playerctl --player=spotify metadata mpris:artUrl) -o "/home/trim/.scripts/.coverimg/coverImage"
+	curl -L -C - "$(playerctl --player=spotify metadata mpris:artUrl)" -o "/home/trim/.scripts/.coverimg/coverImage"
 	notify-send -i /home/trim/.scripts/.coverimg/coverImage "🎶 $TITLE" "by $ARTIST
 '$(playerctl metadata album)' "
 esac

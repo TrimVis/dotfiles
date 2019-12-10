@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/sh
 
 xinput disable 'ELAN2203:00 04F3:309A Touchpad'
 xinput enable 'ELAN2203:00 04F3:309A Touchpad'

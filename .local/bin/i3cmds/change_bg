@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 OUTPUT=$(cat "$1.currwal"; echo "⬆ current Wallpaper"; echo; ls "$1")
 

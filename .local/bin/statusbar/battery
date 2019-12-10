@@ -1,12 +1,12 @@
-#!/bin/bash
+#!/bin/sh
 
 case $BLOCK_BUTTON in
 	1) notify-send "⚡ Battery:" "ETA: $(acpi | awk '{print $5}' | grep -o "[0-9:]\+") ";;
 esac
 
 ACPI=$(acpi | awk '{print $3 $4}')
-BAT=$(echo $ACPI | grep -o "[0-9]\+")
-STAT=$(echo $ACPI | awk -F',' '{print $1}')
+BAT=$(echo "$ACPI" | grep -o "[0-9]\+")
+STAT=$(echo "$ACPI" | awk -F',' '{print $1}')
 
 if [ "$STAT" = "Charging" ]; then
 	echo "$BAT+"
@@ -16,10 +16,10 @@ if [ "$STAT" = "Charging" ]; then
 else
 	echo "$BAT"
 	echo " "
-	
-	if [ $BAT -le 15 ]; then
+
+	if [ "$BAT" -le 15 ]; then
 		echo "#FF0000"
-	elif [ $BAT -le 90 ]; then
+	elif [ "$BAT" -le 90 ]; then
 		echo "#FFFF00"
 	else
 		echo "#00FF00"
