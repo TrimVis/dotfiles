@@ -12,7 +12,7 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 	"Restore last location in files
 	Plug 'farmergreg/vim-lastplace'
-	"Replace 'surrounding' characters (see :help surround)  
+	"Replace 'surrounding' characters (see :help surround)
 	Plug 'tpope/vim-surround'
 	"Shows a file explorer of cwd inside vim
 	Plug 'scrooloose/nerdtree'
@@ -20,6 +20,10 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'jreybert/vimagit'
 	"Comment out lines using gcc
 	Plug 'tpope/vim-commentary'
+	"Advanced error/warning detection
+	Plug 'vim-syntastic/syntastic'
+	"Advanced tabular creation
+	Plug 'godlygeek/tabular'
 	"Looks:
 	"Statusbar
 	Plug 'bling/vim-airline'
@@ -27,27 +31,32 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'junegunn/goyo.vim'
 	"i3 config syntax highlighting inside vim
 	Plug 'PotatoesMaster/i3-vim-syntax'
+	Plug 'pangloss/vim-javascript'
 	"Themes:
 	Plug 'Rigellute/rigel'
 	Plug 'fielding/vice'
 	Plug 'blueshirts/darcula'
-	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+	Plug 'levelone/tequila-sunrise.vim', { 'as': 'tequila-sunrise' }
+	Plug 'xdg/vim-darkluma', { 'as': 'darkluma' }
+	Plug 'arzg/vim-colors-xcode', { 'as': 'xcode' }
+	Plug 'mcmartelle/vim-monokai-bold', { 'as': 'monokai' }
 	"Disabled:
 	"Easy markdown like highlighting directly in vim
-	" Plug 'vimwiki/vimwiki'
+	"Plug 'vimwiki/vimwiki'
+	"Plug 'octol/vim-cpp-enhanced-highlight', { 'as': 'vim-cpp' }
 call plug#end()
 
-"not working
-"set clipboard+=unnamedplus
-colorscheme rigel
-
 "Basics:
+colorscheme xcodedark
 set encoding=utf-8
 set nocompatible
 filetype plugin on
 syntax on
 " automatically read changes made to file
 set autoread
+"not working
+"set clipboard+=unnamedplus
 
 "Indentation:
 set autoindent
@@ -63,6 +72,14 @@ set so=9
 set wildmode=longest,list,full
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 set splitbelow splitright
+" Shortcutting cycling through tabs
+map <C-[> :tabp<CR>
+map <C-]> :tabn<CR>
+" Shortcutting split navigation, saving a keypress:
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 
 "Plugins:
 " Goyo plugin makes text more readable when writing prose:
@@ -70,62 +87,36 @@ map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 " Nerd tree - file navigation
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Syntastics
+" set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 
-"Spellcheck: 
+"Spellcheck:
 map <leader>oe :setlocal spell! spelllang=en_us<CR>
 map <leader>od :setlocal spell! spelllang=de_de<CR>
 
-
-
-" Shortcutting cycling through tabs
-"map <C-[> :tabp<CR>
-"map <C-]> :tabn<CR>
-" Shortcutting split navigation, saving a keypress:
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
+"Shortcuts:
 " Check file in shellcheck:
 map <leader>s :!clear && shellcheck %<CR>
-
 " Replace all is aliased to S.
 nnoremap S :%s//g<Left><Left>
-
-" Compile document, be it groff/LaTeX/markdown/etc.
-"map <leader>c :w! \| !compiler <c-r>%<CR>
-
-" Open corresponding .pdf/.html or preview
-"map <leader>p :!opout <c-r>%<CR><CR>
-
-" Ensure files are read as what I want:
-"let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-"let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-"autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
-"autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-"autocmd BufRead,BufNewFile *.tex set filetype=tex
-
-" Enable Goyo by default for mutt writting
-" Goyo's width will be the line limit in mutt.
-autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light
-
-" Automatically deletes all trailing whitespace on save.
-"autocmd BufWritePre * %s/\s\+$//e
-
-" When shortcut files are updated, renew bash and vifm configs with new material:
-"autocmd BufWritePost ~/.config/bmdirs,~/.config/bmfiles !shortcuts
-
-" Update binds when sxhkdrc is updated.
-"autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd
-
-" Run xrdb whenever Xdefaults or Xresources are updated.
-autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
-
 " Navigating with guides
 inoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 vnoremap <leader><leader> <Esc>/<++><Enter>"_c4l
 map <leader><leader> <Esc>/<++><Enter>"_c4l
-
 " Save file as sudo on files that require root permission
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+"Custom Behaviour:
+" Run xrdb whenever Xdefaults or Xresources are updated.
+autocmd BufWritePost *Xresources,*Xdefaults !xrdb %
+" Automatically deletes all trailing whitespace on save.
+"autocmd BufWritePre * %s/\s\+$//e
+
+" Enable Goyo by default for mutt writting
+"autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light
