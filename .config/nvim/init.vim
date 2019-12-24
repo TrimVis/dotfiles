@@ -83,7 +83,7 @@ map <C-l> <C-w>l
 
 "Plugins:
 " Goyo plugin makes text more readable when writing prose:
-map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
+map <leader>f :Goyo<CR>
 " Nerd tree - file navigation
 map <leader>n :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
