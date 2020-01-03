@@ -8,6 +8,7 @@ nvidia-settings --load-config-only & #make nvidia driver load
 compton --config $HOME/.config/compton.conf & #compositor
 unclutter & #removes mouse pointer after certain time
 nm-applet & #network manager applet
+blueman-applet & #bluetooth applet
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
 xrdb $HOME/.Xresources #load Xresources
 xset s 120 360 #set screentimeout to 120 seconds
