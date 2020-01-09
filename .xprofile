@@ -11,7 +11,7 @@ nm-applet & #network manager applet
 blueman-applet & #bluetooth applet
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
 xrdb $HOME/.Xresources #load Xresources
-xset s 120 10 #dimscreen after 120 seconds
+xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -n dimscreen -- screenlock &
 syncthing & #file syncronization
