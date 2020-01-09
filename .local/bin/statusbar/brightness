@@ -5,10 +5,10 @@ TOUT=$(xset q | grep timeout | awk '{ print $2 }')
 case $BLOCK_BUTTON in
     1) if [ "$TOUT" = "0" ]
     then
-        xset s on
+        xset s 120 360
 				TOUT="1"
     else
-        xset s off
+        xset s off off
 				TOUT="0"
     fi
 esac
