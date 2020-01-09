@@ -1,21 +1,21 @@
 #!/bin/sh
 
-TOUT=$(xset q | grep timeout | awk '{ print $2 }')
+TOUT=$(xset q | grep "DPMS is" | awk '{ print $3 }')
 
 case $BLOCK_BUTTON in
-    1) if [ "$TOUT" = "0" ]
+    1) if [ "$TOUT" = "Disabled" ]
     then
-        xset s 120 360
-				TOUT="1"
+				xset s on +dpms
+				TOUT="Enabled"
     else
-        xset s off off
-				TOUT="0"
+				xset s off -dpms
+				TOUT="Disabled"
     fi
 esac
 
 light -G | awk -F'.' '{ print $1 }'
 
-if [ "$TOUT" = "0" ]
+if [ "$TOUT" = "Disabled" ]
 then
     echo " "
     echo "#0000AF"
