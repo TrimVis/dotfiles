@@ -28,8 +28,8 @@ USAGE:
 -d <val>   Decrease screenlight by val (in percent)
 -n         Send out a notification using my notify script
 -b <val>   For i3blocks support: Force update of i3block entry with this val
--s				 Save current screenlight
--r				 Restore screenlight
+-s         Save current screenlight
+-r         Restore screenlight
 -h         Displays this help script"
 
     esac
