@@ -256,10 +256,10 @@ bindsym XF86AudioMute exec --no-startup-id volumectrl -m -n -b 11
 # brightness control
 bindsym XF86MonBrightnessUp exec --no-startup-id screenlight -i 5 -n -b 10
 bindsym $mod+XF86MonBrightnessUp exec --no-startup-id screenlight -i 1 -n -b 10
-bindsym Shift+F2 exec --no-startup-id screenlight -r -n
+bindsym Shift+F2 exec --no-startup-id screenlight -r -n -b 10
 bindsym XF86MonBrightnessDown exec --no-startup-id screenlight -d 5 -n -b 10
 bindsym $mod+XF86MonBrightnessDown exec --no-startup-id screenlight -d 1 -n -b 10
-bindsym Shift+F1 exec --no-startup-id screenlight -s -n
+bindsym Shift+F1 exec --no-startup-id screenlight -s -n -b 10
 bindsym $mod+XF86Tools exec --no-startup-id restart_tpad; exec --no-startup-id notify -c "tpad" -s 880 -t "🖱️ Mouse" -b "Restarted Touchpad input"
 # screenshots
 bindsym Print exec --no-startup-id scrot 'screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'mv $f $(xdg-user-dir PICTURES)'
