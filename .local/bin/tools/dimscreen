@@ -1,6 +1,6 @@
 #!/bin/sh
 
 #Save screenbrightness for easy restoration later
-screenlight -s -n
+screenlight -s -n -b 10
 #Decrease screenbrightness
-screenlight -d 100 -b 10
+screenlight -d 100 -b 10 -n
