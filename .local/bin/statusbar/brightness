@@ -13,10 +13,14 @@ case $BLOCK_BUTTON in
     fi
 esac
 
-light -G | awk -F'.' '{ print $1 }'
+#light -G | awk -F'.' '{ print $1 }'
 
 if [ "$TOUT" = "0" ]
 then
+		echo "OFF"
     echo " "
     echo "#0000AF"
+else
+		echo "ON"
+		echo " "
 fi
