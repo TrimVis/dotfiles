@@ -12,9 +12,13 @@ export READER="zathura"
 export FILE="pcmanfm"
 #export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
+export XDG_CONFIG_HOME="$HOME/.config"
+export IPYTHONDIR="$HOME/.config/ipython"
+export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
 
 # less/man colors
 export LESS=-R
+export LESSHISTFILE="$HOME/.config/.lesshst"
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
 export LESS_TERMCAP_me="$(printf '%b' '[0m')"; a="${a%_}"

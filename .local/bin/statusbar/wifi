@@ -2,7 +2,7 @@
 
 DEV="wlp36s0f3u1"
 
-SSID=$(iwconfig $DEV | awk -F: '/ESSID:/ { print $2 }' | awk '{ print $1 }')
+SSID=$(iwconfig $DEV | awk -F: '/ESSID:/ { print $2 }' | awk '{ print $1 }' | xargs)
 STRE=$(iwconfig $DEV | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)
 PERC=$(bc <<< "scale=0;100*$STRE")
 
@@ -20,7 +20,7 @@ then
 	echo " "
 	echo "#FF0000"
 else
-	echo "$SSID $PERC%"
+	echo "\"$SSID\" $PERC%"
 	echo " "
 	echo "#00FF00"
 fi

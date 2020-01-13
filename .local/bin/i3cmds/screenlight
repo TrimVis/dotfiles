@@ -8,8 +8,10 @@ INC=
 DEC=
 NOT=
 BLO=
+SAV=
+REST=
 
-while getopts i:d:nb:h option
+while getopts i:d:nb:srh option
 do
     case "${option}"
         in
@@ -17,6 +19,8 @@ do
         d) DEC=${OPTARG};;
         n) NOT="TRUE";;
         b) BLO=${OPTARG};;
+				s) SAV="TRUE";;
+				r) REST="TRUE";;
         *) echo "A simple script, that regulates the screenlight using light.
 
 USAGE:
@@ -24,9 +28,15 @@ USAGE:
 -d <val>   Decrease screenlight by val (in percent)
 -n         Send out a notification using my notify script
 -b <val>   For i3blocks support: Force update of i3block entry with this val
+-s         Save current screenlight
+-r         Restore screenlight
 -h         Displays this help script"
+
     esac
 done
+
+[ -z "$SAV" ] || (light -O; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Saved current backlight level: $(light -G | awk -F. '{ print $1 }')")
+[ -z "$REST" ] || (light -I; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Restored backlight level: $(light -G | awk -F. '{ print $1 }')")
 [ -z "$INC" ] || (light -A "$INC"; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
 [ -z "$DEC" ] || (light -U "$DEC"; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
 
