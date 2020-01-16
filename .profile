@@ -16,6 +16,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export IPYTHONDIR="$HOME/.config/ipython"
 export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
 
+#nnn options
+export NNN_BMS='d:~/Documents;D:~/Downloads/'
+export NNN_USE_EDITOR=1                                 # use the $EDITOR when opening text files
+export NNN_SSHFS_OPTS="sshfs -o follow_symlinks"        # make sshfs follow symlinks on the remote
+export NNN_CONTEXT_COLORS="2136"                        # use a different color for each context
+export NNN_TRASH=1                                      # trash (needs trash-cli) instead of delete
+
+
 # less/man colors
 export LESS=-R
 export LESSHISTFILE="$HOME/.config/.lesshst"
