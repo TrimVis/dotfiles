@@ -24,4 +24,6 @@ alias ls="ls -hN --color=auto --group-directories-first" \
 			calcurse="calcurse -D ~/.config/calcurse" \
   		S="sudo" \
   		o="exo-open" \
-			del="trash"
+			del="trash" \
+			cp="advcp -g" \
+			mv="advmv -g"
