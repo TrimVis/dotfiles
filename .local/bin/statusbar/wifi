@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEV="wlp36s0f3u1"
+DEV="wlp39s0f3u1"
 
 SSID=$(iwconfig $DEV | awk -F: '/ESSID:/ { print $2 }' | awk '{ print $1 }' | xargs)
 STRE=$(iwconfig $DEV | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)

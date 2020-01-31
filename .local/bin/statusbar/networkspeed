@@ -1,6 +1,6 @@
 #!/bin/sh
 
-IFACE="wlp36s0f3u1"
+IFACE="wlp39s0f3u1"
 UPNDOWN=$(sar -n DEV 1 3 | grep $IFACE | tail -n1 | awk '{print $5","$6}')
 
 RECV=$(echo "$UPNDOWN" | awk -F, '{print $1}')
