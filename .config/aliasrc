@@ -10,7 +10,7 @@ alias ls="ls -hN --color=auto --group-directories-first" \
 			diff="diff --color=auto" \
   		df="df -h" \
 			wget="wget --hsts-file=$HOME/.config/.wget-hsts" \
-  		config="/usr/bin/git --git-dir=/home/trim/.cfg/ --work-tree=/home/trim" \
+			dot="/usr/bin/git --git-dir=/home/trim/.cfg/ --work-tree=/home/trim" \
   		microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
 			backup="sudo timeshift --check" \
   		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
@@ -26,4 +26,6 @@ alias ls="ls -hN --color=auto --group-directories-first" \
   		o="exo-open" \
 			del="trash" \
 			cp="advcp -g" \
-			mv="advmv -g"
+			mv="advmv -g" \
+			ls="exa --group-directories-first" \
+			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)"
