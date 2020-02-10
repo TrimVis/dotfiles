@@ -5,7 +5,7 @@
 /usr/lib/xfce4/notifyd/xfce4-notifyd & #notification daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nvidia-settings --load-config-only & #make nvidia driver load
-compton --config $HOME/.config/compton.conf & #compositor
+picom & #compositor
 unclutter & #removes mouse pointer after certain time
 nm-applet & #network manager applet
 blueman-applet & #bluetooth applet
@@ -15,3 +15,4 @@ xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -n dimscreen -- screenlock &
 syncthing & #file syncronization
+usr/lib/kdeconnectd #kdeconnect daemon
