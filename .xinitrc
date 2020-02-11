@@ -4,4 +4,5 @@
 
 setxkbmap -option "caps:swapescape"
 
-exec i3
+#exec i3
+exec bspwm

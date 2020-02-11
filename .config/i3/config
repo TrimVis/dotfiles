@@ -193,7 +193,7 @@ bindsym $mod+Shift+m exec --no-startup-id dmenumountdisk
 bindsym $mod+Shift+u exec --no-startup-id dmenuunmountdisk
 #Wallpaper changer, wallpapers will be safed and auto applied at next boot
 bindsym $mod+Shift+w exec --no-startup-id change_bg $wallpaper/
-bindsym $mod+Shift+p exec --no-startup-id rofi-pass
+bindsym $mod+Shift+p exec --no-startup-id rofi-pass --last-used
 
 #################                          assign applications to workspaces                       #################
 
