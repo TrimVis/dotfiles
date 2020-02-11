@@ -17,15 +17,26 @@
 ;==========================================================
 
 [colors]
-background = #323232
-foreground = #fff
-primary = #4F29FF
-secondary = #FF6D29
-alert = #ADFF29
-underline = #DF9320
+;metallic gold
+foreground = #E1B037
+;rick black
+background = #00001C
+;purple
+underline = #7C0068
+;green
+good = #00FF00
+;yellow
+okay = #FFFF00
+;red
+bad = #FF0000
+;orange
+primary = #ED7600
+;mexican pink
+secondary = #BF007C
+;reddish
+alert = #B02631
 
 [bar/main]
-width = 95%
 height = 27
 
 radius = 1.0
@@ -40,20 +51,21 @@ module-margin-right = 1
 line-size = 3
 line-color = #f00
 
-modules-left = xwindow
+modules-left = bspwm xwindow
 modules-center = date xkeyboard time
-modules-right = filesystem cpu wlan pulseaudio battery 
+modules-right = filesystem memory cpu wlan pulseaudio battery 
 
 tray-position = right
-tray-padding = 2
+tray-padding = 4
 
-
-
-
+font-0 = "IBM Plex Mono:pixelsize=12;3"
+font-1 = "Roboto Condensed:size=12;2"
+font-2 = "FontAwesome:size=11;3"
 
 
 [module/time]
 type = internal/date
+interval = 20
 
 time = %H:%M
 label = %time%
@@ -75,12 +87,27 @@ label-padding = 1
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.secondary}
-
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
-label-padding = 1
+label-layout-underline = ${colors.underline}
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %name%
+label-focused-foreground = ${colors.foreground}
+label-focused-background = ${colors.background}
+label-focused-underline= ${colors.underline}
+label-focused-padding = 1
+
+label-occupied = %index%
+label-occupied-underline = ${colors.primary}
+label-occupied-padding = 1
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+label-empty = 
 
 [module/filesystem]
 type = internal/fs
@@ -89,17 +116,18 @@ interval = 120
 mount-0 = /
 
 label-padding = 1
-;label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+;label-mounted = %{F#0a31f5}%mountpoint%%{F-}: %percentage_used%% of %total%
 label-mounted = %mountpoint%: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
+label-unmounted = %mountpoint%
 label-unmounted-foreground = ${colors.foreground}
+label-unmounted-underline = ${colors.bad}
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = "[CPU]"
 format-prefix-foreground = ${colors.foreground}
-format-underline = #f90000
+format-prefix-underline = ${colors.underline}
 label = %percentage:2%%
 
 [module/memory]
@@ -107,14 +135,18 @@ type = internal/memory
 interval = 2
 format-prefix = "[MEM]"
 format-prefix-foreground = ${colors.foreground}
-format-underline = #4bffdc
-label = %percentage_used%%
+format-prefix-underline = ${colors.underline}
+label = %percentage_used:2%%
 
 [module/wlan]
 type = internal/network
 interface = wlp1s0
-interval = 3.0
+interval = 5.0
 
+
+format-prefix = [fS]
+format-prefix-underline = ${colors.underline}
+format-prefix-foreground = ${colors.foreground}
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
 format-disconnected = disconnected
@@ -124,7 +156,7 @@ label-connected = %essid% %signal%%
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume = VOL %percentage%%
+label-volume = [VOL]%percentage:2%%
 label-volume-foreground = ${root.foreground}
 
 label-muted = "muted"

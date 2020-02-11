@@ -4,9 +4,20 @@ ass to share synchronize between machines.
 
 # Todo:
 
-* [ ] Add dot files which should be the same on both machines to master branch
-* [ ] Merge master branch into laptop and tower branch
-* [ ] Add machine specific files to the corresponding branches
+* [x] Add dot files which should be the same on both machines to master branch
+* [x] Merge master branch into laptop and tower branch
+* [x] Add machine specific files to the corresponding branches
+
+* [x] Switch over to bspwm
+* [ ] Setup temporary volume/brightness hotkeys
+* [ ] Rewrite volume/brightness scripts
+
+* [x] Setup basic polybar things
+* [ ] Open things on click in polybar
+* [ ] Add music widget in polybar
+* [ ] Add weather widget in polybar
+* [ ] Use fancy awesomeFont icons for animations, etc
+
 
 
 # Usefule git commands:
