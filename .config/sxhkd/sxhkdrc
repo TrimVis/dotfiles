@@ -51,6 +51,37 @@ super + e
 #------------#
 #  Controls  #
 #------------#
+
+# Brightness controls
+XF86MonBrightnessUp
+	screenlight -i 5 -n -b 10
+super + XF86MonBrightnessUp
+	screenlight -i 1 -n -b 10
+shift + F2 
+	screenlight -r -n -b 10
+XF86MonBrightnessDown 
+	screenlight -d 5 -n -b 10
+super + XF86MonBrightnessDown 
+	screenlight -d 1 -n -b 10
+shift + F1 
+	screenlight -s -n -b 10
+ 
+# Volume control 
+XF86AudioRaiseVolume 
+	volumectrl -i 5 -n -b 11
+super + XF86AudioRaiseVolume 
+	volumectrl -i 1 -n -b 11
+XF86AudioLowerVolume 
+	volumectrl -d 5 -n -b 11
+super + XF86AudioLowerVolume 
+	volumectrl -d 1 -n -b 11
+XF86AudioMute 
+	volumectrl -m -n -b 11
+
+# system ShutdownSuspendRebootLockscreen-Dialog
+super + shift + x
+	ssrl-dialog
+
 	
 #------------------#
 #  BSPWM Settings  #

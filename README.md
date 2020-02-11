@@ -8,8 +8,11 @@ ass to share synchronize between machines.
 * [x] Merge master branch into laptop and tower branch
 * [x] Add machine specific files to the corresponding branches
 
+* [ ] Choose a better rofi theme
+
 * [x] Switch over to bspwm
-* [ ] Setup temporary volume/brightness hotkeys
+* [x] Setup temporary volume/brightness hotkeys
+* [x] Setup temporary shutdown,etc dialog
 * [ ] Rewrite volume/brightness scripts
 
 * [x] Setup basic polybar things
