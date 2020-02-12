@@ -1,9 +1,9 @@
 #! /bin/sh
 
 #wm specific autostart
+xsetroot -cursor_name left_ptr
 sxhkd &
 polybar main &
-xsetroot -cursor_name left_ptr
 
 #create virtual desktops
 bspc monitor -d          
