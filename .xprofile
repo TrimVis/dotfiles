@@ -3,14 +3,13 @@
 
 #Autostart
 dunst & #notification daemon
+xrdb $HOME/.Xresources #load Xresources
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-nvidia-settings --load-config-only & #make nvidia driver load
-picom & #compositor
-unclutter & #removes mouse pointer after certain time
 nm-applet & #network manager applet
 blueman-applet & #bluetooth applet
+picom -b #compositor
+unclutter & #removes mouse pointer after certain time
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
-xrdb $HOME/.Xresources #load Xresources
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -n dimscreen -- screenlock &
