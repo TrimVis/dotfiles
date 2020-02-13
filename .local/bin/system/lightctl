@@ -30,15 +30,18 @@ USAGE:
 -b <val>   For i3blocks support: Force update of i3block entry with this val
 -s         Save current screenlight
 -r         Restore screenlight
--h         Displays this help script"
+-h         Displays this help script";
+return;;
 
     esac
 done
 
-[ -z "$SAV" ] || (light -O; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Saved current backlight level: $(light -G | awk -F. '{ print $1 }')")
-[ -z "$REST" ] || (light -I; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Restored backlight level: $(light -G | awk -F. '{ print $1 }')")
-[ -z "$INC" ] || (light -A "$INC"; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
-[ -z "$DEC" ] || (light -U "$DEC"; [ -z "$NOT" ] || notify -c "display" -t "☀ Display" -b "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
+notify() {
+	notify-send "Display" "$1" -h string:x-canonical-private-synchronous:backlight -i "/usr/share/icons/gnome/32x32/status/sunny.png"
+}
+[ -z "$SAV" ] || (light -O; [ -z "$NOT" ] || notify "Saved current backlight level: $(light -G | awk -F. '{ print $1 }')")
+[ -z "$REST" ] || (light -I; [ -z "$NOT" ] || notify "Restored backlight level: $(light -G | awk -F. '{ print $1 }')")
+[ -z "$INC" ] || (light -A "$INC"; [ -z "$NOT" ] || notify "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
+[ -z "$DEC" ] || (light -U "$DEC"; [ -z "$NOT" ] || notify "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
 
 [ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x i3blocks)
-
