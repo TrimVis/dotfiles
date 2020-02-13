@@ -82,6 +82,9 @@ XF86AudioMute
 super + shift + x
 	ssrl-dialog
 
+# Screenshots
+F11
+	scrot 'screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'
 	
 #------------------#
 #  BSPWM Settings  #
