@@ -37,7 +37,7 @@ return;;
 done
 
 notify() {
-	notify-send "Display" "$1" -h string:x-canonical-private-synchronous:backlight -i "/usr/share/icons/gnome/32x32/status/sunny.png"
+	notify-send "Display" "$1" -h string:x-canonical-private-synchronous:backlight -i "/usr/share/icons/gnome/32x32/status/sunny.png" -u low
 }
 [ -z "$SAV" ] || (light -O; [ -z "$NOT" ] || notify "Saved current backlight level: $(light -G | awk -F. '{ print $1 }')")
 [ -z "$REST" ] || (light -I; [ -z "$NOT" ] || notify "Restored backlight level: $(light -G | awk -F. '{ print $1 }')")

@@ -35,7 +35,7 @@ done
 MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
 
 notify() {
-	notify-send "Sound" "$1" -h string:x-canonical-private-synchronous:volume -i "/usr/share/icons/gnome/32x32/status/audio-volume-high.png"
+	notify-send "Sound" "$1" -h string:x-canonical-private-synchronous:volume -i "/usr/share/icons/gnome/32x32/status/audio-volume-high.png" -u low
 }
 
 if [ -z "$MUT" ]
