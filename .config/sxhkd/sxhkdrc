@@ -54,29 +54,29 @@ super + e
 
 # Brightness controls
 XF86MonBrightnessUp
-	screenlight -i 5 -n -b 10
+	lightctl -i 5 -n
 super + XF86MonBrightnessUp
-	screenlight -i 1 -n -b 10
+	lightctl -i 1 -n
 shift + F2 
-	screenlight -r -n -b 10
-XF86MonBrightnessDown 
-	screenlight -d 5 -n -b 10
+	lightctl -r -n
+XF86MonBrightnessDown
+	lightctl -d 5 -n
 super + XF86MonBrightnessDown 
-	screenlight -d 1 -n -b 10
+	lightctl -d 1 -n
 shift + F1 
-	screenlight -s -n -b 10
+	lightctl -s -n
  
 # Volume control 
 XF86AudioRaiseVolume 
-	volumectrl -i 5 -n -b 11
+	volumectl -i 5 -n
 super + XF86AudioRaiseVolume 
-	volumectrl -i 1 -n -b 11
+	volumectl -i 1 -n
 XF86AudioLowerVolume 
-	volumectrl -d 5 -n -b 11
+	volumectl -d 5 -n
 super + XF86AudioLowerVolume 
-	volumectrl -d 1 -n -b 11
+	volumectl -d 1 -n
 XF86AudioMute 
-	volumectrl -m -n -b 11
+	volumectl -m -n
 
 # system ShutdownSuspendRebootLockscreen-Dialog
 super + shift + x
