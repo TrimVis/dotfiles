@@ -2,8 +2,8 @@
 
 
 #Autostart
-dunst & #notification daemon
 xrdb $HOME/.Xresources #load Xresources
+dunst & #notification daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet & #network manager applet
 blueman-applet & #bluetooth applet
@@ -14,4 +14,4 @@ xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -qn dimscreen -- betterlockscreen -l -t "Welcome back!" 2>&1 > /dev/null &
 syncthing & #file syncronization
-/usr/lib/kdeconnectd #kdeconnect daemon
+/usr/lib/kdeconnectd &#kdeconnect daemon
