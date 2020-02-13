@@ -11,14 +11,14 @@ ass to share synchronize between machines.
 * [x] Choose a better rofi theme
 * [x] Make a better rofi theme
 
-* [ ] Make dunst notifications fancy
+* [x] Make dunst notifications fancy
 
 * [x] Change lock screen application
 
 * [x] Switch over to bspwm
 * [x] Setup temporary volume/brightness hotkeys
 * [x] Setup temporary shutdown,etc dialog
-* [ ] Rewrite volume/brightness scripts
+* [x] Rewrite volume/brightness scripts
 * [ ] Assign applications to workspaces
 * [ ] Learn more about basic tools of bspwm
 * [ ] Make applications floating
