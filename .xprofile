@@ -12,6 +12,6 @@ unclutter & #removes mouse pointer after certain time
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
-xss-lock -n dimscreen -- screenlock &
+xss-lock -qn dimscreen -- betterlockscreen -l -t "Welcome back!" 2>&1 > /dev/null &
 syncthing & #file syncronization
-usr/lib/kdeconnectd #kdeconnect daemon
+/usr/lib/kdeconnectd #kdeconnect daemon

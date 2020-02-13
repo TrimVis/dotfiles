@@ -1,3 +1,0 @@
-#!/bin/sh
-
-env XSECURELOCK_SHOW_HOSTNAME=2 XSECURELOCK_SHOW_DATETIME=1 XSECURELOCK_FONT='ibm plex mono' xsecurelock

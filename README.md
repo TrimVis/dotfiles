@@ -11,6 +11,10 @@ ass to share synchronize between machines.
 * [x] Choose a better rofi theme
 * [x] Make a better rofi theme
 
+* [ ] Make dunst notifications fancy
+
+* [x] Change lock screen application
+
 * [x] Switch over to bspwm
 * [x] Setup temporary volume/brightness hotkeys
 * [x] Setup temporary shutdown,etc dialog
