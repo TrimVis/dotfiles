@@ -1,33 +1,16 @@
 This repo contains most of my dot files, which otherwise would be a pain in the
-ass to share synchronize between machines.
+ass to share and synchronize between machines.
 
 
 # Todo:
 
-* [x] Add dot files which should be the same on both machines to master branch
-* [x] Merge master branch into laptop and tower branch
-* [x] Add machine specific files to the corresponding branches
-
-* [x] Choose a better rofi theme
-* [x] Make a better rofi theme
-
-* [x] Make dunst notifications fancy
-
-* [x] Change lock screen application
-
-* [x] Switch over to bspwm
-* [x] Setup temporary volume/brightness hotkeys
-* [x] Setup temporary shutdown,etc dialog
-* [x] Rewrite volume/brightness scripts
 * [ ] Assign applications to workspaces
 * [ ] Learn more about basic tools of bspwm
 * [ ] Make applications floating
 
-* [x] Setup basic polybar things
 * [ ] Open things on click in polybar
 * [ ] Add music widget in polybar
 * [ ] Add weather widget in polybar
-* [ ] Use fancy awesomeFont icons for animations, etc
 
 
 

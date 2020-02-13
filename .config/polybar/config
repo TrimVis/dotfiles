@@ -19,7 +19,7 @@
 [colors]
 ;metallic gold
 foreground = #E1B037
-;rick black
+;rich blue black
 background = #00001C
 ;purple
 underline = #7C0068
@@ -71,26 +71,27 @@ type = internal/date
 interval = 20
 
 time = %H:%M
-label = %time%
+label =  %time%
 
 [module/date]
 type = internal/date
 interval = 20
 
 date = "%d.%m.%y"
-label = %date%
+label =  %date%
 
 [module/xwindow]
 format-prefix = "|"
 type = internal/xwindow
 label = %title:0:30:...%
 label-padding = 1
+label-underline = ${colors.underline}
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-label-layout = %layout%
+label-layout =  %layout%
 label-layout-underline = ${colors.underline}
 
 [module/bspwm]
@@ -99,11 +100,11 @@ type = internal/bspwm
 label-focused = %index%:%name%
 label-focused-foreground = ${colors.foreground}
 label-focused-background = ${colors.background}
-label-focused-underline= ${colors.underline}
+label-focused-underline= ${colors.primary}
 label-focused-padding = 1
 
 label-occupied = %index%:%name%
-label-occupied-underline = ${colors.primary}
+label-occupied-underline = ${colors.underline}
 label-occupied-padding = 1
 
 label-urgent = %index%:%name%!
@@ -121,50 +122,48 @@ mount-0 = /
 label-padding = 1
 ;label-mounted = %{F#0a31f5}%mountpoint%%{F-}: %percentage_used%% of %total%
 label-mounted = %mountpoint%: %percentage_used%%
+label-mounted-underline = ${colors.underline}
 label-unmounted = %mountpoint%
-label-unmounted-foreground = ${colors.foreground}
+label-unmounted-foreground = #666
 label-unmounted-underline = ${colors.bad}
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "[CPU]"
-format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.underline}
-label = %percentage:2%%
+format-underline = ${colors.underline}
+label =  %percentage:1:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "[MEM]"
-format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.underline}
-label = %percentage_used:2%%
+format-underline = ${colors.underline}
+label =  %percentage_used:2%%
 
 [module/wlan]
 type = internal/network
 interface = wlp1s0
 interval = 5.0
 
-
-format-prefix = [fS]
-format-prefix-underline = ${colors.underline}
-format-prefix-foreground = ${colors.foreground}
 format-connected = <label-connected>
-format-connected-underline = #9f78e1
-format-disconnected = disconnected
-label-connected = %essid% %signal%%
+format-connected-underline = ${colors.underline}
+format-disconnected =  -
+format-disconnected-foreground = #666
+format-disconnected-underline = ${colors.underline}
+
+label-connected =  %essid% %signal%%
 
 [module/pulseaudio]
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume = [VOL]%percentage:2%%
+
+label-volume =  %percentage:2%%
 label-volume-foreground = ${root.foreground}
+label-volume-underline = ${colors.underline}
 
-label-muted = "muted"
+label-muted =  -
 label-muted-foreground = #666
-
+label-muted-underline = ${colors.underline}
 
 [module/battery]
 type = internal/battery
@@ -172,43 +171,15 @@ battery = BAT1
 adapter = ACAD
 full-at = 98
 
-format-charging = CHARGING <label-charging>
-format-charging-underline = #ffb52a
+format-charging =  <label-charging>
+format-charging-underline = ${colors.underline}
+format-charging-foreground = ${colors.okay}
 
-format-discharging = <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
+format-discharging =  <label-discharging>
+format-discharging-underline = ${colors.underline}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground}
-format-full-underline = ${self.format-charging-underline}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = o
-label-open-foreground = ${colors.secondary}
-label-close = c
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+format-full =  <label-full>
+format-full-foreground = ${colors.good}
+format-full-underline = ${colors.underline}
 
 ; vim:ft=dosini
