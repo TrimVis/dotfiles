@@ -8,17 +8,14 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="brave"
-<<<<<<< HEAD
 export MAIL="thunderbird"
 export READER="zathura"
 export FILE="pcmanfm"
 export SYSMON="glances"
 export MUSIC="LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify"
-=======
 export READER="zathura"
 export FILE="pcmanfm"
 export VIDEO="mpv"
->>>>>>> laptop
 #export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -31,7 +28,6 @@ export NNN_USE_EDITOR=1                                 # use the $EDITOR when o
 export NNN_SSHFS_OPTS="sshfs -o follow_symlinks"        # make sshfs follow symlinks on the remote
 export NNN_CONTEXT_COLORS="2136"                        # use a different color for each context
 export NNN_TRASH=1                                      # trash (needs trash-cli) instead of delete
-
 
 # less/man colors
 export LESS=-R
@@ -47,9 +43,6 @@ export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
 # Start graphical server if i3 not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
-<<<<<<< HEAD
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x bspwm >/dev/null && exec startx
 
 export PATH="$HOME/.cargo/bin:$PATH"
-=======
->>>>>>> laptop
