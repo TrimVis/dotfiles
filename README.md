@@ -1,12 +1,17 @@
 This repo contains most of my dot files, which otherwise would be a pain in the
-ass to share synchronize between machines.
+ass to share and synchronize between machines.
 
 
 # Todo:
 
-* [ ] Add dot files which should be the same on both machines to master branch
-* [ ] Merge master branch into laptop and tower branch
-* [ ] Add machine specific files to the corresponding branches
+* [ ] Assign applications to workspaces
+* [ ] Learn more about basic tools of bspwm
+* [ ] Make applications floating
+
+* [ ] Open things on click in polybar
+* [ ] Add music widget in polybar
+* [ ] Add weather widget in polybar
+
 
 
 # Usefule git commands:

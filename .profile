@@ -5,14 +5,20 @@
 
 # Adds `~/.local/bin/` and all subdirectories to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
-export EDITOR="vim"
+export EDITOR="nvim"
 export TERMINAL="st"
 export BROWSER="brave"
+<<<<<<< HEAD
 export MAIL="thunderbird"
 export READER="zathura"
 export FILE="pcmanfm"
 export SYSMON="glances"
 export MUSIC="LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify"
+=======
+export READER="zathura"
+export FILE="pcmanfm"
+export VIDEO="mpv"
+>>>>>>> laptop
 #export SUDO_ASKPASS="$HOME/.local/bin/tools/dmenupass"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -42,5 +48,8 @@ echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc
 
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x i3 >/dev/null && exec startx
+<<<<<<< HEAD
 
 export PATH="$HOME/.cargo/bin:$PATH"
+=======
+>>>>>>> laptop

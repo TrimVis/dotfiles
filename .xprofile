@@ -2,15 +2,29 @@
 
 
 #Autostart
-/usr/lib/xfce4/notifyd/xfce4-notifyd & #notification daemon
+xrdb $HOME/.Xresources #load Xresources
+dunst & #notification daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+<<<<<<< HEAD
 nvidia-settings --load-config-only --config=$HOME/.config/.nvidia-settings-rc & #make nvidia driver load
 compton --config $HOME/.config/compton.conf & #compositor
 unclutter & #removes mouse pointer after certain time
+=======
+>>>>>>> laptop
 nm-applet & #network manager applet
+blueman-applet & #bluetooth applet
+picom -b #compositor
+unclutter & #removes mouse pointer after certain time
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
+<<<<<<< HEAD
 xrdb $HOME/.Xresources #load Xresources
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -n dimscreen -- screenlock &
+=======
+xset s 120 #dimscreen after 120 seconds
+xset dpms 0 360 0 #suspend and lock screen after 360 seconds
+xss-lock -qn dimscreen -- betterlockscreen -l -t "Welcome back!" 2>&1 > /dev/null &
+>>>>>>> laptop
 syncthing & #file syncronization
+/usr/lib/kdeconnectd &#kdeconnect daemon

@@ -27,22 +27,27 @@ USAGE:
 -n         Send out a notification using my notify script
 -b <val>   For i3blocks support: Force update of i3block entry with this val
 -m         Toggle mute
--h         Displays this help script"
+-h         Displays this help script";
+				return;;
     esac
 done
 
 MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
 
+notify() {
+	notify-send "Sound" "$1" -h string:x-canonical-private-synchronous:volume -i "/usr/share/icons/gnome/32x32/status/audio-volume-high.png" -u low
+}
+
 if [ -z "$MUT" ]
 then
-    [ -z "$INC" ] || (amixer -D pulse -M sset Master "${INC}%+"; [ -z "$NOT" ] || notify -c "volume" -t "🔊 Sound" -b "Increased volume to $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)")
-    [ -z "$DEC" ] || (amixer -D pulse -M sset Master "${DEC}%-"; [ -z "$NOT" ] || notify -c "volume" -t "🔊 Sound" -b "Decreased volume to $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)")
+    [ -z "$INC" ] || (amixer -D pulse -M sset Master "${INC}%+"; [ -z "$NOT" ] || notify "Increased volume to $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)")
+    [ -z "$DEC" ] || (amixer -D pulse -M sset Master "${DEC}%-"; [ -z "$NOT" ] || notify "Decreased volume to $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)")
 else
     if [ "$MUTE" = "[on]" ]
     then
-        amixer -D pulse -M set Master toggle; [ -z "$NOT" ] || notify -c "volume" -t "🔊 Sound" -b "Muted volume"; playerctl pause
+        amixer -D pulse -M set Master toggle; [ -z "$NOT" ] || notify "Muted volume"; playerctl pause
     else
-        amixer -D pulse -M set Master toggle; [ -z "$NOT" ] || notify -c "volume" -t "🔊 Sound" -b "Unmuted volume"
+        amixer -D pulse -M set Master toggle; [ -z "$NOT" ] || notify "Unmuted volume"
     fi
 fi
 
