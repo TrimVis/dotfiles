@@ -1,0 +1,11 @@
+#!/bin/bash
+layout=$(setxkbmap -query | awk '/layout:/ {print $2}')
+
+if [ "$layout" = "us" ]
+then
+  setxkbmap de
+  notify-send "Keyboard" "Switched to DE" -u low -h string:x-canonical-private-synchronous:keyboard
+else
+  setxkbmap us
+  notify-send "Keyboard" "Switched to US" -u low -h string:x-canonical-private-synchronous:keyboard
+fi
