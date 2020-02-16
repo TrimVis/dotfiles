@@ -46,7 +46,7 @@ line-color = #f00
 
 modules-left = bspwm xwindow
 modules-center = date xkeyboard time
-modules-right = filesystem memory cpu wlan pulseaudio brightness battery 
+modules-right = filesystem memory cpu wlan pulseaudio 
 
 tray-position = right
 tray-padding = 4
@@ -140,7 +140,7 @@ label =  %percentage_used:2%%
 
 [module/wlan]
 type = internal/network
-interface = wlp1s0
+interface = wlp39s0f3u1
 interval = 5.0
 
 format-connected = <label-connected>
