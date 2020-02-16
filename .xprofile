@@ -14,6 +14,6 @@ feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal
 xrdb $HOME/.Xresources #load Xresources
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
-xss-lock -qn dimscreen -- betterlockscreen -l -t "Welcome back!" 2>&1 > /dev/null &
+xss-lock -n dimscreen -- screenlock & 
 syncthing & #file syncronization
-/usr/lib/kdeconnectd &#kdeconnect daemon
+/usr/lib/kdeconnectd & #kdeconnect daemon
