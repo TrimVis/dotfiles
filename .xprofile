@@ -7,7 +7,6 @@ dunst & #notification daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nvidia-settings --load-config-only --config=$HOME/.config/.nvidia-settings-rc & #make nvidia driver load
 nm-applet & #network manager applet
-blueman-applet & #bluetooth applet
 picom -b #compositor
 unclutter & #removes mouse pointer after certain time
 feh --bg-fill $HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal) #restore wallpaper
