@@ -16,14 +16,10 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-surround'
 	"Shows a file explorer of cwd inside vim
 	Plug 'scrooloose/nerdtree'
-	"Nice git workflow inside vim
-	Plug 'jreybert/vimagit'
 	"Comment out lines using gcc
 	Plug 'tpope/vim-commentary'
 	"Advanced error/warning detection
 	Plug 'vim-syntastic/syntastic'
-	"Advanced tabular creation
-	Plug 'godlygeek/tabular'
 	"Looks:
 	"Statusbar
 	Plug 'bling/vim-airline'
@@ -32,25 +28,28 @@ call plug#begin('~/.config/nvim/plugged')
 	"i3 config syntax highlighting inside vim
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'pangloss/vim-javascript'
+	Plug 'bfrg/vim-cpp-modern'
+	Plug 'baskerville/vim-sxhkdrc'
 	"Themes:
 	Plug 'Rigellute/rigel'
 	Plug 'fielding/vice'
-	Plug 'blueshirts/darcula'
-	Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
-	Plug 'levelone/tequila-sunrise.vim', { 'as': 'tequila-sunrise' }
-	Plug 'xdg/vim-darkluma', { 'as': 'darkluma' }
 	Plug 'arzg/vim-colors-xcode', { 'as': 'xcode' }
-	Plug 'mcmartelle/vim-monokai-bold', { 'as': 'monokai' }
+	Plug 'bluz71/vim-nightfly-guicolors', { 'as': 'nightfly' }
 	"Disabled:
+	"Advanced tabular creation
+	"Plug 'godlygeek/tabular'
+	"Nice git workflow inside vim
+	"Plug 'jreybert/vimagit'
 	"Easy markdown like highlighting directly in vim
 	"Plug 'vimwiki/vimwiki'
 	"Plug 'octol/vim-cpp-enhanced-highlight', { 'as': 'vim-cpp' }
 call plug#end()
 
 "Basics:
-colorscheme xcodedark
+colorscheme vice
 set encoding=utf-8
 set nocompatible
+set termguicolors
 filetype plugin on
 syntax on
 " automatically read changes made to file
