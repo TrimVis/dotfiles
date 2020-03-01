@@ -1,0 +1,12 @@
+# If you want ipython to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install ipython.desktop
+
+[Desktop Entry]
+Comment=Disable/enable display dimming and locking after timeout
+Exec=toggle_always_on
+GenericName=Toggle always on display
+Name=AlwaysOn
+Categories=Utility;
+StartupNotify=false
+Terminal=false
+Type=Application

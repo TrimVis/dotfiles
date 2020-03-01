@@ -1,0 +1,10 @@
+[Desktop Entry]
+Comment=Show dialog to change wallpaper
+Exec=change_bg /home/trim/Pictures/Wallpapers/
+GenericName=Background Changer
+Name=WallpaperChange
+Categories=Utility;
+StartupNotify=false
+Terminal=false
+Type=Application
+
