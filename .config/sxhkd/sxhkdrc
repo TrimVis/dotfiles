@@ -95,6 +95,9 @@ super + Escape
 #  BSPWM Settings  #
 #------------------#
 	
+#start/stop master slave layout
+super + alt + {_,shift+} s
+	{~/.config/bspwm/ms_start.sh &, ~/.config/bspwm/ms_stop.sh}
 
 #
 # bspwm hotkeys
@@ -182,4 +185,18 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
+#
 # preselect
+#
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p {west,south,north,east}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused node
+super + ctrl + space
+	bspc node -p cancel
