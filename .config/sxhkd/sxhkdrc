@@ -10,7 +10,7 @@
 
 #Drun/Emoji selector
 super + shift + {d,e}
-	rofi -font "IBM Plex Mono 13" -show {drun,emoji}
+	rofi -show {drun,emoji}
 
 #Mounting and unmounting of storage devices
 super + shift + @{m,u}
@@ -23,6 +23,16 @@ super + shift + @w
 #Password Manager
 super + shift + @p
 	rofi-pass --last-used
+
+#System ShutdownSuspendRebootLockscreen-Dialog
+super + shift + x
+	ssrl-dialog
+
+#Multimonitor Setup
+super + p
+	multimonitor
+
+
 
 #------------#
 #  Programs  #
@@ -46,53 +56,45 @@ super + v
 
 #Process Explorer
 super + e
-	glances
+	$TERMINAL -e glances
+
+#Sound control
+super + ctrl + v
+	pavucontrol
 
 #------------#
 #  Controls  #
 #------------#
 
 # Brightness controls
-XF86MonBrightnessUp
-	lightctl -i 5 -n
-super + XF86MonBrightnessUp
-	lightctl -i 1 -n
-shift + F2 
-	lightctl -r -n
-XF86MonBrightnessDown
-	lightctl -d 5 -n
-super + XF86MonBrightnessDown 
-	lightctl -d 1 -n
-shift + F1 
-	lightctl -s -n
+{_,super +} XF86MonBrightnessUp
+	lightctl -i {5, 1} -n
+{_,super +} XF86MonBrightnessDown
+	lightctl -d {5, 1} -n
+shift + {F2,F1}
+	lightctl {-r,-s} -n
  
 # Volume control 
-XF86AudioRaiseVolume 
-	volumectl -i 5 -n
-super + XF86AudioRaiseVolume 
-	volumectl -i 1 -n
-XF86AudioLowerVolume 
-	volumectl -d 5 -n
-super + XF86AudioLowerVolume 
-	volumectl -d 1 -n
+{_,super +} XF86AudioRaiseVolume
+	volumectl -i {5, 1} -n
+{_,super +} XF86AudioLowerVolume
+	volumectl -d {5, 1} -n
 XF86AudioMute 
 	volumectl -m -n
 
-# system ShutdownSuspendRebootLockscreen-Dialog
-super + shift + x
-	ssrl-dialog
-
+# selected Area not working: couldn't grab keyboard
 # Screenshots
-F11
-	scrot 'screenshot-%Y-%m-%d-%s_$wx$h.png' -e 'mv $f ~/Pictures/Screenshots/'
+{_,super +} Print
+	scrot {'screenshot_%y-%m-%d-%s.png','screenshot_%y-%m-%d-%s_$wx$h.png' -s} -e 'mv $f /home/trim/Pictures/Screenshots/' && notify-send "scrot" "Took screenshot"
 	
+#let sxhkd reload its config
+super + Escape
+	pkill -USR1 sxhkd && notify-send "sxhkd" "Restarted background process"
+
 #------------------#
 #  BSPWM Settings  #
 #------------------#
 	
-#let sxhkd reload its config
-super + Escape
-	pkill -USR1 -x sxhkd
 
 #
 # bspwm hotkeys
@@ -110,9 +112,9 @@ super + {_,shift + }q
 super + m
 	bspc desktop -l next
 
-# send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+## send the newest marked node to the newest preselected node
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
 
 # swap the current node and the biggest node
 super + g
@@ -138,9 +140,9 @@ super + ctrl + {m,x,y,z}
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+## focus the node for the given path jump
+#super + {p,b,comma,period}
+#bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
@@ -165,37 +167,19 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
-# preselect
-#
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
-#
 # move/resize
 #
 
-# expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
+super + alt + {h,j,k,l}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# expand a window by moving one of its side outward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# preselect
