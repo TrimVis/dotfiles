@@ -1,5 +1,6 @@
 #!/bin/sh
 
+<<<<<<< HEAD
 TOUT=$(xset q | grep "DPMS is" | awk '{ print $3 }')
 
 case $BLOCK_BUTTON in
@@ -24,3 +25,6 @@ else
 		echo "ON"
 		echo " "
 fi
+=======
+light -G | awk -F'.' '{ print $1 }'
+>>>>>>> laptop

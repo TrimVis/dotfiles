@@ -1,0 +1,10 @@
+[Desktop Entry]
+Comment=Show menu for configuring eDP and HDMI display
+Exec=multimonitor
+GenericName=Monitor Settings
+Name=Multimonitor
+Categories=Utility;
+StartupNotify=false
+Terminal=false
+Type=Application
+

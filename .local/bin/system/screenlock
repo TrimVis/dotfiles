@@ -1,2 +1,6 @@
 #!/usr/bin/env sh
+<<<<<<< HEAD
 betterlockscreen -l -t "Welcome back!" 2>&1 > /dev/null
+=======
+betterlockscreen -l --off 5 -t "Welcome back!" 2>&1 > /dev/null
+>>>>>>> laptop

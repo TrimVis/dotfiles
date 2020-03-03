@@ -9,6 +9,8 @@ ass to share and synchronize between machines.
 * [ ] Make applications floating
 
 * [ ] Open things on click in polybar
+* [ ] If not possible think of new keybindings where to put
+* [ ] Keyboard toggle script
 * [ ] Add music widget in polybar
 * [ ] Add weather widget in polybar
 

@@ -13,7 +13,8 @@ alias ls="ls -hN --color=auto --group-directories-first" \
   		config="/usr/bin/git --git-dir=/home/trim/.cfg/ --work-tree=/home/trim" \
 			dot="/usr/bin/git --git-dir=/home/trim/.cfg/ --work-tree=/home/trim" \
   		microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
-			backup="sudo timeshift --check" \
+			snapch="sudo timeshift --check" \
+			snapcr="sudo timeshift --create" \
   		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 			update-mirrorlist="sudo reflector --protocol https --sort rate --save /etc/pacman.d/mirrorlist" \
   		update="sudo pacman -Syyu" \
@@ -26,6 +27,7 @@ alias ls="ls -hN --color=auto --group-directories-first" \
 			calcurse="calcurse -D ~/.config/calcurse" \
   		S="sudo" \
   		o="exo-open" \
+			mark='f(){ xournalpp "$@" 2>/dev/null; unset -f f; }; f:w' \
 			del="trash" \
 			cp="advcp -g" \
 			mv="advmv -g" \
