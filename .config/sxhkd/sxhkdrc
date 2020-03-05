@@ -40,7 +40,7 @@ super + p
 
 #Terminal
 super + {_,shift +} Return
-	$TERMINAL {_, -e st-cd $(xcwd)}
+	$TERMINAL {_, -e st-cd "$(xcwd)"}
 
 #Browser
 super + w
