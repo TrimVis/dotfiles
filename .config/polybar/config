@@ -44,9 +44,9 @@ module-margin-right = 1
 line-size = 3
 line-color = #f00
 
-modules-left = bspwm xwindow spotify
+modules-left = bspwm xwindow 
 modules-center = date xkeyboard time
-modules-right = weather filesystem memory cpu wlan pulseaudio brightness battery 
+modules-right = filesystem memory cpu wlan pulseaudio brightness battery 
 
 tray-position = right
 tray-padding = 4
@@ -74,6 +74,7 @@ type = custom/script
 exec = wedder -k c722581327d761b79e1c8dae50c471d5 --lat 47.36667 --lon 8.55
 exec-if = ping openweathermap.org -c 2
 tail = true
+interval = 60
 format-underline = ${colors.underline}
 ;format-padding = 12
 format-margin = 6
