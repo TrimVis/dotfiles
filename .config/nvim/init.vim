@@ -12,17 +12,28 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 	"Restore last location in files
 	Plug 'farmergreg/vim-lastplace'
-	"Replace 'surrounding' characters (see :help surround)
-	Plug 'tpope/vim-surround'
 	"Shows a file explorer of cwd inside vim
 	Plug 'scrooloose/nerdtree'
 	"Comment out lines using gcc
 	Plug 'tpope/vim-commentary'
 	"Advanced error/warning detection
 	Plug 'vim-syntastic/syntastic'
+	"Autocompletion
+	Plug 'ncm2/ncm2'
+	Plug 'roxma/nvim-yarp'
+	Plug 'Shougo/neco-syntax'
+	Plug 'ncm2/ncm2-syntax'
+	Plug 'ncm2/ncm2-bufword'
+	Plug 'ncm2/ncm2-path'
+	Plug 'ncm2/ncm2-pyclang'
+	Plug 'ncm2/ncm2-racer'
+	Plug 'fgrsnau/ncm2-otherbuf'
+	"Plug 'jsfaint/gen_tags.vim'
+	"Plug 'ncm2/ncm2-gtags'
 	"Looks:
 	"Statusbar
-	Plug 'bling/vim-airline'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 	"Distraction free writing
 	Plug 'junegunn/goyo.vim'
 	"i3 config syntax highlighting inside vim
@@ -31,11 +42,14 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'bfrg/vim-cpp-modern'
 	Plug 'baskerville/vim-sxhkdrc'
 	"Themes:
-	Plug 'Rigellute/rigel'
 	Plug 'fielding/vice'
-	Plug 'arzg/vim-colors-xcode', { 'as': 'xcode' }
-	Plug 'bluz71/vim-nightfly-guicolors', { 'as': 'nightfly' }
 	"Disabled:
+	"Themes
+	"Plug 'Rigellute/rigel'
+	"Plug 'arzg/vim-colors-xcode', { 'as': 'xcode' }
+	"Plug 'bluz71/vim-nightfly-guicolors', { 'as': 'nightfly' }
+	"Replace 'surrounding' characters (see :help surround)
+	"Plug 'tpope/vim-surround'
 	"Advanced tabular creation
 	"Plug 'godlygeek/tabular'
 	"Nice git workflow inside vim
@@ -81,6 +95,8 @@ map <C-k> <C-w>k
 map <C-l> <C-w>l
 
 "Plugins:
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 " Goyo plugin makes text more readable when writing prose:
 map <leader>f :Goyo<CR>
 " Nerd tree - file navigation
@@ -94,6 +110,16 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+"Completion:
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" Use <TAB> to select the popup menu:
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+set completeopt=noinsert,menuone,noselect
 
 "Spellcheck:
 map <leader>oe :setlocal spell! spelllang=en_us<CR>
