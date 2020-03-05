@@ -32,12 +32,14 @@ bspc config removal_adjustment      false
 
 #window rules
 bspc rule -a st:floating state=floating
-bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a "edu-mit-csail-sdg-alloy4whole-SimpleGUI" state=floating
 bspc rule -a brave-browser desktop='^3' follow=on
 bspc rule -a Zathura desktop='^5' state=tiled follow=on 
 bspc rule -a mpv desktop='^8' follow=on
-bspc rule -a Spotify desktop='^8' follow=on
 bspc rule -a Thunderbird desktop='^6' follow=on
 bspc rule -a Steam desktop='^7' follow=on
 bspc rule -a Screenkey manage=off
 bspc rule -a Pavucontrol state=floating
+#Not working
+bspc rule -a *:"Spotify Free" desktop='^8' follow=on
+bspc rule -a 'Gimp-2.10' desktop='^8' state=floating follow=on
