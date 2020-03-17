@@ -111,6 +111,10 @@ super + alt + {q,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
+# rotate tree
+super + ctrl + r
+	bspc node -R 90
+
 # alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
