@@ -2,20 +2,6 @@ This repo contains most of my dot files, which otherwise would be a pain in the
 ass to share and synchronize between machines.
 
 
-# Todo:
-
-* [ ] Assign applications to workspaces
-* [ ] Learn more about basic tools of bspwm
-* [ ] Make applications floating
-
-* [ ] Open things on click in polybar
-* [ ] If not possible think of new keybindings where to put
-* [ ] Keyboard toggle script
-* [ ] Add music widget in polybar
-* [ ] Add weather widget in polybar
-
-
-
 # Usefule git commands:
 
 ```
