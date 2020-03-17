@@ -4,5 +4,7 @@
 
 setxkbmap -option "caps:swapescape"
 
-#exec i3
 exec bspwm
+#[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x bspwm >/dev/null && exec bspwm
+#[ "$(tty)" = "/dev/tty2" ] && exec startplasma-x11
+
