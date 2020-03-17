@@ -6,7 +6,7 @@ bspc rule -r "*"
 #wm specific autostart
 xsetroot -cursor_name left_ptr
 sxhkd &
-polybar main &
+polybar --reload main &
 
 #create virtual desktops
 bspc monitor -d          
