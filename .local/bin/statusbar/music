@@ -6,8 +6,8 @@ ARTIST=$(playerctl metadata artist 2> /dev/null | cut -c1-16)
 
 if [ "$PLAYING" = "Playing" ]
 then
-	echo "$TITLE [$ARTIST] "
+	echo " $TITLE [$ARTIST]"
 elif [ "$PLAYING" = "Paused" ]
 then
-	echo "$TITLE [$ARTIST] "
+	echo " $TITLE [$ARTIST]"
 fi
