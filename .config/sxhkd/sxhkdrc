@@ -84,8 +84,8 @@ XF86AudioMute
 
 # selected Area not working: couldn't grab keyboard
 # Screenshots
-{_,super +} Print
-	scrot {'screenshot_%y-%m-%d-%s.png','screenshot_%y-%m-%d-%s_$wx$h.png' -s} -e 'mv $f /home/trim/Pictures/Screenshots/' && notify-send "scrot" "Took screenshot"
+{_, super +} Print
+	{maim | tee "$HOME/Pictures/Screenshots/shot_$(date +%s).png" | xclip -sel clip -t image/png; notify-send "Screenshot" "Took screenshot of whole display", scred}
 	
 #let sxhkd reload its config
 super + Escape

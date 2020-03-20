@@ -32,7 +32,7 @@ OPT7="7: Start screenkey"
 
 # Get selection
 SEL=$(echo -e "$REDO\n$SEP1\n$OPT0\n$OPT1\n$OPT2\n$SEP2\n$OPT3\n$OPT4\n$OPT5\n$SEP0\n$OPT6\n$OPT7" \
-| rofi -dmenu -only-match -p "scred" -a 1,5,9 -mesg "Screenrecording Dialog")
+| rofi -dmenu -p "scred" -a 1,5,9 -mesg "Screenrecording Dialog")
 
 # Write selection out, if non-zero
 [ -z "$SEL" ] || echo "$SEL" > "$WD/last_action"
