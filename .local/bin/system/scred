@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+
+# User configuration
+WD="$HOME/.config/scred"
+PIC_DIR="$HOME/Pictures/Screenshots"
+VID_DIR="$HOME/Videos/Screenrecs"
+PIC_NAME="shot_$(date +%s).png"
+VID_NAME="rec_$(date +%s).avi"
+
+# Make sure folders exist, if not create
+[ -d "$WD" ] || mkdir "$WD"
+[ -d "$PIC_DIR" ] || mkdir "$PIC_DIR"
+[ -d "$VID_DIR" ] || mkdir "$VID_DIR"
+
+[ -f "$WD/last_action" ] || touch "$WD/last_action"
+
+# Options displayed
+SEP0="\t-----------------"
+SEP1="\t---SCREENSHOTS---"
+SEP2="\t---RECORDINGS----"
+
+REDO=$(cat "$WD/last_action")
+
+OPT0="0: Whole screen"
+OPT1="1: Current window"
+OPT2="2: Selection"
+OPT3="3: FullHD w low fps"
+OPT4="4: FullHD w high fps"
+OPT5="5: Stop recording"
+OPT6="6: Open webcam"
+OPT7="7: Start screenkey"
+
+# Get selection
+SEL=$(echo -e "$REDO\n$SEP1\n$OPT0\n$OPT1\n$OPT2\n$SEP2\n$OPT3\n$OPT4\n$OPT5\n$SEP0\n$OPT6\n$OPT7" \
+| rofi -dmenu -only-match -p "scred" -a 1,5,9 -mesg "Screenrecording Dialog")
+
+# Write selection out, if non-zero
+[ -z "$SEL" ] || echo "$SEL" > "$WD/last_action"
+
+# Do corresponding action to selected option
+case $SEL in
+	$OPT0)
+		maim | tee "${PIC_DIR}/${PIC_NAME}" | xclip -sel clip -t image/png
+		;;
+	$OPT1)
+		maim -i $(xdotool getactivewindow) | tee "${PIC_DIR}/${PIC_NAME}" | xclip -sel clip -t image/png
+		;;
+	$OPT2)
+		maim -s | tee "${PIC_DIR}/${PIC_NAME}" | xclip -sel clip -t image/png
+		;;
+	$OPT3)
+		ffmpeg -f x11grab -y -r 30 -s 1920x1080 -i :0.0 -vcodec huffyuv "${VID_DIR}/${VID_NAME}"&
+		;;
+	$OPT4)
+		ffmpeg -f x11grab -y -r 60 -s 1920x1080 -i :0.0 -vcodec huffyuv "${VID_DIR}/${VID_NAME}"&
+		;;
+	$OPT5)
+		pkill -15 ffmpeg
+		;;
+	$OPT6)
+		ffplay -f video4linux2 -i /dev/video0 -video_size 320x240 -fflags nobuffer &
+		;;
+	$OPT7)
+		screenkey &
+		;;
+	*)
+		echo "Did nothing!"
+		;;
+esac
