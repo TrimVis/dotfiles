@@ -50,10 +50,10 @@ case $SEL in
 		maim -s | tee "${PIC_DIR}/${PIC_NAME}" | xclip -sel clip -t image/png
 		;;
 	$OPT3)
-		ffmpeg -f x11grab -y -r 30 -s 1920x1080 -i :0.0 -vcodec huffyuv "${VID_DIR}/${VID_NAME}"&
+		ffmpeg -f x11grab -y -r 30 -s 1920x1080 -i :0.0 -vcodec huffyuv -f pulse -ac 2 -i default "${VID_DIR}/${VID_NAME}"&
 		;;
 	$OPT4)
-		ffmpeg -f x11grab -y -r 60 -s 1920x1080 -i :0.0 -vcodec huffyuv "${VID_DIR}/${VID_NAME}"&
+		ffmpeg -f x11grab -y -r 60 -s 1920x1080 -i :0.0 -vcodec huffyuv -f pulse -ac 2 -i default "${VID_DIR}/${VID_NAME}"&
 		;;
 	$OPT5)
 		pkill -15 ffmpeg
