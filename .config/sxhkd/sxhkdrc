@@ -10,11 +10,11 @@
 
 #Drun/Emoji selector
 super + shift + {d,e}
-	rofi -show {drun,emoji}
+	rofi -show {drun,emoji} -show-icons
 
 #Mounting and unmounting of storage devices
-super + shift + @{m,u}
-	{dmenumountdisk,dmenuunmountdisk}
+#super + shift + @{m,u}
+#	{dmenumountdisk,dmenuunmountdisk}
 
 #Wallpaper changer
 super + shift + @w
