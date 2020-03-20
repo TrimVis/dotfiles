@@ -25,4 +25,4 @@ shopt -s dotglob
 [[ -f $HOME/.config/aliasrc ]] && . ~/.config/aliasrc
 
 source /opt/oh-my-git/prompt.sh
-ufetch-arco
+ufetch
