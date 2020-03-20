@@ -1,8 +1,11 @@
 #!/bin/sh
 
-OUTPUT=$(cat "$1.currwal"; echo "⬆ current Wallpaper"; echo; ls "$1")
+OUTPUT=$(cat "$1.currwal"; ls "$1")
 
-WALLPAPER=$(echo "$OUTPUT"  | rofi -dmenu)
+WALLPAPER=$(echo "$OUTPUT"  | rofi -dmenu -p "change_bg" -mesg "Change the background of desktop and lockscreen. The current wallpaper is:" -a 0)
 
-feh --bg-fill "$1$WALLPAPER"
-echo "$WALLPAPER" > "$1.currwal"
+if [ -n "$WALLPAPER" ]; then
+	feh --bg-fill "$1$WALLPAPER" && \
+	betterlockscreen -u "$1$WALLPAPER" && \
+	echo "$WALLPAPER" > "$1.currwal"
+fi
