@@ -40,6 +40,7 @@ SEL=$(echo -e "$REDO\n$SEP1\n$OPT0\n$OPT1\n$OPT2\n$SEP2\n$OPT3\n$OPT4\n$OPT5\n$S
 # Do corresponding action to selected option
 case $SEL in
 	$OPT0)
+		sleep 1
 		maim | tee "${PIC_DIR}/${PIC_NAME}" | xclip -sel clip -t image/png
 		;;
 	$OPT1)
