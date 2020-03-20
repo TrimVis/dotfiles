@@ -3,11 +3,6 @@
 # If refreshing bspwm, remove all previous rules to prevent doubling up.
 bspc rule -r "*"
 
-#wm specific autostart
-xsetroot -cursor_name left_ptr
-sxhkd &
-polybar --reload main &
-
 #create virtual desktops
 bspc monitor -d          
 
@@ -37,9 +32,16 @@ bspc rule -a brave-browser desktop='^3' follow=on
 bspc rule -a Zathura desktop='^5' state=tiled follow=on 
 bspc rule -a mpv desktop='^8' follow=on
 bspc rule -a Thunderbird desktop='^6' follow=on
-bspc rule -a Steam desktop='^7' follow=on
+bspc rule -a Steam desktop='^7' follow=off
 bspc rule -a Screenkey manage=off
 bspc rule -a Pavucontrol state=floating
+bspc rule -a discord desktop='^6'
+bspc rule -a Blueman-manager state=floating
 #Not working
-bspc rule -a *:"Spotify Free" desktop='^8' follow=on
-bspc rule -a 'Gimp-2.10' desktop='^8' follow=on
+#bspc rule -a *:"Spotify Free" desktop='^8' follow=on
+#bspc rule -a 'Gimp-2.10' desktop='^8' follow=on
+
+#wm specific autostart
+xsetroot -cursor_name left_ptr
+sxhkd &
+polybar --reload main &
