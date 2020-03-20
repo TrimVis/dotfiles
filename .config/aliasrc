@@ -30,4 +30,5 @@ alias ls="ls -hN --color=auto --group-directories-first" \
 			cp="advcp -g" \
 			mv="advmv -g" \
 			ls="exa --group-directories-first" \
-			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)"
+			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)" \
+			scripts="nvim \$(find ~/.local/bin -maxdepth 2 -type f | fzf --height=30% --reverse)"
