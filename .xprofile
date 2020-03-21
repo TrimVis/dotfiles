@@ -6,7 +6,8 @@ xrdb "$HOME/.Xresources" #load Xresources
 dunst & #notification daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet & #network manager applet
-blueman-applet & #bluetooth applet
+#blueman-applet & #bluetooth applet
+blueberry-tray &
 picom -b #compositor
 unclutter & #removes mouse pointer after certain time
 feh --bg-fill "$HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal)" #restore wallpaper
