@@ -1,5 +1,5 @@
 #!/bin/bash
 
 notify-send "bspwm" "Stopped master/slave tiling mode"
-pkill -f ms_tiling_mode_start && bspc node @/ -E
+pkill -f ms_start && bspc node @/ -E
 
