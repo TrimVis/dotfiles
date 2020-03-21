@@ -1,7 +1,7 @@
 #!/bin/sh
 
-for player in $(playerctl -l); do
-	PLAYING=$(playerctl status -p "$player" 2>&1 /dev/null)
+for player in $(playerctl -l 2>/dev/null); do
+	PLAYING=$(playerctl status -p "$player" 2> /dev/null)
 	TITLE=$(playerctl metadata title -p "$player" 2> /dev/null | cut -c1-24)
 	ARTIST=$(playerctl metadata artist -p "$player" 2> /dev/null | cut -c1-16)
 

@@ -67,6 +67,7 @@ interval = 5
 #format-prefix = " "
 format = <label>
 exec = music
+exec-if = [ -n music ]
 format-underline = ${colors.underline}
 click-left = playerctl play-pause
 click-right = playerctl next
