@@ -63,11 +63,10 @@ wm-restack = bspwm
 
 [module/music]
 type = custom/script
-interval = 1
+interval = 5
 #format-prefix = " "
 format = <label>
 exec = music
-exec-if = [ "$(playerctl status 2>&1)" != "No players found" ]
 format-underline = ${colors.underline}
 click-left = playerctl play-pause
 click-right = playerctl next

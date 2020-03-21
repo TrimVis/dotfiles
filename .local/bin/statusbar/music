@@ -1,13 +1,17 @@
 #!/bin/sh
 
-PLAYING=$(playerctl status 2> /dev/null)
-TITLE=$(playerctl metadata title 2> /dev/null | cut -c1-24)
-ARTIST=$(playerctl metadata artist 2> /dev/null | cut -c1-16)
+for player in $(playerctl -l); do
+	PLAYING=$(playerctl status -p "$player" 2>&1 /dev/null)
+	TITLE=$(playerctl metadata title -p "$player" 2> /dev/null | cut -c1-24)
+	ARTIST=$(playerctl metadata artist -p "$player" 2> /dev/null | cut -c1-16)
 
-if [ "$PLAYING" = "Playing" ]
-then
-	echo " $TITLE [$ARTIST]"
-elif [ "$PLAYING" = "Paused" ]
-then
-	echo " $TITLE [$ARTIST]"
-fi
+	if [ "$PLAYING" = "Playing" ]
+	then
+		echo " $TITLE [$ARTIST]"
+		exit 0
+	elif [ "$PLAYING" = "Paused" ]
+	then
+		echo " $TITLE [$ARTIST]"
+		exit 0
+	fi
+done
