@@ -13,19 +13,19 @@ super + shift + {d,e}
 	rofi -show {drun,emoji} -show-icons
 
 #Wallpaper changer
-super + shift + @w
+super + shift + w
 	change_bg ~/Pictures/Wallpapers/
 
 #Password Manager
-super + shift + @p
+super + shift + p
 	rofi-pass --last-used
 
 #System ShutdownSuspendRebootLockscreen-Dialog
-super + shift + @x
+super + shift + x
 	ssrl-dialog
 
 #Multimonitor Setup
-super + shift + @m
+super + shift + m
 	multimonitor
 
 
