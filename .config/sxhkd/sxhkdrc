@@ -5,16 +5,12 @@
 ###########################################
 
 #---------#
-#  Menus  #
+#  Menus  # Rule of thumb: All on super + shift
 #---------#
 
 #Drun/Emoji selector
 super + shift + {d,e}
 	rofi -show {drun,emoji} -show-icons
-
-#Mounting and unmounting of storage devices
-#super + shift + @{m,u}
-#	{dmenumountdisk,dmenuunmountdisk}
 
 #Wallpaper changer
 super + shift + @w
@@ -25,17 +21,17 @@ super + shift + @p
 	rofi-pass --last-used
 
 #System ShutdownSuspendRebootLockscreen-Dialog
-super + shift + x
+super + shift + @x
 	ssrl-dialog
 
 #Multimonitor Setup
-super + p
+super + shift + @m
 	multimonitor
 
 
 
 #------------#
-#  Programs  #
+#  Programs  # Rule of thumb: All on super only
 #------------#
 
 #Terminal
@@ -50,20 +46,16 @@ super + w
 super + r
 	$FILE
 
-#Videoplayer
-super + v
-	$VIDEO
-
 #Process Explorer
 super + e
-	$TERMINAL -e glances
+	$TERMINAL -e gotop
 
 #Sound control
-super + ctrl + v
+super + v
 	pavucontrol
 
 #------------#
-#  Controls  #
+#  Controls  # Rule of thumb: All in top row
 #------------#
 
 # Brightness controls
@@ -91,16 +83,18 @@ XF86AudioMute
 super + Escape
 	pkill -USR1 sxhkd && notify-send "sxhkd" "Restarted background process"
 
+
+
+
+
+
+
 #------------------#
 #  BSPWM Settings  #
 #------------------#
 	
-#start/stop master slave layout
-super + alt + {_,shift+} s
-	{~/.config/bspwm/ms_start.sh &, ~/.config/bspwm/ms_stop.sh}
-
 #
-# bspwm hotkeys
+# bspwm basic controls
 #
 
 # quit/restart bspwm
@@ -111,21 +105,17 @@ super + alt + {q,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
-# rotate tree
-super + ctrl + r
-	bspc node -R 90
+# rotate desktop
+super + shift + r
+	bspc node @/.local -R 90
 
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
+# balance desktop
+super + shift + b
+	bspc node @/.local -B
 
-## send the newest marked node to the newest preselected node
-#super + y
-#	bspc node newest.marked.local -n newest.!automatic.local
-
-# swap the current node and the biggest node
-super + g
-	bspc node -s biggest
+#start/stop master slave layout
+super + alt + {_,shift+} s
+	{~/.config/bspwm/ms_start.sh &, ~/.config/bspwm/ms_stop.sh}
 
 #
 # state/flags
@@ -135,59 +125,50 @@ super + g
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
-# set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
-
-#
-# focus/swap
-#
-
-# focus the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-
-## focus the node for the given path jump
-#super + {p,b,comma,period}
-#bspc node -f @{parent,brother,first,second}
-
-# focus the next/previous node in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local
-
-# focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
 
 #
 # move/resize
+# Rule of thumb: super/alt
 #
 
 # contract a window by moving one of its side inward
-super + alt + {h,j,k,l}
+alt + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # expand a window by moving one of its side outward
-super + alt + shift + {h,j,k,l}
+alt + shift + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+#
+# focus/swap
+#
+
+# focus/swap the node in the given direction
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
+# swap the current node and the biggest node
+super + g
+	bspc node -s biggest
+
+# focus the node for the given path jump
+super + {p,b,comma,period}
+	bspc node -f @{parent,brother,first,second}
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# focus or send to the given desktop
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
@@ -204,3 +185,34 @@ super + ctrl + {1-9}
 # cancel the preselection for the focused node
 super + ctrl + space
 	bspc node -p cancel
+
+
+
+
+
+#############
+# Unused
+#############
+
+## focus the older or newer node in the focus history
+#super + {o,i}
+#	bspc wm -h off; \
+#	bspc node {older,newer} -f; \
+#	bspc wm -h on
+
+## set the node flags
+#super + ctrl + {m,x,y,z}
+#	bspc node -g {marked,locked,sticky,private}
+
+## send the newest marked node to the newest preselected node
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
+
+## focus the next/previous node in the current desktop
+#super + {_,shift + }c
+#	bspc node -f {next,prev}.local
+
+## focus the next/previous desktop in the current monitor
+#super + bracket{left,right}
+#	bspc desktop -f {prev,next}.local
+
