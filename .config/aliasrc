@@ -24,7 +24,7 @@ alias ls="ls -hN --color=auto --group-directories-first" \
 			ccat="highlight --out-format=ansi" \
 			calcurse="calcurse -D ~/.config/calcurse" \
   		S="sudo" \
-  		o="exo-open" \
+  		o="xdg-open" \
 			mark='f(){ xournalpp "$@" 2>/dev/null; unset -f f; }; f:w' \
 			del="trash" \
 			cp="advcp -g" \
