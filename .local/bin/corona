@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+curl -s https://corona-stats.online/de?minimal=true | awk 'NR <= 2'
+curl -s https://corona-stats.online/ch?minimal=true | awk 'NR <= 4'
+
+
