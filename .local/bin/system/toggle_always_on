@@ -1,0 +1,18 @@
+#!/bin/sh
+
+TOUT=$(xset q | grep "DPMS is" | awk '{ print $3 }')
+
+notify() {
+	notify-send "Display" "$1" -h string:x-canonical-private-synchronous:volume -i "/usr/share/icons/gnome/32x32/status/sunny.png" -u low
+}
+   
+if [ "$TOUT" = "Disabled" ]
+then
+		notify "Always on disabled"
+		xset s on
+		xset +dpms
+else
+		notify "Always on enabled"
+		xset s off 
+		xset -dpms
+fi
