@@ -28,8 +28,6 @@ super + shift + x
 super + shift + m
 	multimonitor
 
-
-
 #------------#
 #  Programs  # Rule of thumb: All on super only
 #------------#
@@ -83,12 +81,6 @@ XF86AudioMute
 super + Escape
 	pkill -USR1 sxhkd && notify-send "sxhkd" "Restarted background process"
 
-
-
-
-
-
-
 #------------------#
 #  BSPWM Settings  #
 #------------------#
@@ -105,17 +97,25 @@ super + alt + {q,r}
 super + {_,shift + }q
 	bspc node -{c,k}
 
-# rotate desktop
+# rotate focused node
 super + shift + r
-	bspc node @/.local -R 90
+	bspc node -R 90
 
-# balance desktop
+# balance focused node
 super + shift + b
-	bspc node @/.local -B
+	bspc node -B
 
 #start/stop master slave layout
 super + alt + {_,shift+} s
 	{~/.config/bspwm/ms_start.sh &, ~/.config/bspwm/ms_stop.sh}
+
+#make focused window invisible
+super + alt + h
+	bspc node -g hidden=on
+
+#show dialog of all invisible windows
+super + alt + shift + h
+	hidden_window_dialog
 
 #
 # state/flags
@@ -157,6 +157,10 @@ super + {_,shift + }{h,j,k,l}
 # swap the current node and the biggest node
 super + g
 	bspc node -s biggest
+
+# focuse root node
+super + a
+	bspc node @/ -f
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
