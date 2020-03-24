@@ -4,15 +4,12 @@
 #
 
 # Look and feel
-alias ls="ls -hN --color=auto --group-directories-first" \
+alias ls="ls -hv --color=auto --group-directories-first" \
 			grep="grep --color=auto" \
 			fgrep="fgrep --color=auto" \
 			egrep="egrep --color=auto" \
 			diff="diff --color=auto" \
   		df="df -h" \
-			cp="advcp -g" \
-			mv="advmv -g" \
-			ls="exa --group-directories-first" \
 			vim="\$EDITOR" \
 			v="\$EDITOR" \
   		S="sudo" \
