@@ -37,7 +37,8 @@ height = 27
 radius = 0.0
 fixed-center = true
 
-background = ${colors.background}
+#background = ${colors.background}
+background = #FF000000
 foreground = ${colors.foreground}
 
 module-margin-left = 0
@@ -46,7 +47,7 @@ module-margin-right = 1
 line-size = 3
 line-color = #f00
 
-modules-left = bspwm music 
+modules-left = bspwm music
 modules-center = date xkeyboard time
 modules-right = filesystem memory cpu wlan pulseaudio brightness battery 
 
@@ -66,9 +67,10 @@ type = custom/script
 interval = 5
 #format-prefix = " "
 format = <label>
+format-padding = 6
 exec = music
-exec-if = [ -n music ]
-format-underline = ${colors.underline}
+#exec-if = [ -n music ]
+#format-underline = ${colors.underline}
 click-left = playerctl play-pause
 click-right = playerctl next
 
@@ -181,11 +183,12 @@ type = internal/pulseaudio
 
 format-volume = <label-volume>
 
-label-volume = %{A3:pavucontrol &:} %percentage:2%%
+#label-volume = %{A3:pavucontrol &:}  %percentage:2%%
+label-volume =  %percentage:2%%
 label-volume-foreground = ${root.foreground}
 label-volume-underline = ${colors.underline}
 
-label-muted =  -
+label-muted = " -"
 label-muted-foreground = #666
 label-muted-underline = ${colors.underline}
 
