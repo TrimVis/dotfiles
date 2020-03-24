@@ -3,32 +3,39 @@
 # ~/.config/aliasrc
 #
 
+# Look and feel
 alias ls="ls -hN --color=auto --group-directories-first" \
 			grep="grep --color=auto" \
 			fgrep="fgrep --color=auto" \
 			egrep="egrep --color=auto" \
 			diff="diff --color=auto" \
   		df="df -h" \
-			wget="wget --hsts-file=$HOME/.config/.wget-hsts" \
-			dot="/usr/bin/git --git-dir=/home/trim/.cfg/ --work-tree=/home/trim" \
-  		microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
-			snapch="sudo timeshift --check" \
-			snapcr="sudo timeshift --create" \
-  		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
-			update-mirrorlist="sudo reflector --protocol https --sort rate --save /etc/pacman.d/mirrorlist" \
-  		update="yay -Syyu" \
-			cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
-  		fc="sudo fc-cache -fv" \
-			vim="nvim" \
-			v="$EDITOR" \
-			ccat="highlight --out-format=ansi" \
-			calcurse="calcurse -D ~/.config/calcurse" \
-  		S="sudo" \
-  		o="xdg-open" \
-			mark='f(){ xournalpp "$@" 2>/dev/null; unset -f f; }; f:w' \
-			del="trash" \
 			cp="advcp -g" \
 			mv="advmv -g" \
 			ls="exa --group-directories-first" \
+			vim="\$EDITOR" \
+			v="\$EDITOR" \
+  		S="sudo" \
+			del="trash"
+
+# Shortcuts
+alias update="yay -Syyu" \
+			cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
+			dot="/usr/bin/git --git-dir='$HOME/.config/git-dots/' --work-tree='$HOME'" \
 			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)" \
-			scripts="nvim \$(find ~/.local/bin -maxdepth 2 -type f | fzf --height=30% --reverse)"
+			scripts="nvim \$(find ~/.local/bin -maxdepth 2 -type f | fzf --height=30% --reverse)" \
+			snapch="sudo timeshift --check" \
+			snapcr="sudo timeshift --create" \
+			ccat="highlight --out-format=ansi" \
+  		o="xdg-open"
+
+# Less often used shortcuts
+alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
+  		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
+			update-mirrorlist="sudo reflector --protocol https --sort rate --save /etc/pacman.d/mirrorlist" \
+  		fc="sudo fc-cache -fv"
+
+# Clean home dir
+alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
+			calcurse="calcurse -D ~/.config/calcurse" \
+			feh="feh --no-fehbg"

@@ -2,14 +2,14 @@
 
 
 #Autostart
-xrdb "$HOME/.Xresources" #load Xresources
+xrdb "$HOME/.config/Xresources" #load Xresources
 dunst & #notification daemon
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 nm-applet & #network manager applet
 blueman-applet & #bluetooth applet
 picom -b #compositor
 unclutter & #removes mouse pointer after certain time
-feh --bg-fill "$HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal)" #restore wallpaper
+feh --no-fehbg --bg-fill "$HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal)" #restore wallpaper
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -n dimscreen -- screenlock & 
