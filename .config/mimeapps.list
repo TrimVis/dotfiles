@@ -107,3 +107,4 @@ audio/mp4=pragha.desktop
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 message/rfc822=userapp-Thunderbird-PLITA0.desktop
 video/x-matroska=mpv.desktop
+x-scheme-handler/discord-402572971681644545=discord-402572971681644545.desktop
