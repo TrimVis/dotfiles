@@ -38,7 +38,7 @@ radius = 0.0
 fixed-center = true
 
 #background = ${colors.background}
-background = #FF000000
+background = #BB00001C
 foreground = ${colors.foreground}
 
 module-margin-left = 0
