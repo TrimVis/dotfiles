@@ -65,11 +65,9 @@ wm-restack = bspwm
 [module/music]
 type = custom/script
 interval = 5
-#format-prefix = " "
 format = <label>
 format-padding = 6
 exec = music
-#exec-if = [ -n music ]
 #format-underline = ${colors.underline}
 click-left = playerctl play-pause
 click-right = playerctl next
@@ -183,8 +181,8 @@ type = internal/pulseaudio
 
 format-volume = <label-volume>
 
-#label-volume = %{A3:pavucontrol &:}  %percentage:2%%
-label-volume =  %percentage:2%%
+label-volume = %{A3:pavucontrol &:}  %percentage:2%%%{A}
+#label-volume =  %percentage:2%%
 label-volume-foreground = ${root.foreground}
 label-volume-underline = ${colors.underline}
 
