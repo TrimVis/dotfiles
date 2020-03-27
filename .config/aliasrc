@@ -34,5 +34,4 @@ alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
 
 # Clean home dir
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
-			calcurse="calcurse -D ~/.config/calcurse" \
 			feh="feh --no-fehbg"
