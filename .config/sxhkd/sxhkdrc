@@ -36,6 +36,10 @@ super + shift + m
 super + {_,shift +} Return
 	$TERMINAL {_, -e st-cd "$(xcwd)"}
 
+#Scratchpad terminal
+super + alt + Return
+	scratchpad
+
 #Browser
 super + w
 	$BROWSER
