@@ -28,6 +28,9 @@ super + shift + x
 super + shift + m
 	multimonitor
 
+super + shift + n
+	todofi
+
 #------------#
 #  Programs  # Rule of thumb: All on super only
 #------------#
