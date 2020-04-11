@@ -16,12 +16,12 @@ done
 CURR_PLAYER=$(cat "$CONF")
 
 # If not part of possibilities, write new current player to file
-[[ "$(playerctl -l)" != *"$CURR_PLAYER"* ]] && \
-	playerctl -l | head -n 1 > "$CONF" && \
+[[ "$(playerctl -l 2> /dev/null)" != *"$CURR_PLAYER"* ]] && \
+	playerctl -l 2> /dev/null | head -n 1 > "$CONF" && \
 	CURR_PLAYER=$(cat "$CONF")
 # If empty, write new current player to file
 [[ -z "$CURR_PLAYER" ]] && \
-	playerctl -l | head -n 1 > "$CONF" && \
+	playerctl -l 2> /dev/null | head -n 1 > "$CONF" && \
 	CURR_PLAYER=$(cat "$CONF")
 
 
@@ -30,7 +30,7 @@ CURR_PLAYER=$(cat "$CONF")
 
 # Change to selected player to next one
 if [ "$NEXT_PLAYER" = "TRUE" ]; then
-	PLAYER_LIST="$(printf "$(playerctl -l)\n%.0s" {1..2})"
+	PLAYER_LIST="$(printf "$(playerctl -l 2> /dev/null)\n%.0s" {1..2})"
 	POS_PLAYERS="$(echo "$PLAYER_LIST" | grep -A 1 "$CURR_PLAYER" | grep -v "$CURR_PLAYER")"
 	echo "$POS_PLAYERS" | head -n 1 > "$CONF"
 
