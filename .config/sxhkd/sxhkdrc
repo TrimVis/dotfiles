@@ -4,6 +4,11 @@
 ##                                       ##
 ###########################################
 
+F12
+	autoclicker 100
+
+shift + F12
+	autoclicker 10000
 #---------#
 #  Menus  # Rule of thumb: All on super + shift
 #---------#
@@ -29,7 +34,7 @@ super + shift + m
 	multimonitor
 
 super + shift + n
-	todofi
+	todofi.sh -d "$HOME/.config/todo/todo.cfg"
 
 #------------#
 #  Programs  # Rule of thumb: All on super only
