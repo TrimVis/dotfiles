@@ -64,13 +64,14 @@ wm-restack = bspwm
 
 [module/music]
 type = custom/script
-interval = 5
+interval = 1
 format = <label>
 format-padding = 6
-exec = music
+exec = music -p
 #format-underline = ${colors.underline}
-click-left = playerctl play-pause
-click-right = playerctl next
+click-left = playerctl play-pause --player="$(music -g)"
+click-right = playerctl next --player="$(music -g)"
+click-middle = music -n
 
 [module/weather]
 type = custom/script

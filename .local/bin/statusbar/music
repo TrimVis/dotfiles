@@ -1,18 +1,58 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
-for player in $(playerctl -l 2>/dev/null); do
-	PLAYING=$(playerctl status -p "$player" 2> /dev/null)
-	TITLE=$(playerctl metadata title -p "$player" 2> /dev/null | cut -c1-24)
-	ARTIST=$(playerctl metadata artist -p "$player" 2> /dev/null | cut -c1-16)
+CONF="$HOME/.config/polybar/current_focused_player"
 
-	if [ "$PLAYING" = "Playing" ]
-	then
-		echo " $TITLE [$ARTIST]"
-		exit 0
-	elif [ "$PLAYING" = "Paused" ]
-	then
-		echo " $TITLE [$ARTIST]"
-		exit 0
-	fi
+while getopts npg option; do
+	case "$option" in
+		g) GET_PLAYER="TRUE";;
+		n) NEXT_PLAYER="TRUE";;
+		p) PRINT_PLAYING="TRUE";;
+		*) echo "Please use -n to switch to the next player or -p to show the current playing song of the current player"
+	esac
 done
-echo " "
+
+# Read last focused player
+[ -f "$CONF" ] || touch "$CONF"
+CURR_PLAYER=$(cat "$CONF")
+
+# If not part of possibilities, write new current player to file
+[[ "$(playerctl -l)" != *"$CURR_PLAYER"* ]] && \
+	playerctl -l | head -n 1 > "$CONF" && \
+	CURR_PLAYER=$(cat "$CONF")
+# If empty, write new current player to file
+[[ -z "$CURR_PLAYER" ]] && \
+	playerctl -l | head -n 1 > "$CONF" && \
+	CURR_PLAYER=$(cat "$CONF")
+
+
+# Output current selected player
+[ "$GET_PLAYER" = "TRUE" ] && echo "$CURR_PLAYER"
+
+# Change to selected player to next one
+if [ "$NEXT_PLAYER" = "TRUE" ]; then
+	PLAYER_LIST="$(printf "$(playerctl -l)\n%.0s" {1..2})"
+	POS_PLAYERS="$(echo "$PLAYER_LIST" | grep -A 1 "$CURR_PLAYER" | grep -v "$CURR_PLAYER")"
+	echo "$POS_PLAYERS" | head -n 1 > "$CONF"
+
+# Print the currently playing song of current player
+elif [ "$PRINT_PLAYING" = "TRUE" ]; then
+
+	PLAYING=$(playerctl status -p "$CURR_PLAYER" 2> /dev/null)
+	TITLE=$(playerctl metadata title -p "$CURR_PLAYER" 2> /dev/null | cut -c1-24)
+	ARTIST=$(playerctl metadata artist -p "$CURR_PLAYER" 2> /dev/null | cut -c1-16)
+
+	if [ "$PLAYING" = "Playing" ]; then
+
+		echo " $TITLE [$ARTIST]"
+
+	elif [ "$PLAYING" = "Paused" ]; then
+
+		echo " $TITLE [$ARTIST]"
+
+	else
+
+		echo " "
+
+	fi
+
+fi
