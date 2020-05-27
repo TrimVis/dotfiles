@@ -24,7 +24,11 @@ alias update="yay -Syyu" \
 			snapch="sudo timeshift --check" \
 			snapcr="sudo timeshift --create" \
 			ccat="highlight --out-format=ansi" \
-  		o="xdg-open"
+  		o="xdg-open" \
+			todo="todo.sh -d '$HOME/.config/todo/todo.cfg'" \
+			todofi="todofi.sh -d '$HOME/.config/todo/todo.cfg'" \
+			dlrecs="ethvid-scraper -q low -f '/home/trim/Documents/Uni/6.Semester/Lecture Recordings/LectureURLS' -d '/home/trim/Documents/Uni/6.Semester/Lecture Recordings/'" \
+			killtty="sudo pkill -9 -t" #ttyID comes here; see w
 
 # Less often used shortcuts
 alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
@@ -35,3 +39,4 @@ alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
 # Clean home dir
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
 			feh="feh --no-fehbg"
+
