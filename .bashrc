@@ -26,3 +26,6 @@ shopt -s dotglob
 
 source /opt/oh-my-git/prompt.sh
 ufetch
+
+# This is needed for APRON only
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
