@@ -154,7 +154,7 @@ load-module module-filter-apply
 load-module module-null-sink sink_name=mic_denoised_out sink_properties=device.description="mic_denoised_out"
 
 # Make this output use noise suppression, optimized for voice chat
-load-module module-ladspa-sink sink_name=mic_raw_in sink_master=mic_denoised_out label=noise_suppressor_stereo plugin=/home/trim/.local/lib/RNNoise/librnnoise_ladspa.so control=50
+load-module module-ladspa-sink sink_name=mic_raw_in sink_master=mic_denoised_out label=noise_suppressor_stereo plugin=/home/trim/.local/lib/RNNoise/librnnoise_ladspa.so control=40
 load-module module-loopback source=alsa_input.pci-0000_02_00.6.analog-stereo sink=mic_raw_in channels=2
 
 # Set as default input
