@@ -44,7 +44,7 @@ bspc rule -a Blueman-manager state=floating
 
 #wm specific autostart
 xsetroot -cursor_name left_ptr
-sxhkd &
+#sxhkd &
 polybar --reload main &
 
 #workarounds

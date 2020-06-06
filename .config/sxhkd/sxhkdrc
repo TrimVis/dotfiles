@@ -70,19 +70,19 @@ super + v
 
 # Brightness controls
 {_,super +} XF86MonBrightnessUp
-	lightctl -i {5, 1} -n
+	lightctl -i {5, 1} -n -b 11
 {_,super +} XF86MonBrightnessDown
-	lightctl -d {5, 1} -n
+	lightctl -d {5, 1} -n -b 11
 shift + {F2,F1}
-	lightctl {-r,-s} -n
+	lightctl {-r,-s} -n -b 11
  
 # Volume control 
 {_,super +} XF86AudioRaiseVolume
-	volumectl -i {5, 1} -n
+	volumectl -i {5, 1} -n -b 12
 {_,super +} XF86AudioLowerVolume
-	volumectl -d {5, 1} -n
+	volumectl -d {5, 1} -n -b 12
 XF86AudioMute 
-	volumectl -m -n
+	volumectl -m -n -b 12
 
 # selected Area not working: couldn't grab keyboard
 # Screenshots
@@ -93,141 +93,55 @@ XF86AudioMute
 super + Escape
 	pkill -USR1 sxhkd && notify-send "sxhkd" "Restarted background process"
 
-#------------------#
-#  BSPWM Settings  #
-#------------------#
-	
-#
-# bspwm basic controls
-#
+#---------#
+#   dwm   #
+#---------#
 
-# quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
+# Close current window
+super + q
+	dwmc killclient
 
-# close and kill
-super + {_,shift + }q
-	bspc node -{c,k}
+# Navigate through windowstack
+super + {j,k}
+	dwmc focusstack {+,-}1
+# Move window through stack
+super + shift + {j,k}
+	dwmc movestack {+,-}1
 
-# rotate focused node
-super + shift + r
-	bspc node -R 90
+# Cycle through/Tag monitors
+super + {_,shift +} comma
+	dwmc {focusmon,tagmon} +1
+# Show/view/tag 
+super + {_,ctrl +}{_,shift +} {1-9}
+	dwmc {_,toggle}{viewex,tagex} {0-8}
 
-# balance focused node
-super + shift + b
-	bspc node -B
+# Change amount of windows in master
+super + {i,d}
+	dwmc incnmaster {+,-}1
+# Change window size
+super + {h,l}
+	dwmc setmfact {-,+}0.05
 
-#start/stop master slave layout
-super + alt + {_,shift+} s
-	{~/.config/bspwm/ms_start.sh &, ~/.config/bspwm/ms_stop.sh}
+# Change layouts
+super + {t,m}
+	dwmc setlayoutex {0,2}
+super + f
+	dwmc togglefullscr
+# Change layout to floating of all or current window
+super + {_, shift +} space
+	dwmc {setlayout 1, togglefloating}
 
-#make focused window invisible
-super + alt + h
-	bspc node -g hidden=on
+# Move to master
+super + grave
+	dwmc zoom
 
-#show dialog of all invisible windows
-super + alt + shift + h
-	hidden_window_dialog
+# Toggle bar
+super + b
+	dwmc togglebar
 
-#
-# state/flags
-#
+super + 0
+	dwmc viewall
 
-# set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
-
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
-
-#
-# move/resize
-# Rule of thumb: super/alt
-#
-
-# contract a window by moving one of its side inward
-alt + {Left,Down,Up,Right}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
-
-# expand a window by moving one of its side outward
-alt + shift + {Left,Down,Up,Right}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
-
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
-
-#
-# focus/swap
-#
-
-# focus/swap the node in the given direction
-super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
-
-# swap the current node and the biggest node
-super + g
-	bspc node -s biggest
-
-# focuse root node
-super + a
-	bspc node @/ -f
-
-# focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
-
-# focus the last node/desktop
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
-
-# focus the next/previous node in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local
-
-#
-# preselect
-#
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
-
-
-
-
-
-#############
-# Unused
-#############
-
-## focus the older or newer node in the focus history
-#super + {o,i}
-#	bspc wm -h off; \
-#	bspc node {older,newer} -f; \
-#	bspc wm -h on
-
-## set the node flags
-#super + ctrl + {m,x,y,z}
-#	bspc node -g {marked,locked,sticky,private}
-
-## send the newest marked node to the newest preselected node
-#super + y
-#	bspc node newest.marked.local -n newest.!automatic.local
-
-## focus the next/previous desktop in the current monitor
-#super + bracket{left,right}
-#	bspc desktop -f {prev,next}.local
+# Change gaps
+super + {minus,plus}
+	dwmc setgaps {-,+}1

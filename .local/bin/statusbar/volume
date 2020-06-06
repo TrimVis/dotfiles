@@ -4,13 +4,15 @@ case $BLOCK_BUTTON in
 	1) pavucontrol;;
 esac
 
-amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1
 MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
-
 
 if [ "$MUTE" = "[off]" ]
 then
-	echo " "
-	echo "#FF0000"
+	echo "<>"
+	#echo "--"
+else
+	amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1
 fi
+
+
 

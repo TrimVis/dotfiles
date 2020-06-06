@@ -25,7 +25,7 @@ USAGE:
 -i <val>   Increase volume by val (in percent)
 -d <val>   Decrease volume by val (in percent)
 -n         Send out a notification using my notify script
--b <val>   For i3blocks support: Force update of i3block entry with this val
+-b <val>   For dwmblocks support: Force update of dwmblock entry with this val
 -m         Toggle mute
 -h         Displays this help script";
 				return;;
@@ -52,5 +52,5 @@ else
 fi
 
 
-[ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x i3blocks)
+[ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x dwmblocks)
 

@@ -27,7 +27,7 @@ USAGE:
 -i <val>   Increase screenlight by val (in percent)
 -d <val>   Decrease screenlight by val (in percent)
 -n         Send out a notification using my notify script
--b <val>   For i3blocks support: Force update of i3block entry with this val
+-b <val>   For dwmblocks support: Force update of dwmblock entry with this val
 -s         Save current screenlight
 -r         Restore screenlight
 -h         Displays this help script";
@@ -44,4 +44,4 @@ notify() {
 [ -z "$INC" ] || (light -A "$INC"; [ -z "$NOT" ] || notify "Increased backlight to $(light -G | awk -F. '{ print $1 }')")
 [ -z "$DEC" ] || (light -U "$DEC"; [ -z "$NOT" ] || notify "Decreased backlight to $(light -G | awk -F. '{ print $1 }')")
 
-[ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x i3blocks)
+[ -z "$BLO" ] || (pkill -SIGRTMIN+${BLO} -x dwmblocks)

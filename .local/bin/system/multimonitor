@@ -12,6 +12,7 @@ eDP OFF
 eDP ON
 HDMI OFF
 HDMI ON
+HDMI above of eDP
 HDMI right of eDP
 HDMI left of eDP
 HDMI mirror eDP" | rofi -p "Screen Config" -dmenu)
@@ -30,6 +31,10 @@ then
 elif [ "$RET" = "HDMI ON" ]
 then
 	xrandr --output HDMI-A-0 --auto
+
+elif [ "$RET" = "HDMI above of eDP" ]
+then
+	xrandr --output HDMI-A-0 --auto --above eDP
 
 elif [ "$RET" = "HDMI right of eDP" ]
 then
