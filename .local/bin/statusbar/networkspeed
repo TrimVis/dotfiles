@@ -7,6 +7,3 @@ RECV=$(echo "$UPNDOWN" | awk -F, '{print $1}')
 SEND=$(echo "$UPNDOWN" | awk -F, '{print $3}')
 
 echo "⬇${RECV}kB ⬆${SEND}kB"
-#echo "$UPNDOWN"
-echo ""
-echo "#8EE400"

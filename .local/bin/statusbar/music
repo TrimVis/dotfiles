@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONF="$HOME/.config/polybar/current_focused_player"
+CONF="$HOME/.config/current_focused_player"
 
 while getopts npg option; do
 	case "$option" in

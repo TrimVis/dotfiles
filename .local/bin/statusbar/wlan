@@ -1,12 +1,7 @@
 #!/bin/bash
 
 DEV="wlp1s0"
-
-SSID=$(iwconfig $DEV | awk -F: '/ESSID:/ { print $2 }' | xargs)
-STRE=$(iwconfig $DEV | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)
-PERC=$(bc <<< "scale=0;100*$STRE")
-
-IP=$(ifconfig $DEV | awk '/inet / {print $2}')
+IP=$(ifconfig $DEV | awk '/inet / {print $2}') 
 
 case $BLOCK_BUTTON in
 	1) notify-send "🌍 Wifi" "Local IP: $IP
@@ -14,13 +9,13 @@ Global IP: $(curl ifconfig.me)";;
 	3) nm-connection-editor;;
 esac
 
+SSID=$(iwconfig $DEV | awk -F: '/ESSID:/ { print $2 }' | xargs)
+
 if [ "$SSID" = "off/any" ]
 then
-	echo "disconnected"
-	echo " "
-	echo "#FF0000"
+	echo " disconnected"
 else
-	echo "\"$SSID\" $PERC%"
-	echo " "
-	echo "#00FF00"
+	STRE=$(iwconfig $DEV | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)
+	PERC=$(bc <<< "scale=0;100*$STRE")
+	echo " \"$SSID\" $PERC%"
 fi

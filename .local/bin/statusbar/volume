@@ -5,14 +5,20 @@ case $BLOCK_BUTTON in
 esac
 
 MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
-
 if [ "$MUTE" = "[off]" ]
 then
-	echo "<>"
-	#echo "--"
+	echo " <>"
 else
-	amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1
+	VOL="$(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)"
+	ICON=""
+	if [ "$VOL" -le 50 ]; then
+		ICON=""
+	elif [ "$VOL" -le 100 ]; then
+		ICON=""
+	fi
+	echo "${ICON} ${VOL}"
 fi
+
 
 
 

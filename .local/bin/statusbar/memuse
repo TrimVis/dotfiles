@@ -7,21 +7,18 @@ esac
 MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
 MEM=${MEM/","/"."}
 
-echo "$MEM"
-echo
+echo " $MEM"
 
-INUSE=$(echo "$MEM" | awk -F '/' '{print $1}' | awk -F ',' '{print $1}')
-
-NUMS=${INUSE/"G"/}
-NUMS=${NUMS/"Mi"/}
-KIND=${INUSE/$NUMS/}
-
-if [ "$KIND" = "G" ] && [ "$NUMS" -ge 6 ]
-then
-	echo " "
-	echo "#FF0000"
-elif [ "$KIND" = "G" ] && [ "$NUMS" -ge 3 ]
-then
-	echo " "
-	echo "#FFFF00"
-fi
+#INUSE=$(echo "$MEM" | awk -F '/' '{print $1}' | awk -F ',' '{print $1}')
+#
+#NUMS=${INUSE/"G"/}
+#NUMS=${NUMS/"Mi"/}
+#KIND=${INUSE/$NUMS/}
+#
+#if [ "$KIND" = "G" ] && [ "$NUMS" -ge 6 ]
+#then
+#	sleep 1
+#elif [ "$KIND" = "G" ] && [ "$NUMS" -ge 3 ]
+#then
+#	sleep 1
+#fi

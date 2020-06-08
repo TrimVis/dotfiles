@@ -10,14 +10,12 @@ case $BLOCK_BUTTON in
   3) notify-send "💻 CPU hogs:" "$(ps axch -o %cpu,cmd --sort=-%cpu | head -n 8)" ;;
 esac
 
-echo "$CPU%"
+echo " $CPU%"
 
 if [[ $(bc -l <<< "$CPU > 90.0") -eq 1 ]]
 then
-	echo " "
-	echo "#FF0000"
+	sleep 1
 elif [[ $(bc -l <<< "$CPU > 50.0") -eq 1 ]]
 then
-	echo " "
-	echo "#FFFF00"
+	sleep 1
 fi

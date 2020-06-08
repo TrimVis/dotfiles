@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+case $BLOCK_BUTTON in
+	1) playerctl --player=$(music -g) play-pause;;
+	2) music -n;;
+	3) playerctl --player=$(music -g) next;;
+esac
+
+echo "$(music -p)"
