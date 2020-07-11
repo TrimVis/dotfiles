@@ -46,11 +46,7 @@ line-color = #f00
 
 modules-left = bspwm xwindow spotify
 modules-center = date xkeyboard time
-<<<<<<< HEAD
-modules-right = filesystem memory cpu wlan pulseaudio 
-=======
-modules-right = weather filesystem memory cpu wlan pulseaudio brightness battery 
->>>>>>> laptop
+modules-right = weather filesystem memory cpu wlan pulseaudio
 
 tray-position = right
 tray-padding = 4
