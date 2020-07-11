@@ -15,5 +15,5 @@ xrdb $HOME/.Xresources #load Xresources
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 xss-lock -n dimscreen -- screenlock & 
-syncthing & #file syncronization
+#syncthing & #file syncronization
 /usr/lib/kdeconnectd & #kdeconnect daemon
