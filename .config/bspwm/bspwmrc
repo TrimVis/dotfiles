@@ -32,6 +32,9 @@ bspc config removal_adjustment      false
 
 #window rules
 bspc rule -a st:floating state=floating
+#bspc rule -a Spacefm:"Stopped" state=floating
+#bspc rule -a spacefm:"Errors" state=floating
+bspc rule -a spacefm:"Confirm *" state=floating
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a brave-browser desktop='^3' follow=on
 bspc rule -a Zathura desktop='^5' state=tiled follow=on 
