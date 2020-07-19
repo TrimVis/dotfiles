@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+#sleep 5
+echo "Clicking $1x8ms"
+xdotool click --repeat $1 --delay 8 1
+echo "Done"
