@@ -15,15 +15,15 @@ shift + F12
 
 #Drun/Emoji selector
 super + shift + {d,e}
-	rofi -show {drun,emoji} -show-icons
+	rofi -show {drun,emoji} -show-icons -monitor -1
 
 #Wallpaper changer
 super + shift + w
-	change_bg ~/Pictures/Wallpapers/
+	change_bg ~/pic/wall/
 
 #Password Manager
 super + shift + p
-	rofi-pass --last-used
+	rofi-pass --last-used -monitor -1
 
 #System ShutdownSuspendRebootLockscreen-Dialog
 super + shift + x
