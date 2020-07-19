@@ -126,7 +126,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<span foreground='#E1B037'>[<b>%s</b>]</span>\n<span foreground='#FFF'>%b</span> <span foreground='#ED7600'>%p</span>"
+    format = "<span foreground='#E1B037'>[<b>%s</b>]</span>\n<span foreground='#FFF'>%b</span> <span foreground='#ED7600'>%p</span>\n- %a"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
@@ -297,6 +297,13 @@
     timeout = 20
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
+
+[brave]
+	appname = brave-browser
+	summary = "*Hier koennte ihre Werbung stehn!*"
+	urgency = low
+	#format = ""
+
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.

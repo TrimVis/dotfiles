@@ -2,8 +2,8 @@
 
 # User configuration
 WD="$HOME/.config/scred"
-PIC_DIR="$HOME/Pictures/Screenshots"
-VID_DIR="$HOME/Videos/Screenrecs"
+PIC_DIR="$HOME/pic/scrn"
+VID_DIR="$HOME/vid/scrn"
 PIC_NAME="shot_$(date +%s).png"
 VID_NAME="rec_$(date +%s).avi"
 

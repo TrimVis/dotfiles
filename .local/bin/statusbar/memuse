@@ -5,7 +5,7 @@ case $BLOCK_BUTTON in
 esac
 
 MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
-MEM=${MEM/","/"."}
+#MEM=${MEM/","/"."}
 
 echo " $MEM"
 

@@ -1,0 +1,1 @@
+rsync --progress -e 'ssh -p23' --recursive /home/trim/Pictures/ u231134-sub1@u231134-sub1.your-storagebox.de:Laptop/Pictures/ --exclude '.*'
