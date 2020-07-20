@@ -2,7 +2,7 @@
 
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
-setxkbmap -option "caps:swapescape"
+setxkbmap -layout de -variant nodeadkeys -option "caps:swapescape"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec dwm
 
