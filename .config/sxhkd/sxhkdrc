@@ -106,7 +106,7 @@ super + {j,k}
 	dwmc focusstack {+,-}1
 # Move window through stack
 super + shift + {j,k}
-	dwmc movestack {+,-}1
+	dwmc rotatestack {+,-}1
 
 # Cycle through/Tag monitors
 super + {_,shift +} comma
@@ -132,7 +132,7 @@ super + {_, shift +} space
 	dwmc {setlayout 1, togglefloating}
 
 # Move to master
-super + grave
+super + ^
 	dwmc zoom
 
 # Toggle bar
