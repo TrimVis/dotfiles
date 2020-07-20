@@ -3,7 +3,7 @@
 # Configuration
 setxkbmap de
 xrdb "$HOME/.config/Xresources" #load Xresources
-feh --no-fehbg --bg-fill "$HOME/Pictures/Wallpapers/$(cat $HOME/Pictures/Wallpapers/.currwal)" #restore wallpaper
+feh --no-fehbg --bg-fill "$HOME/pic/wall/$(cat $HOME/pic/wall/.currwal)" #restore wallpaper
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 #xss-lock -n dimscreen -- screenlock & 

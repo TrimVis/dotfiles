@@ -9,7 +9,7 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="brave"
+export BROWSER="firefox"
 export READER="zathura"
 export FILE="pcmanfm"
 export VIDEO="mpv"
@@ -17,7 +17,7 @@ export VIDEO="mpv"
 
 # Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
-export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
+#export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="$HOME/.config/wget/wgetrc"
 export IPYTHONDIR="$HOME/.config/ipython"
