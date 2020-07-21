@@ -27,6 +27,8 @@ export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export DOTBARE_DIR="$HOME/.config/git-dots"
+export DOTBARE_TREE="$HOME"
 
 # less/man colors
 export LESS=-R

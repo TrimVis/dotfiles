@@ -18,7 +18,7 @@ alias ls="ls -hv --color=auto --group-directories-first" \
 # Shortcuts
 alias update="yay -Syyu" \
 			cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
-			dot="/usr/bin/git --git-dir='$HOME/.config/git-dots/' --work-tree='$HOME'" \
+			dot="dotbare" \
 			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)" \
 			scripts="nvim \$(find ~/.local/bin -maxdepth 2 -type f | fzf --height=30% --reverse)" \
 			snapch="sudo timeshift --check" \
@@ -40,3 +40,4 @@ alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
 			feh="feh --no-fehbg"
 
+			#dot="/usr/bin/git --git-dir='$HOME/.config/git-dots/' --work-tree='$HOME'" \

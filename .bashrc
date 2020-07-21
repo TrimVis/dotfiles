@@ -20,7 +20,8 @@ shopt -s dotglob
 [[ -f $HOME/.config/aliasrc ]] && . ~/.config/aliasrc
 
 source /opt/oh-my-git/prompt.sh
-#ufetch
+#source /opt/dotbare/dotbare.plugin.bash
+ufetch
 
 # This is needed for APRON only
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
