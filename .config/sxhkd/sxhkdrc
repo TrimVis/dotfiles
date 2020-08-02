@@ -62,7 +62,8 @@ super + e
 
 #Sound control
 super + v
-	pavucontrol
+	$TERMINAL -e pulsemixer
+#pavucontrol
 
 #------------#
 #  Controls  # Rule of thumb: All in top row
