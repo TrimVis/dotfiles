@@ -1,9 +1,10 @@
 #!/bin/sh
 
 # Note: switch over to pulsemixer instead of pavucontrol
+#	1) pavucontrol;;
 
 case $BLOCK_BUTTON in
-	1) pavucontrol;;
+	1) st -e pulsemixer;;
 	3) pamixer -t;;
 esac
 

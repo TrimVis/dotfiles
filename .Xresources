@@ -1,0 +1,19 @@
+! ~/.Xresources
+!
+
+!                !
+! URxvt settings !
+!                !
+! Transparency (0-1):
+*.alpha: 0.92
+
+!! Set a default font and font size as below:
+*.font: IBM Plex Mono:pixelsize=14:antialias=true:autohint=true;
+
+st.termname: st-256color
+st.borderpx: 2
+
+!! Set the background, foreground and cursor colors as below:
+*.background: #000000
+*.foreground: white
+*.cursorColor: white
