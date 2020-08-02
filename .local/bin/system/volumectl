@@ -32,7 +32,7 @@ USAGE:
     esac
 done
 
-MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
+MUTE=$(pamixer --get-mute)
 
 notify() {
 	notify-send "Sound" "$1" -h string:x-canonical-private-synchronous:volume -i "/usr/share/icons/gnome/32x32/status/audio-volume-high.png" -u low
@@ -40,14 +40,15 @@ notify() {
 
 if [ -z "$MUT" ]
 then
-    [ -z "$INC" ] || (amixer -D pulse -M sset Master "${INC}%+"; [ -z "$NOT" ] || notify "Increased volume to $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)")
-    [ -z "$DEC" ] || (amixer -D pulse -M sset Master "${DEC}%-"; [ -z "$NOT" ] || notify "Decreased volume to $(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)")
+	[ -z "$INC" ] || (pamixer --allow-boost -i "${INC}"; [ -z "$NOT" ] || notify "Increased volume to $(pamixer --get-volume)")
+	[ -z "$DEC" ] || (pamixer --allow-boost -d "${DEC}"; [ -z "$NOT" ] || notify "Decreased volume to $(pamixer --get-volume)")
 else
-    if [ "$MUTE" = "[on]" ]
+	pamixer -t
+    if [ "$MUTE" = "false" ]
     then
-        amixer -D pulse -M set Master toggle; [ -z "$NOT" ] || notify "Muted volume"; playerctl pause
+			[ -z "$NOT" ] || notify "Muted volume: $(pamixer --get-volume-human)"; playerctl pause
     else
-        amixer -D pulse -M set Master toggle; [ -z "$NOT" ] || notify "Unmuted volume"
+			[ -z "$NOT" ] || notify "Unmuted volume: $(pamixer --get-volume-human)"
     fi
 fi
 
