@@ -13,8 +13,7 @@ alias ls="ls -hv --color=auto --group-directories-first" \
 			v="\$EDITOR"
 
 # Shortcuts
-alias update="yay -Syyu" \
-			cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
+alias cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
 			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)" \
 			scripts="nvim \$(find ~/.local/bin -maxdepth 2 -type f | fzf --height=30% --reverse)" \
 			snapch="sudo timeshift --check" \
