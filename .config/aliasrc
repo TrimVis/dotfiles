@@ -31,7 +31,8 @@ alias dot="dotbare"
 alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
   		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 			update-mirrorlist="sudo reflector --protocol https --sort rate --save /etc/pacman.d/mirrorlist" \
-  		fc="sudo fc-cache -fv"
+  		fc="sudo fc-cache -fv" \
+			whitenoise="play -n synth brownnoise synth pinknoise mix synth sine amod 0.3 10"
 
 # Clean home dir
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
