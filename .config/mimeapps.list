@@ -35,7 +35,7 @@ text/x-lua=geany.desktop;
 application/x-tint2-theme=tint2conf.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;com.github.xournalpp.xournalpp.desktop;
 audio/mpeg=vlc.desktop;pragha.desktop;
-image/jpeg=imv.desktop;nomacs.desktop;gimp.desktop;ristretto.desktop;
+image/jpeg=userapp-sxiv-0SLHP0.desktop;imv.desktop;nomacs.desktop;gimp.desktop;ristretto.desktop;
 application/x-asp=geany.desktop;
 video/x-msvideo=vlc.desktop;
 application/x-ms-dos-executable=org.gnome.FileRoller.desktop;
@@ -110,7 +110,7 @@ application/x-alpm-package=pamac-install.desktop
 application/x-iwork-keynote-sffkey=sublime_text_3.desktop
 application/x-xz-compressed-tar=org.gnome.FileRoller.desktop
 image/png=imv.desktop
-image/jpeg=imv.desktop;nomacs.desktop
+image/jpeg=userapp-sxiv-0SLHP0.desktop
 x-scheme-handler/mailto=userapp-Thunderbird-PLITA0.desktop
 text/x-qml=atom.desktop
 audio/mp4=pragha.desktop
@@ -128,3 +128,5 @@ application/xhtml+xml=userapp-Firefox-F8I8N0.desktop
 application/x-extension-xhtml=userapp-Firefox-F8I8N0.desktop
 application/x-extension-xht=userapp-Firefox-F8I8N0.desktop
 x-scheme-handler/discord-692435241373270077=discord-692435241373270077.desktop
+
+[Removed Associations]
