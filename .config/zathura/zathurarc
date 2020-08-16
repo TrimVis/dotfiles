@@ -1,2 +1,44 @@
+set selection-clipboard clipboard
+set window-title-home-tilde "true"
+set statusbar-home-tilde "true"
+
+set font "IBM Plex Mono 10"
+
+set default-bg                  "#282c34" #00
+set default-fg                  "#202020" #01
+
+set statusbar-fg                "#FFFFFF" #04
+set statusbar-bg                "#383c4a" #01
+
+set inputbar-bg                 "#383c4a" #00 currently not used
+set inputbar-fg                 "#FFFFFF" #02
+
+set notification-error-bg       "#AC4142" #08
+set notification-error-fg       "#151515" #00
+
+set notification-warning-bg     "#AC4142" #08
+set notification-warning-fg     "#151515" #00
+
+set highlight-color             "#F4BF75" #0A
+set highlight-active-color      "#6A9FB5" #0D
+
+set completion-highlight-fg     "#303030" #02
+set completion-highlight-bg     "#75B5AA" #0C
+
+set completion-bg               "#303030" #02
+set completion-fg               "#75B5AA" #0C
+
+set notification-bg             "#90A959" #0B
+set notification-fg             "#151515" #00
+
+set recolor-lightcolor          "#282c34" #00
+set recolor-darkcolor           "#FFFFFF" #06
+
+set recolor                     "true"
+set recolor-keephue							"true"
+
 map <Up> navigate previous
 map <Down> navigate next
+map <Left> navigate previous
+map <Right> navigate next
+map <C-Space> toggle_statusbar
