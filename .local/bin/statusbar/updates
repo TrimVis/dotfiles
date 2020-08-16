@@ -4,4 +4,4 @@ case $BLOCK_BUTTON in
    1) $TERMINAL -n "floating" -e sudo pacman -Syyu && pkill -RTMIN+12 i3blocks ;;
 esac
 
-checkupdates | wc -l
+echo " $(checkupdates | wc -l)"
