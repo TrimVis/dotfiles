@@ -1,14 +1,17 @@
 ! ~/.Xresources
 !
 
-!                !
-! URxvt settings !
-!                !
 ! Transparency (0-1):
 *.alpha: 0.92
 
-!! Set a default font and font size as below:
-*.font: IBM Plex Mono:pixelsize=14:antialias=true:autohint=true;
+!! Font settings:
+*.font: IBM Plex Mono:pixelsize=13
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+Xft.dpi: 82
 
 st.termname: st-256color
 st.borderpx: 2
