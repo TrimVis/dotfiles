@@ -1,5 +1,5 @@
 [Added Associations]
-text/plain=org.pwmt.zathura.desktop;vim.desktop;sublime_text_3.desktop;atom.desktop;geany.desktop;
+text/plain=libreoffice-calc.desktop;org.pwmt.zathura.desktop;vim.desktop;sublime_text_3.desktop;atom.desktop;geany.desktop;
 application/xml=geany.desktop;
 application/x-shellscript=atom.desktop;sublime_text_3.desktop;geany.desktop;
 x-scheme-handler/mailto=exo-mail-reader.desktop;userapp-Thunderbird-PLITA0.desktop;

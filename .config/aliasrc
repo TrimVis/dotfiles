@@ -10,7 +10,8 @@ alias ls="ls -hv --color=auto --group-directories-first" \
 			egrep="egrep --color=auto" \
 			diff="diff --color=auto" \
   		df="df -h" \
-			v="\$EDITOR"
+			v="emacs -nw"
+
 
 # Shortcuts
 alias cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
