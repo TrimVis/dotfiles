@@ -14,7 +14,7 @@ xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 #xss-lock -n dimscreen -- screenlock & 
 xss-lock -n dimscreen & 
-syncthing >/dev/null & #file syncronization
+#syncthing >/dev/null & #file syncronization
 /usr/lib/kdeconnectd & #kdeconnect daemon
 sxhkd &
 dwmblocks &

@@ -1,7 +1,8 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-   1) $TERMINAL -n "floating" -e sudo pacman -Syyu && pkill -RTMIN+12 i3blocks ;;
+   1) $TERMINAL -n "floating" -e yay -Syu && pkill -RTMIN+12 i3blocks ;;
 esac
 
-checkupdates | wc -l
+#yay -Sy > /dev/null && 
+yay -Qu | wc -l

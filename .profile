@@ -9,7 +9,8 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-export BROWSER="brave"
+#export BROWSER="firefox"
+export BROWSER="env MOZ_USE_XINPUT2=1 firefox"
 export READER="zathura"
 export FILE="pcmanfm"
 export VIDEO="mpv"
@@ -39,6 +40,8 @@ export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
 
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
+
+eval $(ssh-agent)
 
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && exec startx
