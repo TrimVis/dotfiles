@@ -3,9 +3,9 @@
 ACTION=$(echo -e " suspend\n Shutdown\n Reboot\n lock screen" | rofi -dmenu -p "ssrl-dialog")
 
 case "$ACTION" in
-	" Shutdown") systemctl poweroff;;
-	" suspend") systemctl suspend;;
-	" Reboot") systemctl reboot;;
+	" Shutdown") loginctl poweroff;;
+	" suspend") loginctl suspend;;
+	" Reboot") loginctl reboot;;
 	" lock screen") screenlock;;
 	*) ;;
 esac
