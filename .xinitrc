@@ -2,10 +2,7 @@
 
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
-setxkbmap -option "caps:swapescape"
+setxkbmap -layout de -variant nodeadkeys -option "caps:swapescape"
 
-exec dwm
-#exec bspwm
-#[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x bspwm >/dev/null && exec bspwm
-#[ "$(tty)" = "/dev/tty2" ] && exec startplasma-x11
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec dwm
 

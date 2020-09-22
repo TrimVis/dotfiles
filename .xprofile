@@ -1,20 +1,24 @@
 #!/usr/bin/env sh
 
-
-#Autostart
+# Configuration
 xrdb "$HOME/.config/Xresources" #load Xresources
-dunst & #notification daemon
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-nm-applet & #network manager applet
-blueman-applet & #bluetooth applet
-picom -b #compositor
-unclutter & #removes mouse pointer after certain time
 feh --no-fehbg --bg-fill "$HOME/pic/wall/$(cat $HOME/pic/wall/.currwal)" #restore wallpaper
 xset s 120 #dimscreen after 120 seconds
 xset dpms 0 360 0 #suspend and lock screen after 360 seconds
 #xss-lock -n dimscreen -- screenlock & 
 xss-lock -n dimscreen & 
-#syncthing >/dev/null & #file syncronization
-/usr/lib/kdeconnectd & #kdeconnect daemon
-sxhkd &
+
+# Autostart
 dwmblocks &
+sxhkd &
+picom -b #compositor
+dunst & #notification daemon
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+/usr/bin/lxqt-policykit-agent &
+nm-applet > /dev/null & #network manager applet
+blueman-applet > /dev/null & #bluetooth applet
+unclutter -b > /dev/null #removes mouse pointer after certain time
+#syncthing >/dev/null & #file syncronization
+/usr/lib/kdeconnectd > /dev/null & #kdeconnect daemon
+gwe --hide-window > /dev/null &
+redshift-gtk & > /dev/null

@@ -18,7 +18,7 @@ export VIDEO="mpv"
 
 # Cleanup
 export XDG_CONFIG_HOME="$HOME/.config"
-export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
+#export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="$HOME/.config/wget/wgetrc"
 export IPYTHONDIR="$HOME/.config/ipython"
@@ -44,4 +44,4 @@ echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc
 eval $(ssh-agent)
 
 # Start graphical server if i3 not already running.
-[ "$(tty)" = "/dev/tty1" ] && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx

@@ -14,8 +14,7 @@ alias ls="ls -hv --color=auto --group-directories-first" \
 
 
 # Shortcuts
-alias update="yay -Syyu" \
-			cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
+alias cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
 			dot="/usr/bin/git --git-dir='$HOME/.config/git-bare-repo/' --work-tree='$HOME'" \
 			conf="nvim \$(find ~/.config/ -maxdepth 2 -type f | fzf --height=30% --reverse)" \
 			scripts="nvim \$(find ~/.local/bin -maxdepth 2 -type f | fzf --height=30% --reverse)" \
