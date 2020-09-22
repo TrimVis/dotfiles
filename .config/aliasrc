@@ -10,10 +10,8 @@ alias ls="ls -hv --color=auto --group-directories-first" \
 			egrep="egrep --color=auto" \
 			diff="diff --color=auto" \
   		df="df -h" \
-			vim="\$EDITOR" \
-			v="\$EDITOR" \
-  		S="sudo" \
-			del="trash"
+			v="emacs -nw"
+
 
 # Shortcuts
 alias update="yay -Syyu" \
@@ -25,16 +23,17 @@ alias update="yay -Syyu" \
 			snapcr="sudo timeshift --create" \
 			ccat="highlight --out-format=ansi" \
   		o="xdg-open" \
-			todo="todo.sh -d '$HOME/.config/todo/todo.cfg'" \
-			todofi="todofi.sh -d '$HOME/.config/todo/todo.cfg'" \
 			dlrecs="ethvid-scraper -q low -f '/home/trim/Documents/Uni/6.Semester/Lecture Recordings/LectureURLS' -d '/home/trim/Documents/Uni/6.Semester/Lecture Recordings/'" \
+			mnt="udisksctl mount -b" \
+			umnt="udisksctl unmount -b" \
 			killtty="sudo pkill -9 -t" #ttyID comes here; see w
 
 # Less often used shortcuts
 alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
   		update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg" \
 			update-mirrorlist="sudo reflector --protocol https --sort rate --save /etc/pacman.d/mirrorlist" \
-  		fc="sudo fc-cache -fv"
+  		fc="sudo fc-cache -fv" \
+			whitenoise="play -n synth brownnoise synth pinknoise mix synth sine amod 0.3 10"
 
 # Clean home dir
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
