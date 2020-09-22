@@ -38,3 +38,5 @@ alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
 			feh="feh --no-fehbg"
 
+alias startx='ssh-agent startx'
+
