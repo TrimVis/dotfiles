@@ -1,0 +1,8 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	 1) notify-send "📅 Today:" "$(date +'%d.%m.%Y %H:%M:%S')" ;;
+   3) $TERMINAL -n "floating" -e bash -c 'cal -3; read' ;;
+esac
+
+echo " $(date +%H:%M)"

@@ -1,22 +1,24 @@
 #!/bin/sh
 
+# Note: switch over to pulsemixer instead of pavucontrol
+#	1) pavucontrol;;
+
 case $BLOCK_BUTTON in
-	1) pavucontrol;;
+	1) st -e pulsemixer;;
+	3) pamixer -t;;
 esac
 
-MUTE=$(amixer get Master -M | awk '{ print $6 }' | tail -1)
-if [ "$MUTE" = "[off]" ]
+MUTE=$(pamixer --get-mute)
+if [ "$MUTE" = "true" ]
 then
 	echo " <>"
 else
-	VOL="$(amixer get Master -M | awk -F'[' '{ print $2 }' | awk -F'%' '{ print $1 }' | tail -1)"
-	ICON=""
+	VOL=$(pamixer --get-volume)
+	ICON=""
 	if [ "$VOL" -le 50 ]; then
 		ICON=""
-	elif [ "$VOL" -le 100 ]; then
-		ICON=""
 	fi
-	echo "${ICON} ${VOL}"
+	echo "${ICON} ${VOL}%"
 fi
 
 
