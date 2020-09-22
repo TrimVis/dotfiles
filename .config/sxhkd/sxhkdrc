@@ -42,7 +42,7 @@ super + shift + n
 
 #Terminal
 super + {_,shift +} Return
-	$TERMINAL {_, -e st-cd "$(xcwd)"}
+	$TERMINAL {_, -e bash -c "cd '$(xcwd)'; bash"}
 
 #Scratchpad terminal
 super + alt + Return
@@ -62,7 +62,8 @@ super + e
 
 #Sound control
 super + v
-	pavucontrol
+	$TERMINAL -e pulsemixer
+#pavucontrol
 
 #------------#
 #  Controls  # Rule of thumb: All in top row
@@ -141,9 +142,6 @@ super + b
 
 super + 0
 	dwmc viewall
-
-super + p
-	dwmc tagall
 
 # Change gaps
 super + {minus,plus}
