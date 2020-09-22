@@ -1,5 +1,5 @@
 # Unison preferences
-ignore = Path OMfE/Projekt
+ignore = Path EProgTA
 root = /home/trim/uni
 root = ssh://ripped/uni
 sshargs = -C
