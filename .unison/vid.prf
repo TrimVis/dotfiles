@@ -1,0 +1,6 @@
+# Unison preferences
+root = /home/trim/vid
+root = ssh://ripped/vid
+sshargs = -C
+nodeletion = /home/trim/vid
+force = ssh://ripped/vid

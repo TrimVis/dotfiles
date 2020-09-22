@@ -1,0 +1,5 @@
+# Unison preferences
+ignore = Path OMfE/Projekt
+root = /home/trim/uni
+root = ssh://ripped/uni
+sshargs = -C
