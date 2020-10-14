@@ -21,6 +21,7 @@ alias cleanup="sudo pacman -Rsn \$(pacman -Qtdq)"\
 			snapcr="sudo timeshift --create" \
 			ccat="highlight --out-format=ansi" \
   		o="xdg-open" \
+			clipb="xclip -sel clip" \
 			dlrecs="ethvid-scraper -q low -f '/home/trim/Documents/Uni/6.Semester/Lecture Recordings/LectureURLS' -d '/home/trim/Documents/Uni/6.Semester/Lecture Recordings/'" \
 			mnt="udisksctl mount -b" \
 			umnt="udisksctl unmount -b" \
