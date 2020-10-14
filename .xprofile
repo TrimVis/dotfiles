@@ -21,4 +21,4 @@ unclutter -b > /dev/null #removes mouse pointer after certain time
 #syncthing >/dev/null & #file syncronization
 /usr/lib/kdeconnectd > /dev/null & #kdeconnect daemon
 gwe --hide-window > /dev/null &
-redshift-gtk & > /dev/null
+fluxgui & > /dev/null
