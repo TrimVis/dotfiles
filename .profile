@@ -31,6 +31,7 @@ export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 export UNISON="$XDG_CONFIG_HOME/unison"
 export DOTBARE_DIR="$HOME/.config/git-dots"
 export DOTBARE_TREE="$HOME"
+export SPACEVIMDIR="$XDG_CONFIG_HOME/spacevim/"
 
 
 # less/man colors
