@@ -36,9 +36,18 @@
   name = "lsp"
 
 [[layers]]
+  name = "fzf"
+
+[[layers]]
+  name = "tools"
+
+[[layers]]
   name             = 'shell'
   default_position = 'top'
   default_height   = 30
+
+[[layers]]
+  name = "git"
 
 [[layers]]
   name = "debug"
