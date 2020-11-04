@@ -8,7 +8,7 @@
 
 HISTSIZE= HISTFILESIZE= # Infinite history.
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h:\[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 #PS1='[\u@\h \W]\$ '
 
 #shopt
@@ -22,6 +22,7 @@ shopt -s dotglob
 source /opt/oh-my-git/prompt.sh
 #source /opt/dotbare/dotbare.plugin.bash
 ufetch
+shopt -q login_shell || exec /usr/bin/fish
 
 # This is needed for APRON only
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
