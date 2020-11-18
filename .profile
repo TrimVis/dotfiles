@@ -26,9 +26,11 @@ export JUPYTER_CONFIG_DIR="$HOME/.config/jupyter"
 export PASSWORD_STORE_DIR="$HOME/.local/share/password-store"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export _JAVA_OPTIONS="-Djava.util.prefs.userRoot='$XDG_CONFIG_HOME/java'"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export UNISON="$XDG_CONFIG_HOME/unison"
 export SPACEVIMDIR="$XDG_CONFIG_HOME/spacevim/"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # less/man colors
 export LESS=-R
