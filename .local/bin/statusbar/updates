@@ -5,4 +5,4 @@ case $BLOCK_BUTTON in
 esac
 
 #yay -Sy > /dev/null && 
-yay -Qu | wc -l
+pacman -Qu | wc -l
