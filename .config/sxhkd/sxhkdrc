@@ -17,6 +17,10 @@ shift + F12
 super + shift + {d,e}
 	rofi -show {drun,emoji} -show-icons -monitor -1
 
+#Bluetooth selector
+super + shift + b
+  rofi-bluetooth
+
 #Wallpaper changer
 super + shift + w
 	change_bg ~/pic/wall/
