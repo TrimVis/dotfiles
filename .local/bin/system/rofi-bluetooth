@@ -178,8 +178,6 @@ toggle_trust() {
 # Useful for status bars like polybar, etc.
 print_status() {
     if power_on; then
-        printf ""
-
         mapfile -t paired_devices < <(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
         counter=0
 
@@ -187,10 +185,11 @@ print_status() {
             if device_connected $device; then
                 device_alias=$(bluetoothctl info $device | grep "Alias" | cut -d ' ' -f 2-)
 
+                echo -n "󰂱"
                 if [ $counter -gt 0 ]; then
-                    printf ", %s" "$device_alias"
+                    echo -n ", $device_alias"
                 else
-                    printf " %s" "$device_alias"
+                    echo " $device_alias"
                 fi
 
                 ((counter++))
@@ -198,10 +197,10 @@ print_status() {
         done
 
        if [ $counter -eq 0 ]; then
-           printf " On "
+           echo "󰂯 on"
        fi
     else
-        echo " Off"
+        echo "󰂲 off"
     fi
 }
 
