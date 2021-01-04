@@ -7,7 +7,7 @@ esac
 MEM=$(free -h | awk '/^Mem:/ {print $3 "/" $2}')
 #MEM=${MEM/","/"."}
 
-echo " $MEM"
+echo "󰍛 $MEM"
 
 #INUSE=$(echo "$MEM" | awk -F '/' '{print $1}' | awk -F ',' '{print $1}')
 #

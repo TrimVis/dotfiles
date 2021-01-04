@@ -5,4 +5,4 @@ case $BLOCK_BUTTON in
    3) $TERMINAL -n "floating" -e bash -c 'cal -3; read' ;;
 esac
 
-echo " $(date +%H:%M)"
+echo "󱑁 $(date +%H:%M)"

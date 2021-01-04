@@ -43,11 +43,11 @@ elif [ "$PRINT_PLAYING" = "TRUE" ]; then
 
 	if [ "$PLAYING" = "Playing" ]; then
 
-		echo " $TITLE [$ARTIST]"
+		echo "󰐊$TITLE [$ARTIST]"
 
 	elif [ "$PLAYING" = "Paused" ]; then
 
-		echo " $TITLE [$ARTIST]"
+		echo "󰏤$TITLE [$ARTIST]"
 
 	else
 
