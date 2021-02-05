@@ -19,9 +19,14 @@ shopt -s dotglob
 
 [[ -f $HOME/.config/aliasrc ]] && . ~/.config/aliasrc
 
-source /opt/oh-my-git/prompt.sh
 ufetch
-shopt -q login_shell || exec /usr/bin/fish
 
 # This is needed for APRON only
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+
+# This is needed for Android Studio to work properly
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+
+
+shopt -q login_shell || exec /usr/bin/fish
