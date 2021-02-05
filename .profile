@@ -48,4 +48,4 @@ stty -ixon
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
 # Start graphical server if i3 not already running.
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx
+[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx -- -keeptty &> ~/.local/share/xorg/xorg-tty.log
