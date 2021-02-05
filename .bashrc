@@ -19,10 +19,11 @@ shopt -s dotglob
 
 [[ -f $HOME/.config/aliasrc ]] && . ~/.config/aliasrc
 
-source /opt/oh-my-git/prompt.sh
 #source /opt/dotbare/dotbare.plugin.bash
 ufetch
 shopt -q login_shell || exec /usr/bin/fish
 
 # This is needed for APRON only
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+# This is neede for Android Studio to work
+export _JAVA_AWT_WM_NONREPARENTING=1
