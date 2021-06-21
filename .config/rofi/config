@@ -1,3 +1,0 @@
-rofi.theme: ~/.config/rofi/neoncity.rasi
-rofi.font: IBM Plex Mono 13
-rofi.modi: window,run,ssh,drun
