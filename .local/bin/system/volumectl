@@ -24,10 +24,10 @@ do
 USAGE:
 -i <val>   Increase volume by val (in percent)
 -d <val>   Decrease volume by val (in percent)
--n         Send out a notification using my notify script
+-n         Send out a notification using notify-send
 -b <val>   For dwmblocks support: Force update of dwmblock entry with this val
 -m         Toggle mute
--h         Displays this help script";
+-h         Displays this help page";
 				return;;
     esac
 done
