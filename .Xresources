@@ -5,7 +5,8 @@
 *.alpha: 0.92
 
 !! Font settings:
-*.font: IBM Plex Mono:pixelsize=13
+*.font: IBM Plex Mono-13;
+
 Xft.lcdfilter: lcddefault
 Xft.hintstyle: hintslight
 Xft.hinting: 1
