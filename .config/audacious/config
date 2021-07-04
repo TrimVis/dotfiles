@@ -1,0 +1,45 @@
+
+[audacious]
+shuffle=TRUE
+
+[audgui]
+filebrowser_win=0,23,672,480
+filesel_path=/home/trim/remmus
+
+[crossfade]
+length=2
+
+[gtkui]
+column_widths=10,314,130,50,263,175,10,265,41,77,275,275,275,10,275
+entry_count_visible=TRUE
+player_height=1053
+player_width=1916
+player_x=0
+player_y=23
+playlist_columns=queued title album artist genre year length
+
+[gtkui-layout]
+item0_name=Album Art
+item0_pos=-1,0,23,1912,1049
+item1_name=LyricWiki Plugin
+item1_pos=-1,0,23,1912,1049
+item2_name=Playlist Manager
+item2_pos=-1,1056,23,856,1049
+item3_name=OpenGL Spectrum Analyzer
+item3_pos=-1,1056,23,856,520
+item4_name=Search Tool
+item4_pos=0,-1,-1,341,963
+item5_name=Blur Scope
+item5_pos=1,1056,23,361,961
+item6_name=Spectrum Analyzer
+item6_pos=3,1056,23,1206,20
+item_count=7
+
+[search-tool]
+path=/home/trim/mus
+
+[skins]
+skin=/usr/share/audacious/Skins/Default
+
+[skins-layout]
+blur_scope-qt=164,173,288,192
