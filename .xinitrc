@@ -8,4 +8,3 @@ eval $(ssh-agent)
 setxkbmap -layout us -option "caps:swapescape"
 
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec dwm
-
