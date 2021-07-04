@@ -4,5 +4,4 @@ case $BLOCK_BUTTON in
    1) $TERMINAL -n "floating" -e yay -Syu && pkill -RTMIN+12 i3blocks ;;
 esac
 
-#yay -Sy > /dev/null && 
-pacman -Qu | wc -l
+echo " $(pacman -Qu | wc -l)"
