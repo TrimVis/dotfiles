@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-curl -s https://corona-stats.online/de?minimal=true | awk 'NR <= 2'
-curl -s https://corona-stats.online/ch?minimal=true | awk 'NR <= 4'
+#
+# Simply fetches the corona stats for DE & CH from corona-stats.online & throws away the useless lines afterwards
+#
 
-
+curl -s https://corona-stats.online/de,ch?minimal=true | awk 'NR <= 4'
