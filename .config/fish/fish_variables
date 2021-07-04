@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export CARGO_HOME:/home/trim/\x2ecargo
 SETUVAR __fish_initialized:3100
 SETUVAR --export color_at:green
 SETUVAR --export color_host:red
