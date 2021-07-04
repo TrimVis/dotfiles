@@ -22,7 +22,7 @@
 
 ### Automatically restore the volume of streams and devices
 load-module module-device-restore
-load-module module-stream-restore
+load-module module-stream-restore restore_device=false
 load-module module-card-restore
 
 ### Automatically augment property information from .desktop files
@@ -149,7 +149,7 @@ load-module module-filter-apply
 
 
 
-
+################## create a monitor with noise reduction ##################
 # Create output
 load-module module-null-sink sink_name=mic_denoised_out sink_properties=device.description="mic_denoised_out"
 
@@ -159,3 +159,7 @@ load-module module-loopback source=alsa_input.pci-0000_02_00.6.analog-stereo sin
 
 # Set as default input
 set-default-source mic_denoised_out.monitor
+
+
+################## let sbc suck less (for better bluetooth sound) ##################
+load-module module-bluetooth-discover a2dp_config="sbc_cmode=dual sbc_min_bp=53 sbc_max_bp=53 sbc_freq=44k"
