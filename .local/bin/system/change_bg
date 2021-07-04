@@ -18,9 +18,9 @@ if [ -n "$WALLPAPER" ]; then
     fi
     if [ -e "$1$WALLPAPER" ]; then
         # Set the wallpaper, if the file exists
-        feh --no-fehbg --bg-fill "$1$WALLPAPER" && \
-        betterlockscreen -u "$1$WALLPAPER" && \
         echo "$WALLPAPER" > "$1.currwal"
+        feh --no-fehbg --bg-fill "$1$WALLPAPER"
+        betterlockscreen -u "$1$WALLPAPER"
     fi
     # TODO: Add a slideshow mode
 fi
