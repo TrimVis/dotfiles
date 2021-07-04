@@ -1,6 +1,6 @@
 #!/bin/sh
 
 #Save screenbrightness for easy restoration later
-screenlight -s -n
+lightctl -s -n
 #Sets screenbrightness to 1
 light -S 1
