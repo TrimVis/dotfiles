@@ -250,7 +250,7 @@ show_menu() {
 
         # Human-readable names of devices, one per line
         # If scan is off, will only list paired devices
-        devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3-)
+        devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sort -d -)
 
         # Get controller flags
         scan=$(scan_on)
@@ -293,14 +293,26 @@ show_menu() {
     esac
 }
 
+
+##########################################################################################
+
 # Rofi command to pipe into, can add any options here
 rofi_command="rofi -dmenu -p"
+
 
 case "$1" in
     --status)
         print_status
         ;;
     *)
+        # Start scanning on start
+        kill $(pgrep -f "bluetoothctl scan on")
+        bluetoothctl scan off
+        bluetoothctl scan on &
         show_menu
+        # Stop scanning on close
+        kill $(pgrep -f "bluetoothctl scan on")
+        bluetoothctl scan off
         ;;
 esac
+
