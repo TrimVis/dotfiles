@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DEV="wlp1s0"
-IP=$(ifconfig $DEV | awk '/inet / {print $2}') 
+DEV="wlp39s0f3u4"
+IP=$(ip addr show dev $DEV | awk '/inet / {print $2}') 
 
 case $BLOCK_BUTTON in
 	1) notify-send "🌍 Wifi" "Local IP: $IP
@@ -9,7 +9,7 @@ Global IP: $(curl ifconfig.me)";;
 	3) nm-connection-editor;;
 esac
 
-SSID=$(iwconfig $DEV | awk -F: '/ESSID:/ { print $2 }' | xargs)
+SSID=$(iwconfig $DEV | awk -F\" '/ESSID:/ { print $2 }' | xargs)
 
 if [ "$SSID" = "off/any" ]
 then

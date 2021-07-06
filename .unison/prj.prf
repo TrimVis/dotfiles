@@ -1,0 +1,10 @@
+# Unison preferences
+ignore = Path git
+ignore = Path site
+ignore = Path rust/hello_cargo
+ignore = Path rust/ch3
+ignore = Path android
+ignore = Path java/eclipse-workspace
+root = /home/trim/prj
+root = ssh://sycon/prj
+sshargs = -C

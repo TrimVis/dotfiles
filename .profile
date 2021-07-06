@@ -9,7 +9,6 @@ export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$
 # Default programs:
 export EDITOR="nvim"
 export TERMINAL="st"
-#export BROWSER="firefox"
 export BROWSER="env MOZ_USE_XINPUT2=1 firefox"
 export READER="zathura"
 export FILE="pcmanfm"

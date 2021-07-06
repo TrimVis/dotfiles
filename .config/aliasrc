@@ -37,3 +37,9 @@ alias microcode="grep . /sys/devices/system/cpu/vulnerabilities/*" \
 # Clean home dir
 alias wget="wget --hsts-file='\$HOME/.config/.wget-hsts'" \
 			feh="feh --no-fehbg"
+
+alias startx='ssh-agent startx'
+
+			#dot="/usr/bin/git --git-dir='$HOME/.config/git-dots/' --work-tree='$HOME'" \
+			#todo="todo.sh -d '$HOME/.config/todo/todo.cfg'" \
+			#todofi="todofi.sh -d '$HOME/.config/todo/todo.cfg'" \

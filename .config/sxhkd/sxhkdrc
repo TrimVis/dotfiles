@@ -133,7 +133,7 @@ super + {_, shift +} space
 	dwmc {setlayout 1, togglefloating}
 
 # Move to master
-super + grave
+super + ^
 	dwmc zoom
 
 # Toggle bar
