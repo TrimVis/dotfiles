@@ -1,5 +1,0 @@
-# Unison preferences
-ignore = Path EProgTA
-root = /home/trim/uni
-root = ssh://sycon/uni
-sshargs = -C
