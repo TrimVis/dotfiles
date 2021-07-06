@@ -40,6 +40,9 @@ super + shift + m
 super + shift + n
 	todofi.sh -d "$HOME/.config/todo/todo.cfg"
 
+super + shift + r
+    /home/trim/git/kaomoji-rofi/kaomoji.sh
+
 #------------#
 #  Programs  # Rule of thumb: All on super only
 #------------#
