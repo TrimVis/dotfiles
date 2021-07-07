@@ -1,10 +1,6 @@
 # Unison preferences
-ignore = Path anime
-ignore = Path movies
-ignore = Path prj
-ignore = Path shows
 root = /home/trim/vid
-root = ssh://ripped/vid
+root = ssh://sycon/vid
 sshargs = -C
 nodeletion = /home/trim/vid
-force = ssh://ripped/vid
+force = ssh://sycon/vid

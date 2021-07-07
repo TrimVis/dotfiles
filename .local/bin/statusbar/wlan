@@ -11,11 +11,25 @@ esac
 
 SSID=$(iwconfig $DEV | awk -F\" '/ESSID:/ { print $2 }' | xargs)
 
-if [ "$SSID" = "off/any" ]
+if [ -z "$SSID" ]
 then
-	echo " disconnected"
+	echo "󰤮 off"
 else
 	STRE=$(iwconfig $DEV | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)
 	PERC=$(bc <<< "scale=0;100*$STRE")
-	echo " \"$SSID\" $PERC%"
+  ICON="󰤨"
+
+  if [ $PERC -lt 80 ]; then
+    ICON="󰤥"
+  fi
+  if [ $PERC -lt 60 ]; then
+    ICON="󰤢"
+  fi
+  if [ $PERC -lt 40 ]; then
+    ICON="󰤟"
+  fi
+  if [ $PERC -lt 20 ]; then
+    ICON="󰤯"
+  fi
+	echo "$ICON \"$SSID\" $PERC%"
 fi

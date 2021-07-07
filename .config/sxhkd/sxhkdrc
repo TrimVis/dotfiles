@@ -17,6 +17,10 @@ shift + F12
 super + shift + {d,e}
 	rofi -show {drun,emoji} -show-icons -monitor -1
 
+#Bluetooth selector
+super + shift + b
+  rofi-bluetooth
+
 #Wallpaper changer
 super + shift + w
 	change_bg ~/pic/wall/
@@ -35,6 +39,9 @@ super + shift + m
 
 super + shift + n
 	todofi.sh -d "$HOME/.config/todo/todo.cfg"
+
+super + shift + r
+    /home/trim/git/kaomoji-rofi/kaomoji.sh
 
 #------------#
 #  Programs  # Rule of thumb: All on super only

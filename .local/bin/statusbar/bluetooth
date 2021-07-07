@@ -1,0 +1,10 @@
+#!/bin/bash
+
+STATUS="$(rofi-bluetooth --status)"
+
+case $BLOCK_BUTTON in
+	1) notify-send "🌍 Bluetooth" "$STATUS";;
+	3) rofi-bluetooth &;;
+esac
+
+echo "$STATUS"

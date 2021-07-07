@@ -11,12 +11,15 @@ esac
 MUTE=$(pamixer --get-mute)
 if [ "$MUTE" = "true" ]
 then
-	echo " <>"
+	echo "󰖁 <>"
 else
 	VOL=$(pamixer --get-volume)
-	ICON=""
-	if [ "$VOL" -le 50 ]; then
-		ICON=""
+	ICON="󰕾"
+	if [ "$VOL" -le 60 ]; then
+		ICON="󰖀"
+	fi
+	if [ "$VOL" -le 30 ]; then
+		ICON="󰕿"
 	fi
 	echo "${ICON} ${VOL}%"
 fi

@@ -29,7 +29,9 @@ export _JAVA_OPTIONS="-Djava.util.prefs.userRoot='$XDG_CONFIG_HOME/java'"
 export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
 export UNISON="$XDG_CONFIG_HOME/unison"
 export SPACEVIMDIR="$XDG_CONFIG_HOME/spacevim/"
+# proper qt themes
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
 
 # less/man colors
 export LESS=-R
