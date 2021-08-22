@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEV="wlp39s0f3u4"
+# Get the first wireless device name in iwconfig
 IP=$(ip addr show dev $DEV | awk '/inet / {print $2}') 
 
 case $BLOCK_BUTTON in
@@ -9,13 +9,13 @@ Global IP: $(curl ifconfig.me)";;
 	3) nm-connection-editor;;
 esac
 
-SSID=$(iwconfig $DEV | awk -F\" '/ESSID:/ { print $2 }' | xargs)
+SSID=$(iwconfig 2> /dev/null | awk -F\" '/ESSID:/ { print $2 }')
 
 if [ -z "$SSID" ]
 then
 	echo "󰤮 off"
 else
-	STRE=$(iwconfig $DEV | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)
+	STRE=$(iwconfig 2> /dev/null | awk -F'=' '{ print $2 }' | awk '/..\/../{ print $1 }' | tail -n 1)
 	PERC=$(bc <<< "scale=0;100*$STRE")
   ICON="󰤨"
 
