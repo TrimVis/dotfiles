@@ -1,6 +1,7 @@
 # Unison preferences
-ignore = Path cam
 root = /home/trim/pic
 root = ssh://sycon/pic
 sshargs = -C
 nodeletion = /home/trim/pic
+
+ignore = BelowPath {cam,wall/.currwal,etc/.hidden}

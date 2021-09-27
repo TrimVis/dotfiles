@@ -1,6 +1,7 @@
 # Unison preferences
-ignore = Path EProgTA
-ignore = Path BachelorArbeit/kernel-repos
 root = /home/trim/uni
 root = ssh://sycon/uni
 sshargs = -C
+
+#ignore = Path EProgTA
+#ignore = Path BachelorArbeit/kernel-repos

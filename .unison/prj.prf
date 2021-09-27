@@ -1,0 +1,8 @@
+# Unison preferences
+root = /home/trim/prj
+root = ssh://sycon/prj
+sshargs = -C
+
+ignore = BelowPath {git,site,android,vpn,java/eclipse-workspace}
+ignore = BelowPath rust/*/target
+ignore = Name {*.out,.rustc_info.json}

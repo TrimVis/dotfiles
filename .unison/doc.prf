@@ -1,6 +1,7 @@
 # Unison preferences
-ignore = Path uni
 root = /home/trim/doc
 root = ssh://sycon/doc
 sshargs = -C
 nodeletion = /home/trim/doc
+
+ignore = BelowPath uni
