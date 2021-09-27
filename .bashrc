@@ -20,10 +20,6 @@ shopt -s dotglob
 [[ -f $HOME/.config/aliasrc ]] && . ~/.config/aliasrc
 
 #####    WORKAROUNDS    #####
-#source /opt/dotbare/dotbare.plugin.bash
-ufetch
-shopt -q login_shell || exec /usr/bin/fish
-
 # only needed for APRON
 #export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 

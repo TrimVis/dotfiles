@@ -1,6 +1,0 @@
-# Unison preferences
-ignore = Path EProgTA
-ignore = Path BachelorArbeit/kernel-repos
-root = /home/trim/uni
-root = ssh://ripped/uni
-sshargs = -C

@@ -1,7 +1,0 @@
-# Unison preferences
-ignore = Path cam
-ignore = Path etc/.hidden
-root = /home/trim/pic
-root = ssh://ripped/pic
-sshargs = -C
-nodeletion = /home/trim/pic

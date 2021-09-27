@@ -1,6 +1,0 @@
-# Unison preferences
-ignore = Path uni
-root = /home/trim/doc
-root = ssh://ripped/doc
-sshargs = -C
-nodeletion = /home/trim/doc
