@@ -3,5 +3,10 @@ root = /home/trim/uni
 root = ssh://sycon/uni
 sshargs = -C
 
-#ignore = Path EProgTA
+ignore = Path EProgTA/git
+ignore = Path NetworkSecurity/git
 #ignore = Path BachelorArbeit/kernel-repos
+
+ignore = Path {.obsidian}
+
+ignore = Name {,.}*{.ova}
