@@ -2,5 +2,5 @@ configuration {
 	modi: "window,run,ssh,drun";
 	font: "IBM Plex Mono 13";
 	//theme: "~/.config/rofi/arc-dark.rasi";
-	theme: "~/.config/rofi/neoncity.rasi";
 }
+@theme "neoncity"

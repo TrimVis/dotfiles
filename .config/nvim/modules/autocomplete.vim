@@ -1,7 +1,7 @@
 Plug 'shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'deoplete-plugins/deoplete-lsp'
 
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 0
 augroup DeopleteAutocmds
     autocmd VimEnter * call deoplete#initialize()
 augroup END

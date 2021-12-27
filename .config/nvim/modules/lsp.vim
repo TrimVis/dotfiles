@@ -3,6 +3,7 @@ let g:check#filetypes = g:programming_languages
 
 " load nvim lsp plugin
 Plug 'neovim/nvim-lspconfig', { 'for': g:check#filetypes }
+Plug 'kabouzeid/nvim-lspinstall'
 
 " initialize module after plugin is loaded
 augroup LSPInit
@@ -83,8 +84,8 @@ function lsp#_init() abort
     augroup END
 
     " python
-    lua require('lspconfig').pyls.setup{ settings = { pyls =
-                \{ plugins = {pycodestyle = { maxLineLength = 100 } } } } }
+    "lua require('lspconfig').pyls.setup{ settings = { pyls =
+    "            \{ plugins = {pycodestyle = { maxLineLength = 100 } } } } }
     " C/C++/Cuda/...
     lua require('lspconfig').clangd.setup{
                 \cmd = {"clangd", "--background-index"};
