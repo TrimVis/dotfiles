@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 case $BLOCK_BUTTON in
 	1) notify-send "⚡ Battery:" "ETA: $(acpi | awk '{print $5}' | grep -o "[0-9:]\+") ";;
@@ -23,5 +23,4 @@ if [ "$STAT" = "Charging" ]; then
 	echo " $BAT+"
 else
 	echo "${ICON} $BAT"
-
 fi
