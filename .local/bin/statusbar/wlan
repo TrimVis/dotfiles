@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEV="wlan0"
+DEV="wlp0s20f3"
 IP=$(ip addr show dev $DEV | awk '/inet / {print $2}') 
 
 case $BLOCK_BUTTON in
