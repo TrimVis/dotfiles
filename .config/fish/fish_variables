@@ -3,7 +3,7 @@
 SETUVAR --export CARGO_HOME:/home/trim/\x2ecargo
 SETUVAR --path GOPATH:/home/trim/\x2elocal/share/go/
 SETUVAR --export QT_QPA_PLATFORMTHEME:qt5ct
-SETUVAR __fish_initialized:3100
+SETUVAR __fish_initialized:3400
 SETUVAR --export color_at:green
 SETUVAR --export color_host:red
 SETUVAR --export color_user:yellow
@@ -39,6 +39,7 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR --export fishprompt_color_at:green
 SETUVAR --export fishprompt_color_bracket:red
 SETUVAR --export fishprompt_color_cwd:magenta
