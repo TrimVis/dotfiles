@@ -26,7 +26,12 @@ shopt -s dotglob
 # Android Studio & more
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-
 #####     START FISH    #####
 ufetch
 shopt -q login_shell || exec /usr/bin/fish
+
+#####     KITTY BASH SHELL INTEGRATION    #####
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION
+
