@@ -1,9 +1,8 @@
-" filetypes for which this module is enables
+" filetypes for which this module is enabled
 let g:check#filetypes = g:programming_languages
 
 " load nvim lsp plugin
 Plug 'neovim/nvim-lspconfig', { 'for': g:check#filetypes }
-Plug 'kabouzeid/nvim-lspinstall'
 
 " initialize module after plugin is loaded
 augroup LSPInit
@@ -16,13 +15,15 @@ function lsp#_init() abort
     " show signcolumn for errors and warnings (o/w it appears and disappears)
     set signcolumn=yes
 
-    " go to next/previous error/warning/...
+    " go to next/previous error/warning/... (also with ]d and [d)
     nnoremap <silent> <leader>ln <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
     nnoremap <silent> <leader>lp <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
     call mapping#def('l n', 'Next')
     call mapping#def('l p', 'Previous')
+    nnoremap <silent> ]d <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+    nnoremap <silent> [d <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
     " open location list
-    "nnoremap <silent> <space>q <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
+    nnoremap <silent> <leader>ll <cmd>lua vim.lsp.diagnostic.set_loclist()<CR>
     call mapping#def('l l', 'List')
     " go to declaration/definition/implementation
     nnoremap <silent> <leader>ld <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -83,36 +84,58 @@ function lsp#_init() abort
       autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
     augroup END
 
-    " python
-    "lua require('lspconfig').pyls.setup{ settings = { pyls =
-    "            \{ plugins = {pycodestyle = { maxLineLength = 100 } } } } }
-    " C/C++/Cuda/...
-    lua require('lspconfig').clangd.setup{
-                \cmd = {"clangd", "--background-index"};
-                \root_dir = require('lspconfig').util.root_pattern("compile_commands.json", "compile_flags.txt", ".");
-                \filetypes = { "c", "cpp", "cuda", "objc", "objcpp" };
-                \}
-    " Go
-    lua require('lspconfig').gopls.setup{
-                \cmd = {"gopls", "serve"};
-                \filetypes = {"go", "gomod"};
-                \}
-    " Rust
-    lua require('lspconfig').rust_analyzer.setup{}
-    " Java
+
+    " Language Servers
     lua << EOF
-        local lspconfig = require('lspconfig')
-        local configs = require('lspconfig/configs')
-        if not lspconfig.java_lsp then
-            configs.java_lsp = {
-                default_config = {
-                    cmd = {"java-language-server"};
-                    filetypes = {"java"};
-                    root_dir = lspconfig.util.root_pattern(".git", ".");
-                    settings = {};
-                    };
-                }
-            end
-            lspconfig.java_lsp.setup{}
+    local lspconfig = require('lspconfig')
+    local configs = require('lspconfig/configs')
+    local util = require('lspconfig.util')
+    -- python
+    lspconfig.pylsp.setup{}
+
+    -- C/C++/Cuda/...
+    lspconfig.clangd.setup{
+        cmd = {"clangd", "--background-index"};
+        root_dir = util.root_pattern("compile_commands.json", "compile_flags.txt", ".");
+        filetypes = { "c", "cpp", "cuda", "objc", "objcpp" };
+    }
+
+    -- LaTeX
+    lspconfig.texlab.setup{
+        cmd = {"/home/christoph/.cargo/bin/texlab"},
+        filetypes = {"latex", "tex", "bib"},
+    }
+
+    -- Go
+    lspconfig.gopls.setup{
+        cmd = {"gopls", "serve"};
+        filetypes = {"go", "gomod"};
+    }
+
+    -- Rust,
+    -- TODO: doesn't work for standalone files
+    -- need to be specified on startup via init_options = detachedFiles = {...} }
+    lspconfig.rust_analyzer.setup{
+        root_dir = util.root_pattern("Cargo.toml", "rust-project.json", ".");
+    }
+
+    -- Haskell
+    lspconfig.hls.setup{
+        filetypes = { "haskell" };
+        root_dir = util.root_pattern("*.cabal", "stack.yaml", "cabal.project", "package.yaml", "hie.yaml", ".");
+    }
+
+    -- Java
+    if not lspconfig.java_lsp then
+        configs.java_lsp = {
+            default_config = {
+                cmd = {"java-language-server"};
+                filetypes = {"java"};
+                root_dir = util.root_pattern(".git", ".");
+                settings = {};
+            };
+        }
+    end
+    lspconfig.java_lsp.setup{}
 EOF
 endfunction

@@ -29,6 +29,25 @@ nmap <silent> , <leader>l
 
 
 "------------------------------------------------------------------------------------------
+" Buffers
+"------------------------------------------------------------------------------------------
+
+call mapping#add_submenu('b', 'Buffers')
+" list buffers
+call mapping#def('b L', 'list', ':ls')
+" list and select buffer
+nnoremap <leader>bb :ls<CR>:b<Space>
+call mapping#def('b b', 'select', ':call feedkeys(":ls\<CR>:b ")')
+" previously edited buffer
+call mapping#def('b l', 'last', ':b#')
+" next and previous buffer
+call mapping#def('b n', 'next', ':bnext')
+call mapping#def('b p', 'previous', ':bprev')
+" delete buffer
+call mapping#def('b d', 'delete', ':bdelete')
+
+
+"------------------------------------------------------------------------------------------
 " Panes
 "------------------------------------------------------------------------------------------
 
@@ -45,6 +64,25 @@ call mapping#def('p h', 'pane left', '<C-w>h')
 call mapping#def('p j', 'pane down', '<C-w>j')
 call mapping#def('p k', 'pane up', '<C-w>k')
 call mapping#def('p l', 'pane right', '<C-w>l')
+
+" pane resizing with Ctrl+Alt+i/j/k/l
+let horiz_resize_step = 2
+let vert_resize_step = 5
+execute 'map <C-M-h> :vertical resize -' . vert_resize_step . '<CR>'
+execute 'map <C-M-j> :resize +' . horiz_resize_step . '<CR>'
+execute 'map <C-M-k> :resize -' . horiz_resize_step . '<CR>'
+execute 'map <C-M-l> :vertical resize +' . vert_resize_step . '<CR>'
+
+call mapping#add_submenu('p r', 'Resize')
+call mapping#def('p r h', 'shrink vertically', ':vertical resize -' . vert_resize_step)
+call mapping#def('p r j', 'grow horizontally', ':resize +' . horiz_resize_step)
+call mapping#def('p r k', 'shrink horizontally', ':resize -' . horiz_resize_step)
+call mapping#def('p r l', 'grow vertically', ':vertical resize +' . vert_resize_step)
+
+" split current pane
+call mapping#add_submenu('p s', 'Split')
+call mapping#def('p s v', 'vertical', ':vsplit')
+call mapping#def('p s h', 'horizontal', ':split')
 
 
 "------------------------------------------------------------------------------------------

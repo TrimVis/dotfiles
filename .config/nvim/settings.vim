@@ -112,6 +112,7 @@ let g:programming_languages = [
             \'haskell', 'ocaml',
             \'java',
             \'rust',
+            \'latex', 'tex',
             \]
 let g:programming_language_endings = [
             \'c', 'cpp', 'cxx', 'cu',
@@ -120,5 +121,6 @@ let g:programming_language_endings = [
             \'hs', 'ocaml',
             \'java',
             \'rs',
+            \'tex',
             \]
             

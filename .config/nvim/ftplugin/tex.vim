@@ -2,6 +2,8 @@
 " Settings
 "--------------------------------------------------------------------------------
 
+setlocal spell
+
 let g:vimtex_view_method='zathura'
 "inoremap <C-f> <Esc>: silent exec '.!inkscape-figures create "'.getline('.').'" "'.b:vimtex.root.'/figures/"'<CR><CR>:w<CR>
 "nnoremap <C-f> : silent exec '!inkscape-figures edit "'.b:vimtex.root.'/figures/" > /dev/null 2>&1 &'<CR><CR>:redraw!<CR>
@@ -51,8 +53,21 @@ call mapping#def('l t', 'Toggle TOC', ':VimtexToggle')
 call mapping#def('l T', 'Open TOC', ':VimtexTocOpen')
 
 
-"--------------------------------------------------------------------------------
-" Deoplete Vimtex Integration
-"--------------------------------------------------------------------------------
+"------------------------------------------------------------------------------------------------
+"                                    LaTeX clean functions
+"------------------------------------------------------------------------------------------------
 
-call deoplete#custom#var('omni', 'input_patterns', { 'tex': g:vimtex#re#deoplete })
+" function to clean all latex auxiliary files and the synctex archive of the
+" current tex file
+function TexClean()
+    execute '!latexmk -c -cd "' . expand('%:p') . '"'
+endfunction
+" same as above, but also cleans outputs like pdf
+function TexFullClean()
+    execute '!latexmk -C -cd "' . expand('%:p') . '"'
+endfunction
+
+
+autocmd BufWinLeave *.tex call TexClean()
+" should not be necessary unless v:dying is >=2, but for some reason the above isn't enough
+autocmd VimLeave *.tex call TexClean()

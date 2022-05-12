@@ -1,7 +1,7 @@
 Plug 'sirver/UltiSnips'
 
 " set UltiSnips snippet path
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.config/spacevim/UltiSnips']
+let g:UltiSnipsSnippetDirectories=[g:config_path . '/UltiSnips']
 
 " use <M-tab> to activate and navigate through snippets and <C-tab> to navigate backwards
 let g:UltiSnipsExpandTrigger = '<M-tab>'

@@ -54,9 +54,8 @@ endsnippet
 # begin and end environment automatically
 snippet beg "begin{} / end{}" bA
 \begin{$1}$2
-${3:${VISUAL}}
+${0:${VISUAL}}
 \end{$1}
-$0
 endsnippet
 
 # inline math (automatically appends space if needed)
@@ -71,9 +70,7 @@ endsnippet
 
 # displaymath
 snippet dm "Math" wA
-\[
-${1:${VISUAL}}
-\ . \] $0
+\[ ${1:${VISUAL}} \ . \] $0
 endsnippet
 
 snippet item "itemize" b
@@ -197,6 +194,64 @@ snippet subfig "subfigure" b
 endsnippet
 
 
+# algorithm2e version
+snippet algo "algorithm" b
+\begin{algorithm}
+\KwIn{$3}
+\KwOut{$4}
+${0:${VISUAL}}
+\caption{$1}
+\label{algo:$2}
+\end{algorithm}
+endsnippet
+
+# algpseudocode version
+# snippet algo "algorithm" b
+# \begin{algorithm}
+# \caption{$1}
+# \hspace*{\algorithmicindent} \textbf{Input:} $3 \\\\
+# \hspace*{\algorithmicindent} \textbf{Output:} $4
+# \begin{algorithmic}[0]
+#     ${0:${VISUAL}}
+# \end{algorithmic}
+# \label{algo:$2}
+# \end{algorithm}
+# endsnippet
+
+
+# multiple columns
+snippet cols "multiple columns" b
+\begin{columns}
+\column{$1\textwidth}
+${0:${VISUAL}}
+\end{columns}
+endsnippet
+
+# add single column
+snippet col "column" b
+\column{$1\textwidth}
+$0
+endsnippet
+
+
+snippet frame "beamer frame" b
+\begin{frame}
+	\frametitle{$1}
+	${0:${VISUAL}}
+\end{frame}
+endsnippet
+
+
+snippet subfile "subfiles template" b
+\documentclass[$1]{subfiles}
+\begin{document}
+
+${0:${VISUAL}}
+
+\end{document}
+endsnippet
+
+
 
 ############################################################################################
 #                                     Basic Snippets                                       #
@@ -234,6 +289,11 @@ endsnippet
 context "math()"
 snippet sum "sum" w
 \sum_{$1}^{$2} ${3:${VISUAL}} $0
+endsnippet
+
+context "math()"
+snippet sums "sum subscript" w
+\sum_{$1} ${2:${VISUAL}} $0
 endsnippet
 
 context "math()"
@@ -303,7 +363,7 @@ snippet diff "d/dx" w
 endsnippet
 
 context "math()"
-snippet sqr "\sqrt{}" iA
+snippet sq "\sqrt{}" iA
 \sqrt{${1:${VISUAL}}} $0
 endsnippet
 
@@ -395,7 +455,7 @@ snippet || "bar" iA
 endsnippet
 
 context "math()"
-snippet tt "text" iA
+snippet '(?<!\\math)tt' "text" riA
 \text{$1}$0
 endsnippet
 
@@ -447,34 +507,46 @@ endsnippet
 #                                      Set Algebra                                         #
 ############################################################################################
 
+priority 50
+
 context "math()"
-snippet UU "cup" iA
+snippet uu "cup" wA
 \cup
 endsnippet
 
 context "math()"
-snippet NN "cap" iA
+snippet nn "cap" wA
 \cap
 endsnippet
 
 context "math()"
-snippet uuu "bigcup" iA
+snippet UU "bigcup" wA
 \bigcup_{$1}
 endsnippet
 
 context "math()"
-snippet nnn "bigcap" iA
+snippet NN "bigcap" wA
 \bigcap_{$1}
 endsnippet
 
 context "math()"
-snippet \\\ "setminus (backslash)" iA
+snippet \\\ "setminus (backslash)" wA
 \setminus
 endsnippet
 
 context "math()"
-snippet OO "emptyset" iA
+snippet OO "emptyset" wA
 \varnothing
+endsnippet
+
+context "math()"
+snippet cc "subseteq" wA
+\subseteq
+endsnippet
+
+context "math()"
+snippet CC "subset" wA
+\subset
 endsnippet
 
 
@@ -496,19 +568,19 @@ endsnippet
 
 priority 100
 context "math()"
-snippet =< "implied by" Ai
+snippet =< "implied by" iA
 \impliedby
 endsnippet
 
 priority 200
 context "math()"
-snippet <-> "leftrightarrow" iA
+snippet <-> "leftrightarrow" A
 \leftrightarrow
 endsnippet
 
 priority 200
 context "math()"
-snippet iff "Leftrightarrow" i
+snippet iff "Leftrightarrow"
 \Leftrightarrow
 endsnippet
 
@@ -525,7 +597,7 @@ snippet ==> "Longrightarrow" iA
 endsnippet
 
 context "math()"
-snippet <- "leftarrow" iA
+snippet <- "leftarrow" A
 \leftarrow
 endsnippet
 
@@ -546,7 +618,7 @@ endsnippet
 ############################################################################################
 
 context "math()"
-snippet cal "mathcal" iA
+snippet '(?<!math)cal' "mathcal" irA
 \mathcal{${1:${VISUAL}}}$0
 endsnippet
 
@@ -577,9 +649,15 @@ snippet '(?<!\\)b([a-z\\A-Z]+)' "bold variable" rw
 \\mathbf{`!p snip.rv = match.group(1)`}$0
 endsnippet
 
-priority 100
+priority 50
 snippet code "texttt" i
 \texttt{${1:${VISUAL}}}$0
+endsnippet
+
+priority 100
+context "math()"
+snippet code "mathtt" i
+\mathtt{${1:${VISUAL}}}$0
 endsnippet
 
 
@@ -650,15 +728,15 @@ snippet '(?<!(\\x))ii' "index i" wrA
 _i
 endsnippet
 context "math()"
-snippet '([A-Za-z]*)jj' "index j" wrA
+snippet '([A-Za-z]+)jj' "index j" wrA
 `!p snip.rv = match.group(1)`_j
 endsnippet
 context "math()"
-snippet '([A-Za-z]*)kk' "index k" wrA
+snippet '([A-Za-z]+)kk' "index k" wrA
 `!p snip.rv = match.group(1)`_k
 endsnippet
 context "math()"
-snippet '([A-Za-z]*)nn' "index n" wrA
+snippet '([A-Za-z]+)nn' "index n" wrA
 `!p snip.rv = match.group(1)`_n
 endsnippet
 # don't expand gamma or something like \[1mm]
@@ -670,52 +748,52 @@ endsnippet
 # similar to all the above but with additional +/- 1 in subscript
 priority 200
 context "math()"
-snippet '([A-Za-z]*)ip1' "index i+1" wrA
+snippet '([A-Za-z]+)ip1' "index i+1" wrA
 `!p snip.rv = match.group(1)`_{i+1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)im1' "index i-1" wrA
+snippet '([A-Za-z]+)im1' "index i-1" wrA
 `!p snip.rv = match.group(1)`_{i-1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)jp1' "index j+1" wrA
+snippet '([A-Za-z]+)jp1' "index j+1" wrA
 `!p snip.rv = match.group(1)`_{j+1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)jm1' "index j-1" wrA
+snippet '([A-Za-z]+)jm1' "index j-1" wrA
 `!p snip.rv = match.group(1)`_{j-1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)kp1' "index k+1" wrA
+snippet '([A-Za-z]+)kp1' "index k+1" wrA
 `!p snip.rv = match.group(1)`_{k+1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)km1' "index k-1" wrA
+snippet '([A-Za-z]+)km1' "index k-1" wrA
 `!p snip.rv = match.group(1)`_{k-1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)np1' "index n+1" wrA
+snippet '([A-Za-z]+)np1' "index n+1" wrA
 `!p snip.rv = match.group(1)`_{n+1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)nm1' "index n-1" wrA
+snippet '([A-Za-z]+)nm1' "index n-1" wrA
 `!p snip.rv = match.group(1)`_{n-1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)mp1' "index m+1" wrA
+snippet '([A-Za-z]+)mp1' "index m+1" wrA
 `!p snip.rv = match.group(1)`_{m+1}
 endsnippet
 priority 200
 context "math()"
-snippet '([A-Za-z]*)mn1' "index m-1" wrA
+snippet '([A-Za-z]+)mn1' "index m-1" wrA
 `!p snip.rv = match.group(1)`_{m-1}
 endsnippet
 
@@ -798,34 +876,42 @@ snippet () "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet lr "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet lr( "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+context "math()"
 snippet lr| "left| right|" iA
 \left| ${1:${VISUAL}} \right| $0
 endsnippet
 
+context "math()"
 snippet lr{ "left\{ right\}" iA
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
+context "math()"
 snippet lrb "left\{ right\}" i
 \left\\{ ${1:${VISUAL}} \right\\} $0
 endsnippet
 
+context "math()"
 snippet lr[ "left[ right]" iA
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
+context "math()"
 snippet lra "leftangle rightangle" iA
 \left< ${1:${VISUAL}} \right>$0
 endsnippet
 
+context "math()"
 snippet lr< "leftangle rightangle" iA
 \left< ${1:${VISUAL}} \right>$0
 endsnippet

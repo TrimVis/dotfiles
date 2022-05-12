@@ -6,13 +6,12 @@ function plugins#load() abort
 
     " latex plugin and concealing
     Plug 'lervag/vimtex', { 'for': 'latex' }
-    Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'latex'}
     " PEP8-compliant python indenting
     Plug 'vimjas/vim-python-pep8-indent', { 'for': 'python' }
     " better syntax highlighting for C++
     Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
-    " Haskell IDE
-    "Plug 'neovimhaskell/haskell-vim'
+    " Haskell syntax highlighting and indentation
+    Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
     "" Neomake (required by intero)
     "Plug 'neomake/neomake'
     "" Intero (ghci session in vim)
