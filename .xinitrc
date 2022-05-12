@@ -5,6 +5,6 @@ eval $(ssh-agent)
 
 [ -f "$HOME/.xprofile" ] && . ~/.xprofile
 
-setxkbmap -layout us -option "caps:swapescape"
+setxkbmap -layout de -option "caps:swapescape" -variant us
 
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec dwm
