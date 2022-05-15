@@ -1,53 +1,38 @@
 #!/usr/bin/sh
 
-#TEST="xrandr --auto
-#        xrandr --output eDP-1 --off
-#	xrandr --output HDMI-A-0 --off
-#        xrandr --output HDMI-A-0 --auto --right-of eDP-1
-#        xrandr --output HDMI-A-0 --auto --left-of eDP-1
-#	xrandr --output HDMI-A-0 --auto --same-as eDP-1 "
+OPTIONS="auto"
+DEVICES=$(xrandr | grep ' connected' | awk -F'connected' '{ print $1 }')
 
-RET=$(echo "auto
-eDP-1 OFF
-eDP-1 ON
-HDMI OFF
-HDMI ON
-HDMI above of eDP-1
-HDMI right of eDP-1
-HDMI left of eDP-1
-HDMI mirror eDP-1" | rofi -p "Screen Config" -dmenu)
+# If you want another main device replace this variable here
+MAIN_DEVICE=$(echo "${DEVICES}" | head --lines 1)
 
-if [ "$RET" = "eDP-1 OFF" ]
-then
-	xrandr --output eDP-1 --off
-elif [ "$RET" = "eDP-1 ON" ]
-then
-	xrandr --output eDP-1 --auto
+for DEVICE in $(echo "${DEVICES}" | tail --lines 1); do
+    OPTIONS="${OPTIONS}\n${DEVICE}: ON"
+    OPTIONS="${OPTIONS}\n${DEVICE}: OFF"
+    OPTIONS="${OPTIONS}\n${DEVICE}: above of: ${MAIN_DEVICE}"
+    OPTIONS="${OPTIONS}\n${DEVICE}: right of: ${MAIN_DEVICE}"
+    OPTIONS="${OPTIONS}\n${DEVICE}: left of: ${MAIN_DEVICE}"
+    OPTIONS="${OPTIONS}\n${DEVICE}: mirror: ${MAIN_DEVICE}"
+done
 
-elif [ "$RET" = "HDMI OFF" ]
-then
-	xrandr --output HDMI-1 --off
+RET=$(echo -e "${OPTIONS}" | rofi -p "Screen Config" -dmenu)
 
-elif [ "$RET" = "HDMI ON" ]
-then
-	xrandr --output HDMI-1 --auto
+DEVICE0=$(echo "${RET}" | awk -F: '{ print $1 }')
+OPTION=$(echo "${RET}" | awk -F: '{ print $2 }')
+DEVICE1=$(echo "${RET}" | awk -F: '{ print $3 }')
 
-elif [ "$RET" = "HDMI above of eDP-1" ]
-then
-	xrandr --output HDMI-1 --auto --above eDP-1
-
-elif [ "$RET" = "HDMI right of eDP-1" ]
-then
-	xrandr --output HDMI-1 --auto --right-of eDP-1
-
-elif [ "$RET" = "HDMI left of eDP-1" ]
-then
-	xrandr --output HDMI-1 --auto --left-of eDP-1
-
-elif [ "$RET" = "HDMI mirror eDP-1" ]
-then
-	xrandr --output HDMI-1 --auto --same-as eDP-1
-
-else
-	xrandr --auto
+if [ "${DEVICE0}" = "auto" ]; then
+    xrandr --auto
+elif [ "${OPTION}" = " ON" ]; then
+    xrandr --output ${DEVICE0} --auto
+elif [ "${OPTION}" = " OFF" ]; then
+    xrandr --output ${DEVICE0} --off
+elif [ "${OPTION}" = " above of" ]; then
+    xrandr --output ${DEVICE0} --auto --above ${DEVICE1}
+elif [ "${OPTION}" = " right of" ]; then
+    xrandr --output ${DEVICE0} --auto --right-of ${DEVICE1}
+elif [ "${OPTION}" = " left of" ]; then
+    xrandr --output ${DEVICE0} --auto --left-of ${DEVICE1}
+elif [ "${OPTION}" = " mirror" ]; then
+    xrandr --output ${DEVICE0} --auto --same-as ${DEVICE1}
 fi
