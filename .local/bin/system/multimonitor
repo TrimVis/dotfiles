@@ -1,11 +1,13 @@
 #!/usr/bin/sh
 
 OPTIONS="auto"
-DEVICES=$(xrandr | grep ' connected' | awk -F'connected' '{ print $1 }')
+DEVICES=$(xrandr | grep ' connected' | awk -F' connected' '{ print $1 }')
 
 # If you want another main device replace this variable here
 MAIN_DEVICE=$(echo "${DEVICES}" | head --lines 1)
 
+OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: ON"
+OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: OFF"
 for DEVICE in $(echo "${DEVICES}" | tail --lines 1); do
     OPTIONS="${OPTIONS}\n${DEVICE}: ON"
     OPTIONS="${OPTIONS}\n${DEVICE}: OFF"
