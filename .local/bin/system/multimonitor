@@ -8,7 +8,7 @@ MAIN_DEVICE=$(echo "${DEVICES}" | head --lines 1)
 
 OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: ON"
 OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: OFF"
-for DEVICE in $(echo "${DEVICES}" | tail --lines 1); do
+for DEVICE in $(echo "${DEVICES}" | grep -v "${MAIN_DEVICE}"); do
     OPTIONS="${OPTIONS}\n${DEVICE}: ON"
     OPTIONS="${OPTIONS}\n${DEVICE}: OFF"
     OPTIONS="${OPTIONS}\n${DEVICE}: above of: ${MAIN_DEVICE}"
