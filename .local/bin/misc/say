@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if [ "$VOICE" == "" ]; then
+      # VOICE="de5"
+      VOICE="us2"
+fi
+
+if [ ! -f "$1" ]; then
+      espeak -v mb-$VOICE -q --pho --phonout=/tmp/out.pho "$1"
+else
+      A=$(cat "$1")
+      espeak -v mb-$VOICE -q --pho --phonout=/tmp/out.pho "$A"
+fi
+
+mbrola -t 1.2 -f 0.8 /usr/share/mbrola/$VOICE/$VOICE /tmp/out.pho -.au | aplay 1>/dev/null 2>/dev/null
+rm -f /tmp/out.pho
