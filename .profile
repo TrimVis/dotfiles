@@ -48,5 +48,7 @@ stty -ixon
 
 echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc"
 
+# source /opt/intel/oneapi/setvars.sh
+
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx -- -keeptty &> ~/.local/share/xorg/xorg-tty.log
