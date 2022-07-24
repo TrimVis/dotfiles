@@ -1,21 +1,10 @@
 #!/bin/bash
 
-#CPU=$(iostat | awk '/..,../{ print $1}')
 CPU=$(iostat -c 1 1 | tail -n 5 | awk '/..\.../{ print $1}')
-#CPU=${CPU/","/"."}
-
 
 case $BLOCK_BUTTON in
-	1) notify-send "💻 CPU temp:" "$(sensors | awk '/Tdie:/ {print $2}')";;
+	1) notify-send "💻 CPU temp:" "$(sensors | awk -F'\t' '/Package id 0:/ {print $2}')";;
   3) notify-send "💻 CPU hogs:" "$(ps axch -o %cpu,cmd --sort=-%cpu | head -n 8)" ;;
 esac
 
 echo "󰻠 $CPU%"
-
-#if [[ $(bc -l <<< "$CPU > 90.0") -eq 1 ]]
-#then
-#	sleep 1
-#elif [[ $(bc -l <<< "$CPU > 50.0") -eq 1 ]]
-#then
-#	sleep 1
-#fi

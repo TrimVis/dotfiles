@@ -38,3 +38,7 @@ elif [ "${OPTION}" = " left of" ]; then
 elif [ "${OPTION}" = " mirror" ]; then
     xrandr --output ${DEVICE0} --auto --same-as ${DEVICE1}
 fi
+
+# Set wallpaper again, so that it's scaled properly
+CURR_WALL="./pic/wall/$(cat ./pic/wall/.currwal)"
+feh --no-fehbg --bg-fill "$CURR_WALL"
