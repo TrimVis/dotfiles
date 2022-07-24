@@ -1,0 +1,154 @@
+###########################################
+##                                       ##
+## Trim's simple X hotkey daemon rc file ##
+##                                       ##
+###########################################
+
+#---------#
+#  Menus  # Rule of thumb: All on super + shift
+#---------#
+
+#Drun/Emoji selector
+super + shift + {d,e}
+	rofi -show {drun,emoji} -show-icons -monitor -1
+
+#Bluetooth selector
+super + shift + b
+    rofi-bluetooth
+
+#Wallpaper changer
+super + shift + w
+	change_bg ~/pic/wall/
+
+#Password Manager
+super + shift + p
+	rofi-pass --last-used -monitor -1
+
+#System ShutdownSuspendRebootLockscreen-Dialog
+super + shift + x
+	ssrl-dialog
+
+#Multimonitor Setup
+super + shift + m
+	multimonitor
+
+# super + shift + n
+# 	todofi.sh -d "$HOME/.config/todo/todo.cfg"
+
+#------------#
+#  Programs  # Rule of thumb: All on super only
+#------------#
+
+#Terminal
+super + {_,shift +} Return
+	$TERMINAL {, -e bash -c "cd '$(xcwd)'; bash"}
+
+#Browser
+super + w
+	$BROWSER
+
+#Filemanager
+super + r
+	$FILE
+
+#Process Explorer
+super + e
+	 $TERMINAL -e gotop
+
+#Sound control
+super + v
+	 $TERMINAL -e pulsemixer
+#pavucontrol
+
+#------------#
+#  Controls  # Rule of thumb: All in top row
+#------------#
+
+# Brightness controls
+{_,super +} XF86MonBrightnessUp
+	lightctl -i {5, 1} -n -b 11
+{_,super +} XF86MonBrightnessDown
+	lightctl -d {5, 1} -n -b 11
+shift + {F2,F1}
+	lightctl {-r,-s} -n -b 11
+ 
+# Volume control 
+{_,super +} XF86AudioRaiseVolume
+	volumectl -i {5, 1} -n -b 12
+{_,super +} XF86AudioLowerVolume
+	volumectl -d {5, 1} -n -b 12
+XF86AudioMute 
+	volumectl -m -n -b 12
+
+# selected Area not working: couldn't grab keyboard
+# Screenshots
+{_, super +} Print
+	{maim | tee "$HOME/Pictures/Screenshots/shot_$(date +%s).png" | xclip -sel clip -t image/png; notify-send "Screenshot" "Took screenshot of whole display", scred}
+	
+#---------#
+#   hypr  #
+#---------#
+
+# Close current window
+super + q
+    hyprctl dispatch killactive 1
+
+# Navigate through windowstack
+super + {_,shift +} {h,j,k,l}
+    hyprctl dispatch {movefocus,movewindow} {l,d,u,r}
+# super + {j,k}
+#     hyprctl dispatch cyclenext {next,prev}
+
+# Cycle through/Tag monitors
+super + {_,shift +} backslash
+    hyprctl dispatch {focusmonitor,movecurrentworkspacetomonitor} e+1
+
+# Show/view/tag 
+super + {_,shift +} {1-9}
+    hyprctl dispatch {,moveto}workspace {1-9}
+
+# Change window size
+super + {comma,.}
+	hyprctl dispatch splitratio {-,+}0.05
+
+super + {m,f}
+    hyprctl dispatch fullscreen {1,0}
+
+super + p
+    hyprctl dispatch pseudo 1
+
+super + c
+    hyprctl dispatch exit 1
+
+# Change layout to floating of all or current window
+super + {_, shift +} space
+	hyprctl dispatch {togglefloating 1, workspaceopt allfloat}
+
+# Change gaps
+super + {minus,plus}
+	dwmc setgaps {-,+}1
+
+# Unsupported
+# # Show/view/tag 
+# super + {_,ctrl +}{_,shift +} {1-9}
+# 	dwmc {_,toggle}{viewex,tagex} {0-8}
+#
+# # Change amount of windows in master
+# super + {i,d}
+# 	dwmc incnmaster {+,-}1
+
+# # Change layouts
+# super + {t,m}
+# 	dwmc setlayoutex {0,2}
+
+# # Move to master
+# super + ^
+#    dwmc zoom
+
+# # Toggle bar
+# super + b
+# 	dwmc togglebar
+# 
+# super + 0
+# 	dwmc viewall
+
