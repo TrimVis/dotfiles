@@ -15,10 +15,11 @@ picom -b #compositor
 dunst & #notification daemon
 /usr/bin/lxqt-policykit-agent &
 nm-applet > /dev/null & #network manager applet
-blueman-applet > /dev/null & #bluetooth applet
 unclutter -b > /dev/null #removes mouse pointer after certain time
 /usr/lib/kdeconnectd > /dev/null & #kdeconnect daemon
+kdeconnect-indicator > /dev/null & #kdeconnect daemon
 
-#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-#syncthing >/dev/null & #file syncronization
-#gwe --hide-window > /dev/null &
+# blueman-applet > /dev/null & #bluetooth applet
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# syncthing >/dev/null & #file syncronization
+# gwe --hide-window > /dev/null &

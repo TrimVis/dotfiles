@@ -7,4 +7,11 @@ eval $(ssh-agent)
 
 setxkbmap -layout de -option "caps:swapescape" -variant us
 
-[ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec dwm
+if [ "$(tty)" = "/dev/tty1" ]; then
+    ! pgrep -x dwm >/dev/null && dwm
+    
+    # Keep the X session alive, to allow restarting of dwm
+    while `/bin/true`; do
+        sleep 1000
+    done
+fi
