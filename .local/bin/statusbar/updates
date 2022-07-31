@@ -4,4 +4,9 @@ case $BLOCK_BUTTON in
    1) $TERMINAL -n "floating" -e paru && pkill -RTMIN+12 i3blocks ;;
 esac
 
-echo " $(paru -Qu | wc -l)"
+UPDATE_COUNT=$(paru -Qu | wc -l)
+if [[ ! "$UPDATE_COUNT" -eq "0" ]]; then
+    echo " $UPDATE_COUNT"
+else
+    echo ""
+fi

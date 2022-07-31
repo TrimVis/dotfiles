@@ -15,11 +15,10 @@ then
 else
 	VOL=$(pamixer --get-volume)
 	ICON="󰕾"
-	if [ "$VOL" -le 60 ]; then
-		ICON="󰖀"
-	fi
 	if [ "$VOL" -le 30 ]; then
 		ICON="󰕿"
+	elif [ "$VOL" -le 60 ]; then
+		ICON="󰖀"
 	fi
 	echo "${ICON} ${VOL}%"
 fi

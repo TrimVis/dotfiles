@@ -36,7 +36,6 @@ if [ "$NEXT_PLAYER" = "TRUE" ]; then
 
 # Print the currently playing song of current player
 elif [ "$PRINT_PLAYING" = "TRUE" ]; then
-
 	PLAYING=$(playerctl status -p "$CURR_PLAYER" 2> /dev/null)
 	TITLE=$(playerctl metadata title -p "$CURR_PLAYER" 2> /dev/null | cut -c1-24)
 	ARTIST=$(playerctl metadata artist -p "$CURR_PLAYER" 2> /dev/null | cut -c1-16)
