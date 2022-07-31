@@ -5,22 +5,25 @@ case $BLOCK_BUTTON in
 esac
 
 ACPI=$(acpi | awk '{print $3 $4}')
-BAT=$(echo "$ACPI" | grep -o "[0-9]\+")
+BAT=$(acpi | grep -o "[0-9]\+%")
 STAT=$(echo "$ACPI" | awk -F',' '{print $1}')
 ICON=""
 
-if [ "$BAT" -le 10 ]; then
+NBAT=$(echo "$BAT" | awk -F'%' '{print $1}')
+if [ "$NBAT" -le 10 ]; then
 	ICON=""
-elif [ "$BAT" -le 30 ]; then
+elif [ "$NBAT" -le 30 ]; then
 	ICON=""
-elif [ "$BAT" -le 60 ]; then
+elif [ "$NBAT" -le 60 ]; then
 	ICON=""
-elif [ "$BAT" -le 90 ]; then
+elif [ "$NBAT" -le 90 ]; then
 	ICON=""
 fi
 
 if [ "$STAT" = "Charging" ]; then
 	echo " $BAT+"
-else
+elif [ "$STAT" = "Discharging" ]; then
 	echo "${ICON} $BAT"
+else
+	echo " $BAT"
 fi
