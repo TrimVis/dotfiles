@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=WhatsApp Web
+Categories=Network;
+Exec=/home/trim/.local/opt/webapps/WhatsAppWeb-linux-x64/WhatsAppWeb
+Icon=/home/trim/.local/opt/webapps/WhatsAppWeb-linux-x64/resources/app/icon.png
+Terminal=false
+Type=Application
