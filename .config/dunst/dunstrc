@@ -86,7 +86,7 @@
 
     ### Text ###
 
-    font = IBM Plex Mono 10
+    font = DM Mono Nerd Font 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
@@ -126,7 +126,7 @@
     #   %n  progress value if set without any extra characters
     #   %%  Literal %
     # Markup is allowed
-    format = "<span foreground='#E1B037'>[<b>%s</b>]</span>\n<span foreground='#FFF'>%b</span> <span foreground='#ED7600'>%p</span>\n- %a"
+    format = "<span foreground='#E1B037'>[<b>%s</b>]</span>\n<span foreground='#FFF'>%b</span> <span fgalpha='50%'>%p</span>\n- %a"
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
