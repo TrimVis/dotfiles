@@ -32,26 +32,21 @@ CURR_PLAYER=$(cat "$CONF")
 if [ "$NEXT_PLAYER" = "TRUE" ]; then
 	PLAYER_LIST="$(printf "$(playerctl -l 2> /dev/null)\n%.0s" {1..2})"
 	POS_PLAYERS="$(echo "$PLAYER_LIST" | grep -A 1 "$CURR_PLAYER" | grep -v "$CURR_PLAYER")"
+
 	echo "$POS_PLAYERS" | head -n 1 > "$CONF"
 
 # Print the currently playing song of current player
 elif [ "$PRINT_PLAYING" = "TRUE" ]; then
 	PLAYING=$(playerctl status -p "$CURR_PLAYER" 2> /dev/null)
-	TITLE=$(playerctl metadata title -p "$CURR_PLAYER" 2> /dev/null | cut -c1-24)
+	TITLE=$(playerctl metadata title -p "$CURR_PLAYER" 2> /dev/null | cut -c1-23)
 	ARTIST=$(playerctl metadata artist -p "$CURR_PLAYER" 2> /dev/null | cut -c1-16)
 
 	if [ "$PLAYING" = "Playing" ]; then
-
 		echo "󰐊$TITLE [$ARTIST]"
-
 	elif [ "$PLAYING" = "Paused" ]; then
-
 		echo "󰏤$TITLE [$ARTIST]"
-
 	else
-
 		echo ""
-
 	fi
 
 fi

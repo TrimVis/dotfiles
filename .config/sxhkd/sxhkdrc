@@ -5,10 +5,10 @@
 ###########################################
 
 F12
-	autoclicker 100
+	autoclicker 100 22
 
 shift + F12
-	autoclicker 10000
+	autoclicker 1000 22
 #---------#
 #  Menus  # Rule of thumb: All on super + shift
 #---------#
@@ -131,8 +131,8 @@ super + {h,l}
 	dwmc setmfact {-,+}0.05
 
 # Change layouts
-super + {t,m}
-	dwmc setlayoutex {0,2}
+super + {t,m,c}
+	dwmc setlayoutex {0,2,3}
 super + f
 	dwmc togglefullscr
 # Change layout to floating of all or current window
