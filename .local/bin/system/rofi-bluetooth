@@ -248,9 +248,16 @@ show_menu() {
     if power_on; then
         power="Power: on"
 
-        # Human-readable names of devices, one per line
-        # If scan is off, will only list paired devices
-        devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sort -d -)
+        # Find connected devices in a human readable format
+        connected_devices=$(bluetoothctl devices Connected | grep Device | cut -d ' ' -f 3- | sort -d -)
+
+        # All paired devices except for the connected devices
+        regex_str=$(echo "$connected_devices" | sed 's/^/\^/;s/$/\$/')
+        paired_devices=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 3- | sort -d - | grep -v -e "$regex_str")
+
+        # All other devices that are neither paired nor connected
+        regex_str=$(echo -e "$connected_devices\n$paired_devices" | sed 's/^/\^/;s/$/\$/')
+        devices=$(bluetoothctl devices | grep Device | cut -d ' ' -f 3- | sort -d - | grep -v -e "$regex_str")
 
         # Get controller flags
         scan=$(scan_on)
@@ -259,7 +266,16 @@ show_menu() {
         divider="---------"
 
         # Options passed to rofi
-        options="$devices\n$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
+        if [ -n "$connected_devices" ]; then
+          options="$connected_devices\n$divider\n"
+        fi
+        if [ -n "$paired_devices" ]; then
+          options="$options$paired_devices\n"
+        fi
+        if [ -n "$devices" ]; then
+          options="$options$devices\n"
+        fi
+        options="$options$divider\n$power\n$scan\n$pairable\n$discoverable\nExit"
     else
         power="Power: off"
         options="$power\nExit"
@@ -307,12 +323,12 @@ case "$1" in
     *)
         # Start scanning on start
         kill $(pgrep -f "bluetoothctl scan on")
-        bluetoothctl scan off
-        bluetoothctl scan on &
+        # bluetoothctl scan off
+        # bluetoothctl scan on &
         show_menu
         # Stop scanning on close
-        kill $(pgrep -f "bluetoothctl scan on")
-        bluetoothctl scan off
+        # kill $(pgrep -f "bluetoothctl scan on")
+        # bluetoothctl scan off
         ;;
 esac
 
