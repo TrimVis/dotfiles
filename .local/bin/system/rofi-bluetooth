@@ -265,6 +265,7 @@ show_menu() {
         discoverable=$(discoverable_on)
         divider="---------"
 
+        options=""
         # Options passed to rofi
         if [ -n "$connected_devices" ]; then
           options="$connected_devices\n$divider\n"
@@ -322,7 +323,7 @@ case "$1" in
         ;;
     *)
         # Start scanning on start
-        kill $(pgrep -f "bluetoothctl scan on")
+        # kill $(pgrep -f "bluetoothctl scan on")
         # bluetoothctl scan off
         # bluetoothctl scan on &
         show_menu
