@@ -42,9 +42,9 @@ elif [ "$PRINT_PLAYING" = "TRUE" ]; then
 	ARTIST=$(playerctl metadata artist -p "$CURR_PLAYER" 2> /dev/null | cut -c1-16)
 
 	if [ "$PLAYING" = "Playing" ]; then
-		echo "󰐊$TITLE [$ARTIST]"
-	elif [ "$PLAYING" = "Paused" ]; then
 		echo "󰏤$TITLE [$ARTIST]"
+	elif [ "$PLAYING" = "Paused" ]; then
+		echo "󰐊$TITLE [$ARTIST]"
 	else
 		echo ""
 	fi
