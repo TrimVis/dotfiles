@@ -1,7 +1,0 @@
-[Desktop Entry]
-Name=Youtube Music - Nativfier
-Categories=Network;
-Exec=/home/trim/.local/opt/webapps/YoutubeMusic-linux-x64/YoutubeMusic
-Icon=~/.local/opt/webapps/YoutubeMusic-linux-x64/resources/app/icon.png
-Terminal=false
-Type=Application
