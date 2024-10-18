@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # special options
-CURRWAL=$(cat "$1.currwal")
-DASHES=$(echo $CURRWAL | sed -r 's/./-/g')
+CURRWAL=$(basename "$(cat "$1/.currwal")")
+DASHES=$(echo "$CURRWAL" | sed -r 's/./-/g')
 RAND="random"
 
 # all options
@@ -14,13 +14,13 @@ WALLPAPER=$(echo "$OUTPUT"  | rofi -dmenu -p "change_bg" -mesg "Change the backg
 if [ -n "$WALLPAPER" ]; then
     if [ "$WALLPAPER" = "$RAND" ]; then
         # Choose a random wallpaper
-        WALLPAPER=$(ls $1 | shuf -n 1)
+        WALLPAPER=$(ls "$1" | shuf -n 1)
     fi
-    if [ -e "$1$WALLPAPER" ]; then
+    if [ -e "$1/$WALLPAPER" ]; then
         # Set the wallpaper, if the file exists
-        echo "$WALLPAPER" > "$1.currwal"
-        feh --no-fehbg --bg-fill "$1$WALLPAPER"
-        betterlockscreen -u "$1$WALLPAPER"
+        echo "$1/$WALLPAPER" > "$1/.currwal"
+        feh --no-fehbg --bg-fill "$1/$WALLPAPER"
+        betterlockscreen -u "$1/$WALLPAPER"
     fi
     # TODO: Add a slideshow mode
 fi

@@ -2,5 +2,13 @@ configuration {
 	modi: "window,run,ssh,drun";
 	font: "DM Mono Nerd Font 13";
 	//theme: "~/.config/rofi/arc-dark.rasi";
+    //theme:"~/.cache/wal/colors-rofi-dark";
 }
 @theme "neoncity"
+
+// @import "~/.cache/wal/colors-rofi-dark"
+// element-text {
+//   background-color: inherit;
+//   text-color: inherit;
+// }
+

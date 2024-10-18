@@ -5,11 +5,17 @@ return require('packer').startup(function(use)
 	-- Packer can manage itself
 	use('wbthomason/packer.nvim')
 
+    -- vim-just syntax
+    use('NoahTheDuke/vim-just')
+
 	-- Telescope
 	use({
 		'nvim-telescope/telescope.nvim', tag = '0.1.2',
 		requires = { {'nvim-lua/plenary.nvim'} }
 	})
+
+	-- Pywal colorscheme
+	use('dylanaraps/wal.vim')
 
 	-- Rose Pine Colorscheme
 	use({ 'rose-pine/neovim', as = 'rose-pine'})

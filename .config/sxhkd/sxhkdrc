@@ -23,11 +23,11 @@ super + shift + b
 
 #Wallpaper changer
 super + shift + w
-	change_bg ~/pic/wall/
+	change_bg ~/pic/wall
 
 #Password Manager
 super + shift + p
-	rofi-pass --last-used -monitor -1
+    ROFI_PASS_CONFIG="~/.config/rofi-pass/config" rofi-pass
 
 #System ShutdownSuspendRebootLockscreen-Dialog
 super + shift + x
@@ -37,12 +37,6 @@ super + shift + x
 super + shift + m
 	multimonitor
 
-super + shift + n
-	todofi.sh -d "$HOME/.config/todo/todo.cfg"
-
-super + shift + r
-    /home/trim/git/kaomoji-rofi/kaomoji.sh
-
 #------------#
 #  Programs  # Rule of thumb: All on super only
 #------------#
@@ -50,10 +44,6 @@ super + shift + r
 #Terminal
 super + {_,shift +} Return
 	$TERMINAL {_, -e bash -c "cd '$(xcwd)'; bash"}
-
-#Scratchpad terminal
-super + alt + Return
-	scratchpad
 
 #Browser
 super + w
@@ -140,8 +130,8 @@ super + {_, shift +} space
 	dwmc {setlayout 1, togglefloating}
 
 # Move to master
-super + ^
-	dwmc zoom
+#super + ^
+#	dwmc zoom
 
 # Toggle bar
 super + b

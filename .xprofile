@@ -2,24 +2,9 @@
 
 # Configuration
 xrdb "$HOME/.Xresources" #load Xresources
-feh --no-fehbg --bg-fill "$HOME/pic/wall/$(cat $HOME/pic/wall/.currwal)" #restore wallpaper
+feh --no-fehbg --bg-fill "$(cat "$HOME/pic/wall/.currwal")" #restore wallpaper
 xset s 120 60 # dim screen after 120s and lock after an additional 60s
 xss-lock -n dimscreen -- screenlock &
 
-#xset dpms 0 24 0 #suspend and lock screen after 360 seconds TODO: get this to work again
-
 # Autostart
-dwmblocks &
-sxhkd &
-picom -b #compositor
-dunst & #notification daemon
-/usr/bin/lxqt-policykit-agent &
-nm-applet > /dev/null & #network manager applet
-unclutter -b > /dev/null #removes mouse pointer after certain time
-/usr/lib/kdeconnectd > /dev/null & #kdeconnect daemon
-kdeconnect-indicator > /dev/null & #kdeconnect daemon
-
-# blueman-applet > /dev/null & #bluetooth applet
-# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-# syncthing >/dev/null & #file syncronization
-# gwe --hide-window > /dev/null &
+systemctl --user start autostart.target

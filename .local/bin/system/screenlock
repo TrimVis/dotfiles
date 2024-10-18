@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-betterlockscreen -l --off 5 -t "$(fortune -o -n 31 -s)" 2>&1 > /dev/null
+betterlockscreen -l --off 5 > /dev/null 2>&1 

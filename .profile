@@ -4,7 +4,7 @@
 #
 
 # Adds `~/.local/bin/` and all subdirectories to $PATH
-export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//'):$HOME/.local/share/cargo/bin/"
 
 # Default programs:
 export EDITOR="nvim"
@@ -32,8 +32,11 @@ export SPACEVIMDIR="$XDG_CONFIG_HOME/spacevim/"
 # proper qt themes
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export CUDA_CACHE_PATH="$XDG_CACHE_HOME/nv"
+export ROFI_PASS="$HOME/config/rofi-pass/config"
+export RESTIC_REPOSITORY="sftp:hs-macmini:/mnt/backup/devices/carbon"
 
 # less/man colors
+export PAGER="less"
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
 export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"; a="${a%_}"
@@ -42,6 +45,8 @@ export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"; a="${a%_}"
 export LESS_TERMCAP_se="$(printf '%b' '[0m')"; a="${a%_}"
 export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"; a="${a%_}"
 export LESS_TERMCAP_ue="$(printf '%b' '[0m')"; a="${a%_}"
+
+export OPENAUDIBLE_HOME="$HOME/music/OpenAudible/"
 
 # disable Ctrl+S
 stty -ixon
@@ -52,3 +57,4 @@ echo "$0" | grep "bash$" >/dev/null && [ -f ~/.bashrc ] && source "$HOME/.bashrc
 
 # Start graphical server if i3 not already running.
 [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x dwm >/dev/null && exec startx -- -keeptty &> ~/.local/share/xorg/xorg-tty.log
+[ "$(tty)" = "/dev/tty2" ] && ! pgrep -x dwm >/dev/null && exec startx -- -keeptty &> ~/.local/share/xorg/xorg-tty.log

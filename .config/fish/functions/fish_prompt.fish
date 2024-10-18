@@ -1,5 +1,14 @@
 # name: Custom
 
+function edit_command_buffer
+    set -l temp_file (mktemp)
+    commandline > $temp_file
+    $EDITOR $temp_file
+    commandline (cat $temp_file)
+    rm $temp_file
+end
+
+
 function fish_prompt --description 'Write out the prompt'
     set -l last_pipestatus $pipestatus
     set -l normal (set_color normal)

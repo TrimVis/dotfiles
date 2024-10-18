@@ -11,7 +11,7 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-Xft.dpi: 82
+Xft.dpi: 90
 
 st.termname: st-256color
 st.borderpx: 2

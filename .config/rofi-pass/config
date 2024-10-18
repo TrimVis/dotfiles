@@ -4,7 +4,16 @@
 
 # rofi command. Make sure to have "$@" as last argument
 _rofi () {
-    rofi -i -no-auto-select "$@"
+    # PREV_ROW=$(cat /tmp/last-rofi-pass-access-row 2&>/dev/null || echo "0")
+    # SELECTION=$(rofi -i -steal-focus -no-auto-select -selected-row "$PREV_ROW" "$@")
+    # SEL_ROW=$(echo "$@" | grep -n "$SELECTION" "-" | awk -F: '{printf $1}')
+    # echo "$SEL_ROW" > /tmp/last-rofi-pass-access-row
+
+    # echo "Prev Row: $PREV_ROW"
+    # echo "Selected Row: $SEL_ROW"
+    # echo "Selection: $SELECTION"
+
+    rofi -i -steal-focus -no-auto-select -selected-row "$PREV_ROW" "$@"
 }
 
 # default command to generate passwords
@@ -33,6 +42,7 @@ layout_cmd () {
 
 # fields to be used
 URL_field='url'
+# USERNAME_field='user'
 USERNAME_field='login'
 AUTOTYPE_field='autotype'
 
@@ -47,7 +57,7 @@ xdotool_delay=12
 
 ## Programs to be used
 # Editor
-EDITOR='st -- nvim'
+EDITOR='kitty -- nvim'
 
 # Browser
 BROWSER='xdg-open'
@@ -65,7 +75,7 @@ help_color="#4872FF"
 
 # Clipboard settings
 # Possible options: primary, clipboard, both
-clip=primary
+clip=both
 
 # Seconds before clearing pass from clipboard 
 clip_clear=45
@@ -78,7 +88,7 @@ edit_new_pass="true"
 # default_user is also used for password files that have no user field.
 #default_user="${ROFI_PASS_DEFAULT_USER-$(whoami)}"
 #default_user2=mary_ann
-#password_length=12
+password_length=16
 
 # Custom Keybindings
 autotype="Alt+1"
