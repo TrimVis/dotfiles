@@ -86,6 +86,8 @@ XF86AudioMute
 # Screenshots
 {_, super +} Print
 	{maim | tee "$HOME/Pictures/Screenshots/shot_$(date +%s).png" | xclip -sel clip -t image/png; notify-send "Screenshot" "Took screenshot of whole display", scred}
+super + {_, shift +} s
+	{maim | tee "$HOME/Pictures/Screenshots/shot_$(date +%s).png" | xclip -sel clip -t image/png; notify-send "Screenshot" "Took screenshot of whole display", scred}
 	
 #let sxhkd reload its config
 super + Escape

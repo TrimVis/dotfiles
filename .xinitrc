@@ -2,7 +2,7 @@
 
 # has to be one of the first autostarts
 eval $(ssh-agent)
-setxkbmap -layout de -option "caps:swapescape" -variant us 
+# setxkbmap -layout de -option "caps:swapescape" -variant us 
 # setxkbmap -layout de -variant us
 # setxkbmap -layout de -option "caps:ctrl_modifier" -variant us
 # xcape -e 'Control_L=Escape' -t 200

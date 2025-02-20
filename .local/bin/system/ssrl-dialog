@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ACTION=$(echo -e " hibernate\n suspend\n Shutdown\n Reboot\n lock screen" | rofi -dmenu -p "ssrl-dialog")
+ACTION=$(echo -e " suspend\n hibernate\n Shutdown\n Reboot\n lock screen" | rofi -dmenu -p "ssrl-dialog")
 
 case "$ACTION" in
 	" Shutdown") systemctl poweroff;;
