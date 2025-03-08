@@ -8,9 +8,11 @@ MAIN_DEVICE=$(echo "${DEVICES}" | head --lines 1)
 
 OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: ON"
 OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: OFF"
+OPTIONS="${OPTIONS}\n${MAIN_DEVICE}: EXCLUSIVE"
 for DEVICE in $(echo "${DEVICES}" | grep -v "${MAIN_DEVICE}"); do
     OPTIONS="${OPTIONS}\n${DEVICE}: ON"
     OPTIONS="${OPTIONS}\n${DEVICE}: OFF"
+    OPTIONS="${OPTIONS}\n${DEVICE}: EXCLUSIVE"
     OPTIONS="${OPTIONS}\n${DEVICE}: above of: ${MAIN_DEVICE}"
     OPTIONS="${OPTIONS}\n${DEVICE}: right of: ${MAIN_DEVICE}"
     OPTIONS="${OPTIONS}\n${DEVICE}: left of: ${MAIN_DEVICE}"
@@ -25,6 +27,13 @@ DEVICE1=$(echo "${RET}" | awk -F: '{ print $3 }')
 
 if [ "${DEVICE0}" = "auto" ]; then
     xrandr --auto
+elif [ "${OPTION}" = " EXCLUSIVE" ]; then
+    CMD="xrandr"
+    for DEVICE in $(echo "${DEVICES}" | grep -v "${DEVICE0}"); do
+        CMD="${CMD} --output ${DEVICE} --off"
+    done
+    CMD="${CMD} --output ${DEVICE0} --primary --auto"
+    $($CMD)
 elif [ "${OPTION}" = " ON" ]; then
     xrandr --output ${DEVICE0} --auto
 elif [ "${OPTION}" = " OFF" ]; then
@@ -40,5 +49,5 @@ elif [ "${OPTION}" = " mirror" ]; then
 fi
 
 # Set wallpaper again, so that it's scaled properly
-CURR_WALL="./pic/wall/$(cat ./pic/wall/.currwal)"
+CURR_WALL="~/pic/wall/$(cat ~/pic/wall/.currwal)"
 feh --no-fehbg --bg-fill "$CURR_WALL"

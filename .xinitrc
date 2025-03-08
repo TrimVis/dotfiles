@@ -11,6 +11,8 @@ eval $(ssh-agent)
 dbus-update-activation-environment --all
 gnome-keyring-daemon --start --components=secrets
 
+# Load custom keyboard layout
+test -f ~/.Xkeymap && xkbcomp ~/.Xkeymap $DISPLAY
 
 # set pywal theme
 # favorites: sexy-dotshare (-a 1), 3024, solarized
