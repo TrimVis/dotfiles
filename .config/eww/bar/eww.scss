@@ -1,0 +1,268 @@
+$window:        #eeeeee;
+$window_border: rgba(200, 200, 200, 0.7);
+
+$workspace_inactive:     rgba(100, 114, 125, 0.6);
+$workspace_inactive_bg:  transparent;
+$workspace_active:       rgba(180, 190, 200, 0.9);
+$workspace_active_bg:    transparent;
+$workspace_focused:      rgba(220, 230, 230, 0.9);
+$workspace_focused_bg:   rgba(100, 114, 125, 0.5);
+$workspace_hover:        #2E5DFF;
+
+$widget_bg:              rgba(40, 40, 40, 0.5);
+$weather:                rgba(180, 220, 235, 0.8);
+$weather_end:            rgba(171, 233, 179, 0.8);
+
+$trough: rgba(0, 0, 0, 0.5);
+
+$media-progress-bg:   rgba(224, 232, 224, 0.1);
+$media-paused-progress-bg:   rgba(224, 200, 200, 0.1);
+$media:               rgba(224, 232, 224, 0.7);
+$media-paused:        rgba(224, 200, 200, 0.7);
+$media-stopped:       rgba(200, 200, 200, 0.5);
+
+// Dims the desktop background so status icons can be seen against darker wallpapers
+$status_bg: rgba(0, 0, 0, 0.3);
+$tray-bg:   rgba(204, 204, 204, 0.3);
+$tray:                 #c9cbff;
+$keyboard:             #f2cdcd;
+$idle_inhibitor:       #f28fad;
+$volume:               #fae3b0;
+$microphone:           #e8a2af;
+$network:              #f8bd96;
+$backlight:            #bd93f9;
+
+// Unused in favour of bluetooth widget
+$bluetooth:            #88bbeb;
+$cpu:                  #96cdfb;
+$cpu-bg:               rgba(150, 205, 251, 0.3);
+// previously bluetooth colour
+$memory:               #caa9c7;
+$memory-bg:            rgba(202, 169, 199, 0.3);
+$temperature-bg:       rgba(180, 180, 180, 0.5);
+$temperature:          #b6b2b3;
+$temperature-critical: #ff6666;
+$battery:              #ddb6f2;
+$clock:                rgba(171, 233, 179, 1.0);
+
+
+// Styles all scales
+progressbar trough {
+  all: unset;
+  background-color: $trough;
+  border-radius: 5px;
+  min-height: 80px;
+  min-width: 2px;
+  //margin: .3rem 0 .3rem 0;
+}
+trough progress {
+  all: unset;
+  background-color: #00ff00; // Diagnostics colour
+  border-radius: 5px;
+  min-width: 2px;
+}
+scale trough {
+  all: unset;
+  background-color: $trough;
+  border-radius: 5px;
+  min-height: 80px;
+  min-width: 2px;
+}
+trough highlight {
+  all: unset;
+  background-color: #ff0000; // Diagnostics colour
+  border-radius: 5px;
+}
+trough slider {
+  background-color: transparent;
+  border-width: 0px;
+  border-radius: 10px;
+}
+
+.vbar {
+  background-color: transparent;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.launcher {
+  all: unset;
+  font-size: 40px;
+  margin: -2px -5px 5px 0px;
+}
+
+box .workspaces {
+  all: unset;
+  border-radius: 10px;
+  button {
+    all: unset;
+    font-size: 30px;
+    padding-left: 2px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 2px;
+  }
+  button:hover {
+    color: $workspace_hover;
+  }
+  .focused {
+    color: $workspace_focused;
+    background-color: $workspace_focused_bg;
+  }
+  .active {
+    color: $workspace_active;
+    background-color: $workspace_active_bg;
+  }
+  .inactive {
+    color: $workspace_inactive;
+    background-color: $workspace_inactive_bg;
+  }
+}
+
+box .status {
+  background-color: $status_bg;
+  border-radius: 5px;
+}
+
+box .weather {
+  color: $weather;
+  margin-left: 2px;
+  //margin-right: -1px;
+
+  background-color: $widget_bg;
+  border-radius: 5;
+
+  .temperature {
+    color: mix($weather_end, $weather, 0%);
+    .feelsLike {
+      font-style: italic;
+    }
+  }
+  .uvIndex {
+    color: mix($weather_end, $weather, 20%);
+  }
+  .humidity {
+    color: mix($weather_end, $weather, 40%);
+  }
+  .precip {
+    color: mix($weather_end, $weather, 60%);
+  }
+  .wind  {
+    color: mix($weather_end, $weather, 80%);
+  }
+  .cloud  {
+    color: mix($weather_end, $weather, 100%);
+  }
+}
+.volume {
+  background-color: transparent;
+  color: $volume;
+	border-left: 2px solid $volume;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  highlight {
+    background-color: $volume;
+  }
+}
+.microphone {
+  background-color: transparent;
+  color: $microphone;
+	border-left: 2px solid $microphone;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  highlight {
+    background-color: $microphone;
+  }
+}
+
+.media {
+	font-family: "Noto Serif";
+  min-height: 15px;
+  min-width: 15px;
+  font-size: 15px;
+	color: $media;
+	border: none;
+
+  .media-text-playing {
+    padding-left: 10px;
+  }
+  .media-text-paused {
+    padding-left: 10px;
+	  color: $media-paused;
+  }
+  .media-text-stopped {
+    padding-left: 10px;
+	  color: $media-stopped;
+  }
+  .media-playing {
+    background-color: $media-progress-bg;
+  }
+  .media-paused {
+    background-color: $media-paused-progress-bg;
+	  color: $media-paused;
+  }
+  .media-stopped {
+    background-color: $media-paused-progress-bg;
+	  color: $media-stopped;
+  }
+}
+
+box .temperature {
+  color: $temperature;
+	border-left: 2px solid $temperature-bg;
+  margin-bottom: 1px;
+  margin-top: 1px;
+
+}
+.temperature-icon {
+  padding-left: 5px;
+  font-size: 20px;
+  color: mix($temperature, transparent, 70%);
+}
+.temperature-progress-cpu trough progress {
+  background-color: mix($cpu, $temperature, 50%);
+}
+.temperature-progress-gpu trough progress {
+  background-color: $temperature;
+}
+.temperature-progress-critical trough progress {
+  background-color: $temperature-critical;
+}
+
+box .cpu {
+  .progress {
+    background-color: $cpu-bg;
+  }
+  color: $cpu;
+	border-left: 2px solid $cpu;
+  margin-bottom: 1px;
+  margin-top: 1px;
+}
+box .memory {
+  .progress {
+    background-color: $memory-bg;
+  }
+  color: $memory;
+	border-left: 2px solid $memory;
+  margin-bottom: 1px;
+  margin-top: 1px;
+}
+box .clock {
+  background-color: transparent;
+  color: $clock;
+  margin-top: 1px;
+  font-family: Ariel;
+	border-left: 2px solid $clock;
+  .icon {
+    color: mix($clock, transparent, 50%);
+  }
+}
+.systray {
+  //background-color: $tray_bg;
+  color: $tray;
+	border-left: 2px dotted $tray;
+	border-bottom: 2px dotted $tray-bg;
+}

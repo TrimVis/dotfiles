@@ -1,0 +1,16 @@
+#!/bin/sh
+
+toggle_popup() {
+	LOCK="/tmp/eww-$1.lock"
+	if [[ ! -f "$LOCK" ]]; then
+		touch "$LOCK"
+		eww --config ~/.config/eww/bar open $1
+	else
+		eww --config ~/.config/eww/bar close $1
+		rm "$LOCK"
+	fi
+}
+
+if [ "$1" = weather ]; then
+	toggle_popup weather
+fi

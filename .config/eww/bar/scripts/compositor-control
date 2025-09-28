@@ -1,0 +1,193 @@
+#!/usr/bin/env python
+
+"""
+Utility to generate the workspace buttons for eww bar widget.
+
+Currently it fetches information from monitor 0. If all monitors have
+synchronised workspaces this should not be a problem.
+"""
+import os, sys, socket, json, subprocess
+from typing import Optional, Self, override
+
+WORKSPACE_ICONS = [
+    (1, "☱"),
+    (2, "☲"),
+    (3, "☳"),
+    (4, "☴"),
+    (5, "☵"),
+    (6, "☶"),
+    (7, "☷"),
+    (8, "☰"),
+]
+EXTRA_WORKSPACE_ICONS = [
+    (0, "⚌"),
+    (1, "⚍"),
+    (2, "⚎"),
+    (3, "⚏"),
+]
+
+Workspaces = dict[int, bool]
+
+def get_widgets(workspaces: Workspaces) -> str:
+    """
+    Create widget sexp from workspace information
+    """
+    def get_class(k):
+        key = workspaces.get(k, None)
+        if key is None:
+            return "inactive"
+        elif key:
+            return "focused"
+        else:
+            return "active"
+
+    buttons = [
+        f'"id": "{k}", "text": "{icon}", "class": "{get_class(k)}"'
+        for k, icon in WORKSPACE_ICONS
+    ]
+    buttons = ", ".join(["{" + b + "}" for b in buttons])
+    return "[" + buttons + "]"
+
+class CompositorHandler:
+    @staticmethod
+    def create() -> Optional[Self]:
+        """
+        Main entry point, detects the type of compositor used
+        """
+        if signature := os.environ.get("HYPRLAND_INSTANCE_SIGNATURE", None):
+            # See https://wiki.hyprland.org/IPC/
+            xdg_runtime_dir = os.environ["XDG_RUNTIME_DIR"]
+            socket_addr = f"/{xdg_runtime_dir}/hypr/{signature}/.socket2.sock"
+            return HyprlandHandler(socket_addr)
+        if signature := os.environ.get("SWAYSOCK", None):
+            return SwayHandler()
+        return None
+
+    def listen_workspaces(self):
+        pass
+    def listen_active_window_title(self):
+        pass
+    def set_workspace(self, i):
+        pass
+
+class HyprlandHandler(CompositorHandler):
+    def __init__(self, socket_addr):
+        self.socket_addr = socket_addr
+
+    def listen(self, callback):
+        sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        try:
+            sock.connect(self.socket_addr)
+        except Exception as e:
+            print(f"Could not connect to {self.socket_addr}", file=sys.stderr)
+            raise e
+
+        callback(data=None)
+        while sock:
+            data = sock.recv(1024)
+            callback(data)
+
+    @staticmethod
+    def get_workspace_info() -> Workspaces:
+        workspaces = json.loads(os.popen("hyprctl workspaces -j").read())
+        monitors = json.loads(os.popen("hyprctl monitors -j").read())
+        if not monitors:
+            print("No monitor found!", file=sys.stderr)
+            return []
+
+        monitor, active = [
+            (m["name"], m["activeWorkspace"]["id"]) for m in monitors if m["id"] == 0
+        ][0]
+        workspaces = {
+            w["id"]: w["id"] == active
+            for w in workspaces if w["monitor"] == monitor
+        }
+        return workspaces
+
+    @override
+    def listen_workspaces(self):
+        def callback(data):
+            if data is None or b"workspace" in data:
+                workspace_info = HyprlandHandler.get_workspace_info()
+                print(get_widgets(workspace_info), flush=True)
+        self.listen(callback)
+
+    @override
+    def listen_active_window_title(self):
+        def callback(data):
+            if data is None:
+                active_window = json.loads(os.popen("hyprctl activewindow -j").read())
+                print(active_window["title"], flush=True)
+                return
+
+            prefix = b"activewindow>>"
+            payload = next((l[len(prefix):]
+                            for l in reversed(data.split(b'\n'))
+                            if l.startswith(prefix)), None)
+
+            if payload is None:
+                return
+
+            if b',' in payload:
+                _, title = payload.decode('utf-8').split(',', 1)
+                print(title, flush=True)
+            else:
+                print("", flush=True)
+
+        self.listen(callback)
+
+    @override
+    def set_workspace(self, i):
+        result = os.popen(f"hyprctl dispatch workspace {i}").read()
+        if result != "ok\n":
+            raise RuntimeError(f"Failed to set workspace: {result}")
+
+        # FIXME: Set the wallpaper too.
+        # ~/.config/hypr/wallpaper.sh $1
+
+
+class SwayHandler(CompositorHandler):
+    @staticmethod
+    def get_workspace_info() -> Workspaces:
+        workspaces = json.loads(os.popen("swaymsg --raw -t get_workspaces").read())
+        # REVIEW: This has not been tested on a multi-monitor setup.
+        workspaces = {
+            int(w["num"]): w["focused"]
+            for w in workspaces
+        }
+        return workspaces
+
+    def listen_workspaces(self):
+        with subprocess.Popen(["swaymsg", "-t", "subscribe", "-m", '["workspace"]'], stdout=subprocess.PIPE) as proc:
+            workspace_info = SwayHandler.get_workspace_info()
+            print(get_widgets(workspace_info), flush=True)
+            while line := proc.stdout.readline():
+                # FIXME: Use the swaymsg subscribe output
+                # Not needed
+                #info = json.loads(line)
+                workspace_info = SwayHandler.get_workspace_info()
+                print(get_widgets(workspace_info), flush=True)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print("Usage: wm-control workspaces|title")
+
+    handler = CompositorHandler.create()
+    if handler is None:
+        print("No compositor found.", file=sys.stderr)
+
+    key = sys.argv[1]
+
+    if key == "workspaces":
+        handler.listen_workspaces()
+    elif key == "active-title":
+        handler.listen_active_window_title()
+    elif key == "set-workspace":
+        if len(sys.argv) != 3:
+            print(f"Set workspace must be accompanied by an argument", file=sys.stderr)
+
+        arg = sys.argv[2]
+        handler.set_workspace(arg)
+    else:
+        print(f"Unknown key: {key}", file=sys.stderr)

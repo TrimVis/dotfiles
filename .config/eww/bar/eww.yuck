@@ -1,0 +1,301 @@
+(defvar amixer "amixer -D pulse")
+(defvar temperature-monitor "psensor")
+
+(defwindow vbar
+	:exclusive true
+	:monitor 0
+	:windowtype "dock"
+	:geometry (geometry
+		:x "0%"
+		:y "0%"
+		:width "25px"
+		:height "99%"
+		:anchor "center left"
+	)
+	:reserve (struts :side "left" :distance "20px")
+	(centerbox
+		:orientation "v"
+		(box
+			:orientation "v" :space-evenly false :valign "start"
+			(label
+				:class "launcher"
+				:valign "start"
+				:width "20px" :height "20px"
+				:unindent true
+				:tooltip active-window-title
+				:text "☯")
+			(widget-workspaces)
+		)
+		(widget-media)
+		(box
+			:class "status"
+			:orientation "v" :space-evenly false :valign "end"
+			(widget-tray)
+			(widget-volume)
+			(widget-microphone)
+			(widget-temperature)
+			(widget-cpu)
+			(widget-memory)
+			(widget-clock)
+		)
+	))
+
+(defwidget widget-workspaces []
+	(box
+		:class "workspaces"
+		:orientation "v"
+		:space-evenly true
+		:spacing 10
+		:valign "start"
+		:halign "center"
+		(for workspace in workspaces
+			(button
+				:class "${workspace.class}"
+				:onclick "scripts/compositor-control set-workspace ${workspace.id}"
+				"${workspace.text}"))
+		))
+(deflisten workspaces :initial "[]"
+	"scripts/compositor-control workspaces")
+(deflisten active-window-title :initial ""
+	"scripts/compositor-control active-title")
+
+
+(defwidget widget-media []
+	(box
+		:class "media"
+		:orientation "v"
+		:space-evenly false
+		:valign "end"
+		:tooltip "${media-status == 'Paused' ? '' : media-status == 'Playing' ? '' : ''} ${media-position-text}"
+		(eventbox
+			:onclick "playerctl play-pause"
+			(circular-progress
+				:class { media-status == "Paused" ? "media-paused" : media-status == "Stopped" ? "media-stopped" : "media-playing" }
+				:width 20
+				:height 20
+				:thickness 5
+				:value {100.0 * media-position / (media-length / 1000000.0)}
+				:visible {media-current != "" && media-status != "Stopped"}
+			))
+		(label
+			:class { media-status == "Paused" ? "media-text-paused" : media-status == "Stopped" ? "media-text-stopped" : "media-text-playing" }
+			:angle 270
+			:xalign 0.5
+			:yalign 0.5
+			:justify "center"
+			:limit-width 120
+			:text "『${media-current}』"
+	)))
+
+
+(deflisten media-current :initial ""
+	"playerctl --follow metadata --format '{{ artist }} / {{album}} / {{ title }}' || true")
+(deflisten media-position-text :initial ""
+	"playerctl --follow metadata --format '{{duration(position)}} / {{duration(mpris:length)}}' || true")
+(defpoll media-position
+	:interval "1s" :run-while {media-current != ""}
+	"playerctl position")
+(deflisten media-length :initial 1
+	"playerctl --follow metadata mpris:length")
+(deflisten media-status :initial "Stopped"
+	"playerctl --follow status")
+
+(defwidget widget-volume []
+	(eventbox
+		:onhover "${EWW_CMD} update show-volume=true"
+		:onhoverlost "${EWW_CMD} update show-volume=false"
+		:onclick "${amixer} sset Master toggle"
+		(box
+			:class "volume"
+			:orientation "v"
+			:space-evenly "false"
+			:spacing "2"
+			:tooltip "Volume: ${current-volume}% [${current-volume-state}]"
+			(revealer :transition "slideup" :reveal show-volume
+				(scale
+					:class "scale"
+					:value current-volume
+					:orientation "v"
+					:flipped true
+					:marks true
+					:max 101
+					:min 0
+					:onchange "${amixer} sset Master {}%" ))
+			(label
+				:class "icon"
+				:width 25 :height 20
+				:xalign 0.5 :yalign 0.5
+				:noindent true
+				:text { current-volume-state == "off" ? "" : (current-volume > 50 ? "" : "") }))))
+(defwidget widget-microphone []
+	(eventbox
+		:onhover "${EWW_CMD} update show-microphone=true"
+		:onhoverlost "${EWW_CMD} update show-microphone=false"
+		:onclick "${amixer} sset Capture toggle"
+		(box
+			:class "microphone"
+			:orientation "v"
+			:space-evenly "false"
+			:spacing "2"
+			:tooltip "Capture : ${current-microphone}% [${current-microphone-state}]"
+			(revealer :transition "slideup" :reveal show-microphone
+				(scale
+					:class "scale"
+					:value current-microphone
+					:orientation "v"
+					:flipped true
+					:marks true
+					:max 101
+					:min 0
+					:onchange "${amixer} sset Capture {}%" ))
+			(label
+				:class "icon"
+				:width 25 :height 20
+				:xalign 0.5 :yalign 0.5
+				:noindent true
+				:text { current-microphone-state == "off" ? "" : "" }))))
+(defpoll current-volume           :interval "1s" "amixer sget Master  | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll current-volume-state     :interval "1s" "amixer sget Master  | grep 'Left:' | awk -F'[][]' '{ print $4 }'")
+(defpoll current-microphone       :interval "1s" "amixer sget Capture | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll current-microphone-state :interval "1s" "amixer sget Capture | grep 'Left:' | awk -F'[][]' '{ print $4 }'")
+(defvar show-volume false)
+(defvar show-microphone false)
+
+; FIXME: Maybe use a env var here instead
+(defvar cpu-temp-key "ASUS_WMI_SENSORS_CPU_TEMPERATURE")
+(defvar gpu-temp-key "AMDGPU_MEM")
+(defvar temperature-threshold 80)
+
+(defwidget widget-temperature []
+	(eventbox
+		:onclick temperature-monitor
+		(overlay
+			(box
+				:class "temperature"
+				:orientation "h"
+				:tooltip "CPU ${EWW_TEMPS[cpu-temp-key]}°C; GPU ${EWW_TEMPS[gpu-temp-key]}°C"
+				:space-evenly true
+				:width 25
+				:halign "" :valign "center"
+				(progress
+					:class { EWW_TEMPS[cpu-temp-key] > temperature-threshold ? "temperature-progress-critical" : "temperature-progress-cpu" }
+					:halign "center" :valign "center"
+					:flipped "true"
+					:width 3
+					:orientation "v"
+					:value {EWW_TEMPS[cpu-temp-key]}
+				)
+				(progress
+					:class { EWW_TEMPS[gpu-temp-key] > temperature-threshold ? "temperature-progress-critical" : "temperature-progress-gpu" }
+					:halign "center" :valign "center"
+					:flipped "true"
+					:width 3
+					:orientation "v"
+					:value {EWW_TEMPS[gpu-temp-key]}
+				)
+			)
+			(label
+				:valign "end"
+				:class "temperature-icon"
+				:text "")
+	)))
+(defwidget widget-cpu []
+	(box
+		:class "cpu"
+		:orientation "v"
+		(circular-progress
+			:class "progress"
+			:width 25
+			:height 25
+			:thickness 4
+			:tooltip " ${round(EWW_CPU.avg, 2)}%"
+			:value {EWW_CPU.avg}
+		)))
+(defwidget widget-memory []
+	(box
+		:class "memory"
+		:orientation "v"
+		(circular-progress
+			:class "progress"
+			:width 25
+			:height 25
+			:thickness 4
+			:tooltip " ${round(100 * EWW_RAM.used_mem / EWW_RAM.total_mem, 2)}%"
+			:value {EWW_RAM.used_mem_perc}
+	)))
+(defwidget widget-tray []
+	(systray
+		:class "systray"
+		:orientation "v"
+		:space-evenly true
+		:icon-size 25
+		:prepend-new true
+	))
+
+(defwidget widget-clock []
+	(box
+		:class "clock"
+		:orientation "v"
+		:valign "end"
+		:spacing 1
+		:width 20
+		:tooltip {formattime(EWW_TIME, "%F (%a) %T [%Z]")}
+		;(box :class "icon" "")
+		(label :text "${clock.m}")
+		(label :text "${clock.d}")
+		(label :class "icon" :text "")
+		(label :text "${clock.H}")
+		(label :text "${clock.M}")
+	))
+
+(defpoll clock :initial "{}" :interval "10s"
+	"date '+{\"H\":\"%H\", \"M\":\"%M\", \"d\":\"%d\", \"m\":\"%m\", \"b\":\"%b\", \"Y\":\"%Y\"}'")
+
+
+; Calendar
+
+(defwindow calendar
+	:geometry (geometry :x "70px"
+						:y "65%"
+						:width "270px"
+						:height "60px")
+	(cal))
+
+
+(defwidget cal []
+	(box :class "cal"
+		 :orientation "v"
+	(box :class "cal-inner-box"
+	(calendar :class "cal"
+			  :day calendar_day
+			  :month calendar_month
+			  :year calendar_year))))
+(defpoll calendar_day :interval "10h"
+    "date '+%d'")
+(defpoll calendar_month :interval "10h"
+    "scripts/calendar")
+(defpoll calendar_year :interval "10h"
+    "date '+%Y'")
+
+; Weather
+
+(defwidget widget-weather [orientation]
+	(box
+		:class "weather"
+		:orientation orientation
+		:space-evenly false
+		:valign "start"
+		:halign "center"
+		:spacing 10
+		(button :onclick "scripts/popup weather" "W")
+	))
+
+(defpoll weather-text :initial "" :interval "180s"
+	"curl --max-time 2 wttr.in")
+
+(defwindow weather
+	:geometry (geometry :x "70px"
+						:y "50%"
+						:width "270px"
+						:height "60px")
+	(box weather-text))
