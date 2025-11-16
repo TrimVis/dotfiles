@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# set -euo pipefail
+
+TARGET="${1:-eDP-1}"   # default target if none passed
+
+# 1) Ensure target monitor is enabled (preferred resolution, auto position, scale 1)
+#    This is safe even if it's already enabled; Hyprland will just reconfigure it.
+hyprctl keyword monitor "$TARGET,preferred,auto,1"
+hyprctl dispatch dpms on "$TARGET" || true
+
+# 2) Move all existing workspaces to the target monitor
+WS_IDS=$(hyprctl -j workspaces | jq '.[].id')
+
+for ws in $WS_IDS; do
+  hyprctl dispatch moveworkspacetomonitor "$ws $TARGET"
+done
+
+# 3) Disable all other monitors
+MONITORS=$(hyprctl -j monitors | jq -r '.[].name')
+
+for mon in $MONITORS; do
+  if [[ "$mon" != "$TARGET" ]]; then
+    # hyprctl keyword monitor "$mon,disable"
+    hyprctl dispatch dpms off "$mon" || true
+  fi
+done
+
+# Get model name for the TARGET monitor from hyprctl
+MODEL_NAME=$(
+  hyprctl -j monitors \
+    | jq -r --arg TARGET "$TARGET" '.[] | select(.name == $TARGET) | .model'
+)
+
+if [[ -n "$MODEL_NAME" ]]; then
+  # Close existing bar (ignore errors if it's not open)
+  eww close bar >/dev/null 2>&1 || true
+
+  # Open bar on the screen matching this model name
+  eww open bar --screen "$MODEL_NAME" >/dev/null 2>&1 || true
+fi
+
