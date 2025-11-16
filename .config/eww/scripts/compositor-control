@@ -28,10 +28,12 @@ EXTRA_WORKSPACE_ICONS = [
 
 Workspaces = dict[int, bool]
 
+
 def get_widgets(workspaces: Workspaces) -> str:
     """
     Create widget sexp from workspace information
     """
+
     def get_class(k):
         key = workspaces.get(k, None)
         if key is None:
@@ -47,6 +49,7 @@ def get_widgets(workspaces: Workspaces) -> str:
     ]
     buttons = ", ".join(["{" + b + "}" for b in buttons])
     return "[" + buttons + "]"
+
 
 class CompositorHandler:
     @staticmethod
@@ -65,10 +68,13 @@ class CompositorHandler:
 
     def listen_workspaces(self):
         pass
+
     def listen_active_window_title(self):
         pass
+
     def set_workspace(self, i):
         pass
+
 
 class HyprlandHandler(CompositorHandler):
     def __init__(self, socket_addr):
@@ -96,11 +102,10 @@ class HyprlandHandler(CompositorHandler):
             return []
 
         monitor, active = [
-            (m["name"], m["activeWorkspace"]["id"]) for m in monitors if m["id"] == 0
+            (m["name"], m["activeWorkspace"]["id"]) for m in monitors if m["id"] == 1
         ][0]
         workspaces = {
-            w["id"]: w["id"] == active
-            for w in workspaces if w["monitor"] == monitor
+            w["id"]: w["id"] == active for w in workspaces if w["monitor"] == monitor
         }
         return workspaces
 
@@ -110,6 +115,7 @@ class HyprlandHandler(CompositorHandler):
             if data is None or b"workspace" in data:
                 workspace_info = HyprlandHandler.get_workspace_info()
                 print(get_widgets(workspace_info), flush=True)
+
         self.listen(callback)
 
     @override
@@ -121,15 +127,20 @@ class HyprlandHandler(CompositorHandler):
                 return
 
             prefix = b"activewindow>>"
-            payload = next((l[len(prefix):]
-                            for l in reversed(data.split(b'\n'))
-                            if l.startswith(prefix)), None)
+            payload = next(
+                (
+                    l[len(prefix) :]
+                    for l in reversed(data.split(b"\n"))
+                    if l.startswith(prefix)
+                ),
+                None,
+            )
 
             if payload is None:
                 return
 
-            if b',' in payload:
-                _, title = payload.decode('utf-8').split(',', 1)
+            if b"," in payload:
+                _, title = payload.decode("utf-8").split(",", 1)
                 print(title, flush=True)
             else:
                 print("", flush=True)
@@ -151,20 +162,20 @@ class SwayHandler(CompositorHandler):
     def get_workspace_info() -> Workspaces:
         workspaces = json.loads(os.popen("swaymsg --raw -t get_workspaces").read())
         # REVIEW: This has not been tested on a multi-monitor setup.
-        workspaces = {
-            int(w["num"]): w["focused"]
-            for w in workspaces
-        }
+        workspaces = {int(w["num"]): w["focused"] for w in workspaces}
         return workspaces
 
     def listen_workspaces(self):
-        with subprocess.Popen(["swaymsg", "-t", "subscribe", "-m", '["workspace"]'], stdout=subprocess.PIPE) as proc:
+        with subprocess.Popen(
+            ["swaymsg", "-t", "subscribe", "-m", '["workspace"]'],
+            stdout=subprocess.PIPE,
+        ) as proc:
             workspace_info = SwayHandler.get_workspace_info()
             print(get_widgets(workspace_info), flush=True)
             while line := proc.stdout.readline():
                 # FIXME: Use the swaymsg subscribe output
                 # Not needed
-                #info = json.loads(line)
+                # info = json.loads(line)
                 workspace_info = SwayHandler.get_workspace_info()
                 print(get_widgets(workspace_info), flush=True)
 
